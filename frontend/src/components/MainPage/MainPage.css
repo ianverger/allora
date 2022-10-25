@@ -38,3 +38,10 @@ p {
 #break {
     height: 40px;
 }
+
+.carousel-unit {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 100px;
+}
