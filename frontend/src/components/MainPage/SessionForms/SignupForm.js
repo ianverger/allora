@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { signup, clearSessionErrors } from '../../store/session';
-// import './SessionForm.css';
+import { signup, clearSessionErrors } from '../../../store/session';
+import './SessionForm.css';
 
 function SignupForm () {
   const [email, setEmail] = useState('');
@@ -53,50 +53,51 @@ function SignupForm () {
 
   return (
     <form className="session-form" onSubmit={usernameSubmit}>
-      <h2>Sign Up Form</h2>
-      <div className="errors">{errors?.email}</div>
+      <h2 id="signup-heading">Sign Up</h2>
       <label>
-        <span>Email</span>
         <input type="text"
           value={email}
           onChange={update('email')}
           placeholder="Email"
+          className="inputs"
         />
       </label>
-      <div className="errors">{errors?.username}</div>
       <label>
-        <span>Username</span>
         <input type="text"
           value={username}
           onChange={update('username')}
           placeholder="Username"
+          className="inputs"
         />
       </label>
-      <div className="errors">{errors?.password}</div>
       <label>
-        <span>Password</span>
         <input type="password"
           value={password}
           onChange={update('password')}
           placeholder="Password"
+          className="inputs"
         />
       </label>
-      <div className="errors">
-        {password !== password2 && 'Confirm Password field must match'}
-      </div>
       <label>
-        <span>Confirm Password</span>
         <input type="password"
           value={password2}
           onChange={update('password2')}
           placeholder="Confirm Password"
+          className="inputs"
         />
       </label>
       <input
         type="submit"
         value="Sign Up"
         disabled={!email || !username || !password || password !== password2}
+        id="signup-button"
       />
+      {errors && <div className="errors">{errors?.email}</div>}
+      {errors && <div className="errors">{errors?.username}</div>}
+      {errors && <div className="errors">{errors?.password}</div>}
+      <div className="errors">
+        {password !== password2 && 'Confirm Password field must match'}
+      </div>
     </form>
   );
 }

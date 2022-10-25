@@ -25,8 +25,8 @@ function NavBar () {
     } else {
       return (
         <div className="links-auth">
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
+          {/* <Link to={'/signup'}>Signup</Link>
+          <Link to={'/login'}>Login</Link> */}
         </div>
       );
     }
@@ -34,7 +34,6 @@ function NavBar () {
 
   return (
     <>
-      <h1>Allora</h1>
       { getLinks() }
     </>
   );

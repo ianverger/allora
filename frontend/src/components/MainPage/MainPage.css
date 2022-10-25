@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+#body {
+    display: flex;
+}
+
+#left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height:100vh;
+    background-color: #F3CFC6;
+    display: flex;
+    align-items: center;
+}
+
+#intro > h1 {
+   font-size: 75px;
+   color: rgb(255, 255, 255);
+}
+
+p {
+    color: rgb(255, 255, 255);
+    padding-bottom: 5px;
+}
+
+#intro > p {
+    font-size: small;
+    position: relative;
+    top: -8px;
+}
+
+#break {
+    height: 40px;
+}
