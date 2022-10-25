@@ -1,6 +1,7 @@
 import LoginForm from "./SessionForms/LoginForm";
 import SignupFormModal from "./SessionForms/SignupModal";
 import './MainPage.css';
+import CarouselUnit from "./Carousel";
 
 function MainPage() {
     return (
@@ -16,6 +17,9 @@ function MainPage() {
             <SignupFormModal />
         </div>
         <div id="right"></div>
+        <div>
+          <CarouselUnit/>
+        </div>
       </div>
     );
   }
