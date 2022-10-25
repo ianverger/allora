@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+.session-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 350px;
+    padding: 20px;
+    text-align: right;
+}
+
+.inputs {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #EEEFF0;
+    border-radius: 3px;
+}
+
+#login-button, #signup-button {
+    width: 300px;
+    height: 40px;
+    /* background-color: ; */
+}
+
+h2 {
+    color: rgb(255, 255, 255);
+  
+}
+
+#login-heading {
+    position: relative;
+    left: -114px;
+}
+
+#signup-heading {
+    margin-bottom: 5px;
+    position: relative;
+    left: -105px;
+}
