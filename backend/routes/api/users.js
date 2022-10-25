@@ -14,6 +14,15 @@ const { isProduction } = require('../../config/keys');
 // Attach restoreUser as a middleware before the route handler to gain access
 // to req.user. (restoreUser will NOT return an error response if there is no
 // current user.)
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.json({
+    message: "GET /api/users"
+  });
+
+});
+
 router.get('/current', restoreUser, (req, res) => {
   if (!isProduction) {
     // In development, allow React server to gain access to the CSRF token
