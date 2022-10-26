@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose'); 
 const  User = mongoose.model('User'); 
 const Trip = mongoose.model('Trip'); 
-const { requireUser } = require('../../config/passport'); 
+const { requireUser, restoreUser } = require('../../config/passport'); 
 const validateTripInput = require('../../validation/trips'); 
 
 router.get('/', async(req, res) =>{
@@ -53,20 +53,19 @@ router.get('/:id', async(req, res, next) =>{
     }
 })
 
-router.post('/', requireUser, validateTripInput, async(req, res, next) =>{
-    debugger
+router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, next) =>{
     try{
         const newTrip = new Trip({
             startDate: req.body.startDate,
             endDate: req.body.endDate,
             city: req.body.city,
             country: req.body.country,
-            planner: req.planner._id
+            planner: req.user._id
         }); 
-debugger
+
         let trip = await newTrip.save(); 
         trip = await trip.populate('planner', '_id, username')
-
+        res.json(trip);
     }
     catch(err) {
         next(err);
