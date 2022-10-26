@@ -9,6 +9,7 @@ import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/MainPage/SessionForms/LoginForm';
 import SignupForm from './components/MainPage/SessionForms/SignupForm';
 import Profile from './components/Profile/Profile';
+import TripCalendar from './components/Profile/NewTrip/TripCalendar';
 
 import { getCurrentUser } from './store/session';
 
@@ -26,6 +27,7 @@ function App() {
         <AuthRoute exact path="/" component={MainPage} />
         {/* <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} /> */}
+        <ProtectedRoute exact path="/cal" component={TripCalendar} />
 
         <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>

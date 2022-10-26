@@ -12,9 +12,9 @@ function CreateNewTripForm ({userId}) {
     const [country, setCountry] = useState("");
 
     const createTripSubmit = e => {
-        e.preventDefault();
+        // e.preventDefault();
        const trip = { tripTitle, startDate, endDate, city, country, planner: userId}
-       debugger
+       
        dispatch(createTrip(trip))
     }
 

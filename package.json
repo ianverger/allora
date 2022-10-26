@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "better-react-carousel": "^1.1.1"
+    "better-react-carousel": "^1.1.1",
+    "react-calendar": "^3.9.0",
+    "react-date-range": "^1.4.0"
   }
 }

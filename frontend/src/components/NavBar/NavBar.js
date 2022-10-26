@@ -16,20 +16,16 @@ function NavBar () {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <button>
-            <Link style={{textDecoration: "none", color: "black"}} to={'/profile'}>Profile</Link>
-          </button>
-          <button onClick={logoutUser}>Logout</button>
+          <img src="https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-transparent_adobe_express.png" alt="allora-logo" id="allora-nav-logo"/>
+          <div id="right-nav-links">
+            <button>
+              <Link style={{textDecoration: "none", color: "black"}} to={'/profile'}>Profile</Link>
+            </button>
+            <button onClick={logoutUser}>Logout</button>
+          </div>
         </div>
       );
-    } else {
-      return (
-        <div className="links-auth">
-          {/* <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link> */}
-        </div>
-      );
-    }
+    } 
   }
 
   return (
