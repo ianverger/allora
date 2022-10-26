@@ -7,6 +7,10 @@ const tripSchema = Schema({
         ref: 'User',
         required: true
     },
+    tripTitle: {
+        type: String,
+        required: true
+    },
     startDate: {
         type: String,
         required: true
@@ -24,7 +28,7 @@ const tripSchema = Schema({
         required: true
     }
 }, {
-    tmestamps: true
+    timestamps: true
 });
 
 module.exports = mongoose.model('Trip', tripSchema); 
