@@ -26,6 +26,8 @@ const clearTripErrors = errors => ({
     errors
 });
 
+// export const 
+
 export const fetchUserTrips = userId => async dispatch => {
     try {
         const res = await jwtFetch(`/api/trips/user/${userId}`);
@@ -40,14 +42,12 @@ export const fetchUserTrips = userId => async dispatch => {
 };
 
 export const createTrip = data => async dispatch => {
-    debugger
     try {
         const res = await jwtFetch('/api/trips', {
             method: 'POST',
             body: JSON.stringify(data)
         });
         const trip = await res.json();
-        debugger
         dispatch(receiveNewTrip(trip));
     } catch(err) {
         const resBody = await err.json();
