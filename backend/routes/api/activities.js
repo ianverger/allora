@@ -56,7 +56,7 @@ router.get('/:id', async(req, res, next) =>{
     }
 });
 
-router.post('/create', requireUser validateActivityInput, async(req, res, next) =>{
+router.post('/create', requireUser, validateActivityInput, async(req, res, next) =>{
     try{
         const newActivity = newActivity({
             title: req.body.title,
