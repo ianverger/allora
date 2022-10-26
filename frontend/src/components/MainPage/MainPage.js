@@ -9,7 +9,7 @@ function MainPage() {
         <div id="left">
             <div id="intro">
                 <div className="logo-wrapper">
-                    <img src={'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-pink_adobe_express.png'} alt=""></img>
+                    <img src={'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-pink_adobe_express.png'} alt="" />
                 </div>
                 <p>take a trip!</p>
             </div>
