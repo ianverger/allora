@@ -7,11 +7,12 @@ const csurf = require('csurf');
 /* --- Need to import these to load the models into mongoose --- */
 require('./models/User');
 require('./models/Trip')
+require('./models/Activity');
+
 /* ------------------------------------------------------------- */
 require('./config/passport'); // Need to import to configure passport module
 const passport = require('passport');
 
-const tripsRouter = require('./routes/api/trips'); 
 
 const { isProduction } = require('./config/keys');
 
@@ -49,9 +50,15 @@ app.use(
 // Attach Express routers
 const usersRouter = require('./routes/api/users');
 const csrfRouter = require('./routes/api/csrf');
+const tripsRouter = require('./routes/api/trips'); 
+const activitiesRouter = require('./routes/api/activities');
+
+
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/trips', tripsRouter); 
+app.use('/api/activities', activitiesRouter); 
+
 // Serve static React build files statically in production
 if (isProduction) {
   const path = require('path');

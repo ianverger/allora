@@ -1,44 +1,20 @@
-const activitySchema = Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String
-    },
-    startDate: {
-        type: Date,
-        required: true
-    },
-    endDate : {
-        type: Date,
-        required: true
-    },
-    startTime: {
-        type: Date
-    },
-    endTime: {
-        type: Date
-    },
-    maxGuests : {
-        type: Number
-    },
-    address: {
-        type: String
-    },
-    city: {
-        type: String
-    },
-    country: {
-        type: String
-    },
-    zipCode: {
-        type: String
-    },
-    lng: {
-        type: Schema.Types.Decimal128
-    },
-    lat: {
-        type: Schema.Types.Decimal128
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const Activity = mongoose.model('Activity');
+const { requireUser } = require('../../config/passport');
+const validateActivityInput = require('../../validation/tweets');
+
+
+router.get('/', async(req, res) =>{
+    try{
+        const activities = await Activity.find()
+                                         .populate("creator", "_id, username")
+                                         .sort({ createdAt: -1});
+        return res.json(activities);
+    }
+    catch(err){
+        return res.json([]);
     }
 });
