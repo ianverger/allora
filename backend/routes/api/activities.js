@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Activity = mongoose.model('Activity');
+const Trip = mongoose.model('Trip');
 const { requireUser, restoreUser } = require('../../config/passport');
 const validateActivityInput = require('../../validation/activities');
 
@@ -19,19 +20,19 @@ router.get('/', async(req, res) =>{
     }
 });
 
-router.get('/user/:userId', async (req, res, next) =>{
-    let user; 
+router.get('/trip/:tripId', async (req, res, next) =>{
+    let trip; 
     try{
-        user = await User.findById(req.params.userId);
+        trip = await Trip.findById(req.params.tripId);
     }
     catch(err){
         const error = new Error('User not found');
         error.statusCode = 404
-        error.errors = { message: "No user found with that id"}
+        error.errors = { message: "No trip found with that id"}
         return next(error);
     }
     try{
-        const activities = await Activity.find({ creator: user._id})
+        const activities = await Activity.find({ trip: trip._id })
                                          .sort({ createdAt: -1 })
                                          .populate("creator", "_id, username");
         return res.json(activities);
@@ -43,7 +44,7 @@ router.get('/user/:userId', async (req, res, next) =>{
 })
 
 router.get('/:id', async(req, res, next) =>{
-    try{
+    try {
         const activity = await Activity.findById(req.params.id)
                                        .populate("creator", "_id, username");
         return res.json(activity);
@@ -56,9 +57,10 @@ router.get('/:id', async(req, res, next) =>{
     }
 });
 
-router.post('/create', requireUser, restoreUser, validateActivityInput, async(req, res, next) =>{
-    try{
+router.post('/', requireUser, restoreUser, validateActivityInput, async(req, res, next) =>{
+    try {
         const newActivity = new Activity({
+            trip: req.body.trip,
             title: req.body.title,
             description: req.body.description,
             startDate: req.body.startDate,
@@ -70,13 +72,18 @@ router.post('/create', requireUser, restoreUser, validateActivityInput, async(re
             city: req.body.city,
             country: req.body.country,
             zipCode: req.body.zipCode,
-            creator: req.user._id
+            creator: req.user._id,
         }); 
+    
+        let trip = await Trip.findById(req.body.trip)
+        console.log(trip, 'here')
+        if (trip) {
 
-        let activity = await newActivity.save();
-        activity = await activity.populate("creator", "_id, username")
-        res.json(activity);
-        
+            let activity = await newActivity.save();
+            console.log(activity, 'here')
+            // activity = await activity.populate("creator", "_id, username")
+            res.json(activity);
+        } 
     }
     catch(err){
         next(err);
