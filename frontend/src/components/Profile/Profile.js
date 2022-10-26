@@ -16,6 +16,7 @@ function Profile () {
     // return () => dispatch(clearTweetErrors());
   }, [currentUser]);
 
+
   const tripsIndex = userTrips.map(trip => <p>{trip.city}</p>)
     return (
       <div id="profile-body">
