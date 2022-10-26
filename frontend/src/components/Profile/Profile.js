@@ -13,7 +13,7 @@ function Profile () {
 
   useEffect(() => {
     dispatch(fetchUserTrips(currentUser._id));
-    // return () => dispatch(clearTweetErrors());
+    // return () => dispatch(clearTripErrors());
   }, [currentUser]);
 
   const tripsIndex = userTrips.map(trip => <p>{trip.city}</p>)

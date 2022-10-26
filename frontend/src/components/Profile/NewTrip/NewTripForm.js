@@ -5,20 +5,28 @@ import './NewTripForm.css';
 
 function CreateNewTripForm ({userId}) {
     const dispatch = useDispatch();
+    const [tripTitle, setTripTitle] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
 
     const createTripSubmit = e => {
-        // e.preventDefault();
-       const trip = { startDate, endDate, city, country, planner: userId}
+        e.preventDefault();
+       const trip = { tripTitle, startDate, endDate, city, country, planner: userId}
+       debugger
        dispatch(createTrip(trip))
     }
 
     return (
         <form onSubmit={createTripSubmit} id="new-trip-form">
         <h3>New Trip</h3>
+        <input type="text"  
+        value={tripTitle}
+        onChange={(e) => setTripTitle(e.target.value)}
+        placeholder="Trip Title"
+        className="inputs"
+        />
         <input type="text"  
         value={startDate}
         onChange={(e) => setStartDate(e.target.value)}

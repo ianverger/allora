@@ -54,6 +54,7 @@ router.get('/:id', async(req, res, next) =>{
 })
 
 router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, next) =>{
+    debugger
     try{
         const newTrip = new Trip({
             startDate: req.body.startDate,
@@ -62,7 +63,7 @@ router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, ne
             country: req.body.country,
             planner: req.user._id
         }); 
-
+debugger
         let trip = await newTrip.save(); 
         trip = await trip.populate('planner', '_id, username')
         res.json(trip);
