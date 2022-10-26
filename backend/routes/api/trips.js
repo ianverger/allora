@@ -60,6 +60,7 @@ router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, ne
             endDate: req.body.endDate,
             city: req.body.city,
             country: req.body.country,
+            tripTitle: req.body.tripTitle,
             planner: req.user._id
         }); 
 
