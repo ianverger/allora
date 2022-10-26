@@ -14,6 +14,9 @@ const validateTripInput = [
     check('country')
         .exists({ checkFalsy: true})
         .withMessage('Please enter a country'),
+    check('tripTitle')
+        .exists({ checkFalsy: true})
+        .withMessage('Please enter a title for your trip'),
         handleValidationErrors
 
 ]
