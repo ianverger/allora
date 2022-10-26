@@ -7,6 +7,11 @@ const activitySchema = Schema({
         ref: 'User',
         required: true 
     },
+    trip:{
+        type: Schema.Types.ObjectId,
+        ref: 'Trip',
+        required: true
+    },
     title: {
         type: String,
         required: true
@@ -42,13 +47,8 @@ const activitySchema = Schema({
     },
     zipCode: {
         type: String
-    },
-    lng: {
-        type: Schema.Types.Decimal128
-    },
-    lat: {
-        type: Schema.Types.Decimal128
     }
+    
 });
 
 module.exports = mongoose.model('Activity', activitySchema); 

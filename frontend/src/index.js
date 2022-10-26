@@ -6,8 +6,20 @@ import { BrowserRouter } from 'react-router-dom';
 import { ModalProvider } from "./context/Modal";
 import configureStore from './store/store';
 import './index.css';
+import * as sessionActions from './store/session';
+import * as tripActions from './store/trips';
 
-let store = configureStore({});
+
+
+const store = configureStore();
+
+
+if (process.env.NODE_ENV !== 'production') {
+  window.store = store;
+  window.sessionActions = sessionActions;
+  window.tripActions = tripActions;
+}
+
 
 function Root() {
   return (
@@ -17,9 +29,9 @@ function Root() {
           <App />
         </BrowserRouter>
       </Provider>
-    </ModalProvider>
+   </ModalProvider>
 
-  );
+  ); 
 }
 
 ReactDOM.render(
