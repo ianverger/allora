@@ -7,6 +7,9 @@ import './SignupModal.css';
 function SignupFormModal() {
   const [showModal, setShowModal] = useState(false);
 
+ console.log('test')
+
+
   return (
     <>
       <button id="signup-modal-button" onClick={() => setShowModal(true)}>Start travelling with your friends</button>
