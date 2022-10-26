@@ -28,7 +28,7 @@ const activitySchema = Schema({
     endTime: {
         type: String
     },
-    maxGuests : {
+    maxGuests: {
         type: Number
     },
     address: {
