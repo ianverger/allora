@@ -70,12 +70,15 @@ export const tripErrorsReducer = (state = nullErrors, action) => {
     }
 };
 
-const tripsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
+const tripsReducer = (state = { all: {}, new: undefined }, action) => {
     switch(action.type) {
         case RECEIVE_NEW_TRIP:
-            return { ...state, new: action.trip };
+            let newState = { ...state };
+            newState.all[action.trip.id] = action.trip; 
+            newState.new = action.trip;
+            return newState;
         case RECEIVE_USER_TRIPS:
-            return { ...state, user: action.trips, new: undefined };
+            return { ...state, all: action.trips, new: undefined };
         default:
             return state;
     }

@@ -11,6 +11,8 @@ function SignupForm () {
   const [password2, setPassword2] = useState('');
   const errors = useSelector(state => state.errors.session);
 
+
+
   useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());
@@ -50,6 +52,7 @@ function SignupForm () {
 
     dispatch(signup(user)); 
   }
+
 
   return (
     <form className="session-form" onSubmit={usernameSubmit}>
