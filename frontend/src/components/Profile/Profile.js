@@ -21,7 +21,7 @@ function Profile () {
       <div id="profile-body">
         <h2>{`${currentUser.username}'s Profile`}</h2>
         <p>This is my bio!</p>
-        <p>Got the travle bug?</p>
+        <p>Got the travel bug?</p>
         <NewTripModal userId={currentUser._id}/>
       </div>
     );
