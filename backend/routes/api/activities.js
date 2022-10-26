@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Activity = mongoose.model('Activity');
-const { requireUser } = require('../../config/passport');
+const { requireUser, restoreUser } = require('../../config/passport');
 const validateActivityInput = require('../../validation/activities');
 
 
@@ -56,9 +56,9 @@ router.get('/:id', async(req, res, next) =>{
     }
 });
 
-router.post('/create', requireUser, validateActivityInput, async(req, res, next) =>{
+router.post('/create', requireUser, restoreUser, validateActivityInput, async(req, res, next) =>{
     try{
-        const newActivity = newActivity({
+        const newActivity = new Activity({
             title: req.body.title,
             description: req.body.description,
             startDate: req.body.startDate,
@@ -70,11 +70,13 @@ router.post('/create', requireUser, validateActivityInput, async(req, res, next)
             city: req.body.city,
             country: req.body.country,
             zipCode: req.body.zipCode,
-            creator: req.creator._id
+            creator: req.user._id
         }); 
 
         let activity = await newActivity.save();
         activity = await activity.populate("creator", "_id, username")
+        res.json(activity);
+        
     }
     catch(err){
         next(err);
