@@ -5,9 +5,15 @@ const RECEIVE_NEW_TRIP = 'trips/RECEIVE_NEW_TRIP';
 const RECEIVE_USER_TRIPS = 'trips/RECEIVE_USER_TRIPS';
 const RECEIVE_TRIP_ERRORS = 'trips/RECEIVE_TRIP_ERRORS';
 const CLEAR_TRIP_ERRORS = 'trips/CLEAR_TRIP_ERRORS';
+const RECEIVE_TRIP = 'trips/RECEIVE_TRIP';
 
 const receiveNewTrip = trip => ({
     type: RECEIVE_NEW_TRIP,
+    trip
+});
+
+const receiveTrip = trip => ({
+    type: RECEIVE_TRIP,
     trip
 });
 
@@ -57,6 +63,20 @@ export const createTrip = data => async dispatch => {
     }
 };
 
+export const fetchTrip = tripId => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/trips/${tripId}`);
+        const trip = await res.json();
+        dispatch(receiveTrip(trip));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+          return dispatch(receiveTripErrors(resBody.errors));
+        }
+    }
+
+}
+
 const nullErrors = null;
 
 export const tripErrorsReducer = (state = nullErrors, action) => {
@@ -79,6 +99,8 @@ const tripsReducer = (state = { all: {}, new: undefined }, action) => {
             return newState;
         case RECEIVE_USER_TRIPS:
             return { ...state, all: action.trips, new: undefined };
+        case RECEIVE_TRIP:
+            return { trip : action.trip };
         default:
             return state;
     }
