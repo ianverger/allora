@@ -1,0 +1,15 @@
+.links-nav {
+    height: 70px;
+    background-color: #f3f6f6;
+    box-shadow: 2px 2px 2px 2px rgb(223, 222, 222);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+.links-nav > button {
+    height: 50px;
+    width: 70px;
+}

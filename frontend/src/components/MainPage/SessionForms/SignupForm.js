@@ -4,12 +4,12 @@ import { signup, clearSessionErrors } from '../../../store/session';
 import './SessionForm.css';
 
 function SignupForm () {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const errors = useSelector(state => state.errors.session);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     return () => {

@@ -53,16 +53,17 @@ router.get('/:id', async(req, res, next) =>{
     }
 })
 
-router.post('/create', requireUser, validateTripInput, async(req, res, next) =>{
+router.post('/', requireUser, validateTripInput, async(req, res, next) =>{
+    debugger
     try{
-        const newTrip = newTrip({
+        const newTrip = new Trip({
             startDate: req.body.startDate,
             endDate: req.body.endDate,
             city: req.body.city,
             country: req.body.country,
             planner: req.planner._id
         }); 
-
+debugger
         let trip = await newTrip.save(); 
         trip = await trip.populate('planner', '_id, username')
 
