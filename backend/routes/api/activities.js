@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Activity = mongoose.model('Activity');
 const { requireUser } = require('../../config/passport');
-const validateActivityInput = require('../../validation/tweets');
+const validateActivityInput = require('../../validation/activities');
 
 
 router.get('/', async(req, res) =>{
