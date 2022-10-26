@@ -99,11 +99,10 @@ function ActivitiesMap({
 
 function ActivitiesMapWrapper(props) {
     return (
-        <Wrapper apiKey={process.env/REACT_APP_MAPS_API_KEY}>
+        <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}>
             <ActivitiesMap  {...props} />
         </Wrapper>
     );
 };
 
 export default ActivitiesMapWrapper;
-// 
