@@ -11,14 +11,15 @@ const tripSchema = Schema({
         type: String,
         required: true
     },
-    startDate: {
+    tripDates:[{
         type: String,
         required: true
-    },
-    endDate : {
+    }],
+    tripAttendees: [{
         type: String,
-        required: true
-    },
+        reqiured: true
+    }],
+
     city: {
         type: String,
         required: true

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserTrips } from '../../store/trips';
 import NewTripModal from './NewTrip/NewTripModal';
 import './Profile.css'
-// import { fetchUserTweets, clearTweetErrors } from '../../store/tweets';
+// import { fetchUserTweets, clearErrors } from '../../store/tweets';
 
 
 function Profile () {

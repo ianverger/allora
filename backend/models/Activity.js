@@ -19,14 +19,10 @@ const activitySchema = Schema({
     description: {
         type: String
     },
-    startDate: {
+    tripDates:[{
         type: String,
         required: true
-    },
-    endDate : {
-        type: String,
-        required: true
-    },
+    }],
     startTime: {
         type: String
     },
