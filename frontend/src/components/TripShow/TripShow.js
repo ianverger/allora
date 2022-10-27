@@ -5,7 +5,9 @@ import  { fetchTrip } from '../../store/trips';
 import ActivitiesMap from '../Map/Map'
 import './TripShow.css'
 import AddActivityModal from '../NewActivity/AddActivityModal'
-import { fetchTripActivities, getTripActivities } from '../../store/activities';
+import { fetchTripActivities } from '../../store/activities';
+import Geocode from "react-geocode";
+Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 
 
 function TripShow () {
@@ -15,13 +17,12 @@ function TripShow () {
   const trip = useSelector(state => state.trips.trip);
   const activities = useSelector(state => state.activities.all);
   const currentUser = useSelector(state => state.session.user);
+
+  const [centerLat, setCenterLat] = useState(null);
+  const [centerLng, setCenterLng] = useState(null);
   const [highlightedActivity,setHighlightedActivity] = useState(null);
   const [bounds, setBounds] = useState(null);
-  // const activities = useSelector(state => Object.values(state.activites))
-  // console.log(trip, 'here')
-  // const test = trip.trip
-  // console.log(test, 'test')
-  // console.log(activities, 'here')
+
   
   useEffect(() => {
     dispatch(fetchTrip(tripId));
@@ -29,6 +30,26 @@ function TripShow () {
     // return () => dispatch(clearTweetErrors());
   }, [tripId]);
   
+
+  const findLatandLng = () => {
+    Geocode.fromAddress(trip.city).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        setCenterLat(lat);
+        setCenterLng(lng);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
+
+
+  // const {tripTitle, startDate, endDate, city, country, _id } = trip
+
+  useEffect(() => {
+    if (trip) findLatandLng();
+  },[trip])
   
   
     const mapEventHandlers  = useMemo(() => ({
@@ -38,10 +59,9 @@ function TripShow () {
               },
               idle: map => setBounds(map.getBounds().toUrlValue())
             }), [history]);
-      console.log(activities, 'here');
-      if (!trip) return <div></div>
-      
-      const {tripTitle, startDate, endDate, city, country, _id } = trip
+
+  
+  
    
     return (
       <>
@@ -49,16 +69,16 @@ function TripShow () {
         <div className='trip-left-container'>
             <div id='trip-image'> <img src={'https://hippark-photos.s3.amazonaws.com/allora-pics/nicole-herrero-rWWLpxSefp8-unsplash.jpg'} alt=""></img></div>
             <div id='trip-dates-container'>
-                <span>{startDate} - {endDate}</span>
+                <span>{trip && trip.startDate} - {trip && trip.endDate}</span>
             </div>
             <div id='trip-title-wrapper'>
-                <span>{tripTitle}</span>
+                <span>{trip && trip.tripTitle}</span>
 
             </div>
             <div>
             <AddActivityModal 
-              tripId={_id}
-              userId={currentUser._id}
+              tripId={trip && trip._id}
+              userId={trip && currentUser._id}
               />
             </div>
           
@@ -69,7 +89,11 @@ function TripShow () {
 
         <div className='trip-right-container'>
             <div id='map-container'>
+              {trip &&
                 <ActivitiesMap
+                centerLat={centerLat}
+                centerLng={centerLng}
+                city={trip.city}
                 activities={activities}
                 mapEventHandlers={mapEventHandlers}
                 markerEventHandlers={{
@@ -78,6 +102,7 @@ function TripShow () {
                   mouseout: () => setHighlightedActivity(null)
                 }}
               />
+}
             </div>
         </div>
 

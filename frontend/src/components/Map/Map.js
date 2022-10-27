@@ -1,9 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
+import './Map.css';
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { useHistory } from "react-router-dom";
-import './Map.css';
+import Geocode from "react-geocode";
+Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
+
 
 function ActivitiesMap({
+    centerLat,
+    centerLng,
+    city,
     activities,
     mapOptions = {},
     mapEventHandlers = {},
@@ -15,13 +21,14 @@ function ActivitiesMap({
     const markers = useRef({});
     const history = useHistory();
 
+     
     useEffect(() => {
         if (!map) {
             setMap(new window.google.maps.Map(mapRef.current, {
                 center: {
-                lat: 40.73644,
-                lng: -73.99370
-            }, // San Francisco coordinates
+                    lat: centerLat,
+                    lng: centerLng
+                }, 
             zoom: 13,
             clickableIcons: false,
             ...mapOptions,
