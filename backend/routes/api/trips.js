@@ -53,7 +53,7 @@ router.get('/:id', async(req, res, next) =>{
     }
 })
 
-router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, next) =>{
+router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, next) =>{``
     try{
         const newTrip = new Trip({
             tripDates: req.body.tripDates,
