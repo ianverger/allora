@@ -3,15 +3,16 @@ const handleValidationErrors = require('./handleValidationErrors');
 
 
    const validateActivityInput = [
+       check('trip')
+           .exists({ checkFalsy: true })
+           .withMessage('Please assign a trip'),
         check('title')
             .exists({ checkFalsy: true})
             .withMessage('Please include a title'),
-        check('startDate')
+        check('tripDates')
             .exists({ checkFalsy: true })
-            .withMessage('Please enter a start date'),
-        check('endDate')
-            .exists({ checkFalsy: true })
-            .withMessage('Please enter an end date'),
+            .withMessage('Please enter a your activity dates'),
+ 
         handleValidationErrors
 
     ]

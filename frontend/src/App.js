@@ -7,10 +7,8 @@ import MainPage from './components/MainPage/MainPage';
 // import LoginForm from './components/MainPage/SessionForms/LoginForm';
 // import SignupForm from './components/MainPage/SessionForms/SignupForm';
 import Profile from './components/Profile/Profile';
-import NewTripCalendar from './components/Profile/NewTrip/NewTripCalendar';
-import NewTripMap from './components/Profile/NewTrip/NewTripMap';
-import NewTripSearch from './components/Profile/NewTrip/NewTripSearch';
-// import ActivitiesMapWrapper from './components/Map/Map';
+import TripShow from './components/TripShow/TripShow';
+
 import { getCurrentUser } from './store/session';
 
 function App() {
@@ -31,6 +29,7 @@ function App() {
         <ProtectedRoute exact path="/map" component={NewTripMap} />
         <ProtectedRoute exact path="/search" component={NewTripSearch} />
         <ProtectedRoute exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path="/trips/:tripId" component={TripShow} />
       </Switch>
     </>
   );

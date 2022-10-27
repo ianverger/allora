@@ -4,6 +4,11 @@ import { fetchUserTrips } from '../../store/trips';
 import NewTripModal from './NewTrip/NewTripModal';
 import TripIndexItem from './TripIndexItem';
 import './Profile.css'
+<<<<<<< HEAD
+=======
+// import { fetchUserTweets, clearErrors } from '../../store/tweets';
+
+>>>>>>> main
 
 function Profile () {
   const dispatch = useDispatch();
@@ -15,7 +20,12 @@ function Profile () {
     // return () => dispatch(clearTripErrors());
   }, [currentUser]);
 
+<<<<<<< HEAD
   const tripIndexItems = userTrips.map(trip => <TripIndexItem trip={trip}/>)
+=======
+
+  const tripsIndex = userTrips.map(trip => <p>{trip.city}</p>)
+>>>>>>> main
     return (
       <div id="profile-body">
         <h2>{`${currentUser.username}'s Profile`}</h2>
