@@ -4,10 +4,6 @@ import { fetchUserTrips } from '../../store/trips';
 import NewTripModal from './NewTrip/NewTripModal';
 import TripIndexItem from './TripIndexItem';
 import './Profile.css'
-import TripCalendar from './NewTrip/TripCalendar';
-// import Calendar from 'react-calendar';
-// import { fetchUserTweets, clearTweetErrors } from '../../store/tweets';
-
 
 function Profile () {
   const dispatch = useDispatch();
@@ -27,7 +23,6 @@ function Profile () {
         <p>Got the travel bug?</p>
         <NewTripModal userId={currentUser._id}/>
         {tripIndexItems}
-        <TripCalendar />
       </div>
     );
   

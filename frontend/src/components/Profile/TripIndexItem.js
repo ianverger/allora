@@ -4,7 +4,6 @@ import './TripIndexItem.css'
 
 const TripIndexItem = ({trip}) => {
     // const dispatch = useDispatch();
-console.log(trip)
     return (
         <div id="trip-card">
             <h3>{trip.tripTitle}</h3>

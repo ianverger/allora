@@ -25,7 +25,7 @@ function LoginForm () {
     e.preventDefault();
     dispatch(login({ email, password })); 
   }
-  // console.log(errors)
+
   return (
     <form className="session-form" onSubmit={handleSubmit}>
     <h2 id="login-heading">Log In</h2>
