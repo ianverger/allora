@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "better-react-carousel": "^1.1.1"
+    "@googlemaps/react-wrapper": "^1.1.35",
+    "@react-google-maps/api": "^2.13.1",
+    "better-react-carousel": "^1.1.1",
+    "react-date-range": "^1.4.0"
   }
 }

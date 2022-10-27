@@ -2,12 +2,12 @@ const { check } = require("express-validator");
 const handleValidationErrors = require('./handleValidationErrors'); 
 
 const validateTripInput = [
-    check('startDate')
+    check('tripDates')
         .exists({ checkFalsy: true})
-        .withMessage('Please enter a start date'),
-    check('endDate')
+        .withMessage('Please enter a date(s) for your Trip'),
+    check('tripAttendees')
         .exists({ checkFalsy: true})
-        .withMessage('Please enter an end date'),
+        .withMessage('Please include your travel pals'),
     check('city')
         .exists({ checkFalsy: true})
         .withMessage('Please enter a city'),
