@@ -1,5 +1,68 @@
-.trip {
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+
+.trip-container {
     width: 100vw;
-    height: 100px;
-    background-color: aqua;
+    height: 100vh;
+    display: flex;
+}
+
+
+.trip-left-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100vh;
+    border: 3px solid red;
+}
+.trip-right-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100vh;
+    border: 3px blue solid;
+}
+
+
+@media screen and (min-width: 0px) {
+    .map-container {
+        /* position: sticky; */
+        top: 0px;
+        display: flex;
+        /* height: calc(100vh - 70px); */
+        height: 100vh;
+        border: 5px black solid;
+    }
+    .map {
+        height: 1000px;
+        width: 1000px;
+    }
+};
+
+#trip-image {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    height: 30%;
+}
+
+#trip-dates-container {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    border: 5px solid purple;
+    font-size: 14px;
+}
+
+#trip-title-wrapper {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    border: 5px solid purple;
+    font-size: 26px;
 }
