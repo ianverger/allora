@@ -83,7 +83,7 @@ function ActivitiesMap({
             markers.current[activity.id] = marker;
         })
         
-=            Object.entries(markers.current).forEach(([activityId, marker]) => {
+      Object.entries(markers.current).forEach(([activityId, marker]) => {
               if (activities.some(activity => activity.id.toString() === activityId)) return;
               
               marker.setMap(null);

@@ -7,7 +7,6 @@ function CreateNewTripForm ({userId}) {
     const dispatch = useDispatch();
     const [tripTitle, setTripTitle] = useState("");
     const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
 

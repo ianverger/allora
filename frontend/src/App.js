@@ -9,7 +9,8 @@ import MainPage from './components/MainPage/MainPage';
 import Profile from './components/Profile/Profile';
 import NewTripCalendar from './components/Profile/NewTrip/NewTripCalendar';
 import NewTripMap from './components/Profile/NewTrip/NewTripMap';
-
+import NewTripSearch from './components/Profile/NewTrip/NewTripSearch';
+// import ActivitiesMapWrapper from './components/Map/Map';
 import { getCurrentUser } from './store/session';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <AuthRoute exact path="/signup" component={SignupForm} /> */}
         <ProtectedRoute exact path="/cal" component={NewTripCalendar} />
         <ProtectedRoute exact path="/map" component={NewTripMap} />
+        <ProtectedRoute exact path="/search" component={NewTripSearch} />
         <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>
     </>
