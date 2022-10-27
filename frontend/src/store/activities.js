@@ -1,23 +1,33 @@
 import jwtFetch from "./jwt";
 
+const RECEIVE_NEW_ACTIVITY = 'activities/RECEIVE_NEW_ACTIVITY';
+const RECEIVE_TRIP_ACTIVITIES = 'activities/RECEIVE_TRIP_ACTIVITIES';
+const RECEIVE_ACTIVITY_ERRORS = 'activities/RECEIVE_ACTIVITY_ERRORS';
+const CLEAR_ACTIVITY_ERRORS = 'activities/CLEAR_ACTIVITY_ERRORS';
+const RECEIVE_ACTIVITY = 'activities/RECEIVE_ACTIVITY'
 
-const ADD_ACTIVITY = 'activities/addActivity';
-const ADD_ACTIVITIES = 'activities/addActivities';
-const REMOVE_ACTIVITY = 'activities/removeActivity';
-
-
-const addActivity = activity => ({
-    type: ADD_ACTIVITY,
+const receiveNewActivity = activity => ({
+    type: RECEIVE_NEW_ACTIVITY,
     activity
 })
-const removeActivity = activity => ({
-    type: REMOVE_ACTIVITY,
+const receiveActivity = activity => ({
+    type: RECEIVE_ACTIVITY,
     activity
 })
 
-const addActivities = activities => ({
-    type: ADD_ACTIVITIES,
+const receiveTripActivities = activities => ({
+    type: RECEIVE_TRIP_ACTIVITIES,
     activities
+})
+
+const receiveActivityErrors = errors => ({
+    type: RECEIVE_ACTIVITY_ERRORS,
+    errors
+})
+
+const clearActivityErrors = errors => ({
+    type: CLEAR_ACTIVITY_ERRORS,
+    errors
 })
 
 export const getTripActivities = tripId => state => (
@@ -29,20 +39,48 @@ export const getTripActivities = tripId => state => (
     }))
 );
 
-export const createActivity = (activity) => async dispatch => {
+export const fetchTripActivities = tripId => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/activities/trip/${tripId}`);
+        const activities = await res.json();
+        dispatch(receiveTripActivities(activities));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            return dispatch(receiveActivityErrors(resBody.errors));
+        }
+    }
+}
+
+
+export const createActivity = data => async dispatch => {
     try {
         const res = await jwtFetch('/api/activities', {
             method: 'POST',
             body: JSON.stringify(data)
         });
         const activity = await res.json();
-        dispatch(addActivity(activity));
+        dispatch(receiveNewActivity(activity));
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
           return dispatch(receiveActivityErrors(resBody.errors));
         }
     }
+}
+
+export const fetchActivity = activityId => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/activities/${activityId}`);
+        const activity = await res.json();
+        dispatch(receiveActivity(activity));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+          return dispatch(receiveActivityErrors(resBody.errors));
+        }
+    } 
+    
 }
 
 
@@ -61,16 +99,17 @@ export const activityErrorsReducer = (state = nullErrors, action) => {
 
 
 
-const tripsReducer = (state = { all: {}, new: undefined }, action) => {
+const activitiesReducer = (state = { all: {}, new: undefined }, action) => {
     switch(action.type) {
-        case ADD_ACTIVITY:
+        case RECEIVE_NEW_ACTIVITY:
             let newState = { ...state };
             newState.all[action.activity.id] = action.activity; 
             newState.new = action.activity;
             return newState;
-        case REMOVE_ACTIVITY:
-            return { ...state, all: action.trips, new: undefined };
-      
+        case RECEIVE_TRIP_ACTIVITIES:
+            return { ...state, all: action.activities, new: undefined };
+        case RECEIVE_ACTIVITY:
+            return {activity : action.activity };
         default:
             return state;
     }

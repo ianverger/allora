@@ -3,9 +3,10 @@ import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors';
 import trips from './trips';
+import activities from './activities';
 
 const rootReducer = combineReducers({
-  session, trips, errors
+  session, trips, activities, errors
 });
 
 let enhancer;
