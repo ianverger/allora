@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Comment = mongoose.model('Comment');
-const { requireUser } = require('../../config/passport');
+const { requireUser, restoreUser } = require('../../config/passport');
 const validateCommentInput = require('../../validation/comments');
 
 router.get('/', async(req, res) =>{
@@ -30,7 +30,7 @@ router.get('/user/:userId', async(req, res, next) =>{
     }
     try{
         const comments = await Comment.find({ publisher: user._id })
-                                      .sort({ createAt: -1 })
+                                      .sort({ createdAt: -1 })
                                       .populate("publisher", "_id, username");
         return res.json(comments);
     }
@@ -43,7 +43,7 @@ router.get('/user/:userId', async(req, res, next) =>{
 router.get('/:id', async(req, res, next) =>{
     try{
         const comment = await Comment.findById(req.params.id)
-                                     .populate("publisher", "id, username");
+                                     .populate("publisher", "_id, username");
         return res.json(comment);
     }
     catch(err){
@@ -54,10 +54,10 @@ router.get('/:id', async(req, res, next) =>{
     }
 });
 
-router.post('/', requireUser, validateCommentInput, async(req, res, next) =>{
+router.post('/', requireUser, restoreUser, validateCommentInput, async(req, res, next) =>{
     try{
         const newComment = new Comment({
-            publisher: req.user_id,
+            publisher: req.user._id,
             text: req.body.text
         });
 

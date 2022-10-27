@@ -25,7 +25,7 @@ router.get('/user/:userId', async (req, res, next) =>{
     } catch(err){
         const error = new Error('User not found'); 
         error.statusCode = 404; 
-        error.errors = { message: "No user found with that id"}
+        error.errors = { message: 'Unable to find user with that id'}
         return next(error); 
     }
     try{
@@ -57,6 +57,7 @@ router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, ne
     try{
         const newTrip = new Trip({
             tripDates: req.body.tripDates,
+            tripAttendees: req.body.tripAttendees,
             city: req.body.city,
             country: req.body.country,
             tripTitle: req.body.tripTitle,
