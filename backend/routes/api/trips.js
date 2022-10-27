@@ -56,8 +56,7 @@ router.get('/:id', async(req, res, next) =>{
 router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, next) =>{
     try{
         const newTrip = new Trip({
-            startDate: req.body.startDate,
-            endDate: req.body.endDate,
+            tripDates: req.body.tripDates,
             city: req.body.city,
             country: req.body.country,
             tripTitle: req.body.tripTitle,
