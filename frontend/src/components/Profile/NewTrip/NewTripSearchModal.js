@@ -11,7 +11,7 @@ function NewTripSearchModal({city, setCity}) {
       <button id="new-trip-search-modal-button" onClick={() => setShowModal(true)}>Where to?</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-            <NewTripSearch city={city} setCity={setCity}/>
+            <NewTripSearch setCity={setCity} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>

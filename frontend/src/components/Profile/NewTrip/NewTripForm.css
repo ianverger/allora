@@ -1,5 +1,64 @@
-#new-trip-form {
-    margin-top: 70px;
+#new-trip-page {
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+h3 {
+    color: #fffafa;
+}
+
+#new-trip-form {
+    margin-top: 10px;
+    border: 2px solid #fffafa;
+    border-radius: 5px;
+    width: 800px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+#ntf-left {
+    width: 30%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#ntf-right {
+    color: #fffafa;
+    width: 60%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+}
+
+#new-trip-title-modal-button, #new-trip-search-modal-button, #new-trip-cal-modal-button {
+    background-color: #b8ccaa;
+    height: 50px;
+    border-radius: 3px;
+    border: solid 1px #fffafa;
+    
+}
+
+#new-trip-title-modal-button:hover, #new-trip-search-modal-button:hover, #new-trip-cal-modal-button:hover {
+    box-shadow: 3px 3px 3px 3px rgb(64, 62, 62);
+} 
+
+#create-trip-button {
+    background-color: #fffafa;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    height: 70px;
+    width: 300px;
+}
+
+#create-trip-button:hover {
+    box-shadow: 3px 3px 3px 3px rgb(251, 222, 222);
 }

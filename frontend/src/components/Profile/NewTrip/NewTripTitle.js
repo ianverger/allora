@@ -1,3 +1,4 @@
+import './NewTripTitle.css';
 
 function NewTripTitle ({tripTitle, setTripTitle, setShowModal}) {
 
@@ -9,13 +10,14 @@ function NewTripTitle ({tripTitle, setTripTitle, setShowModal}) {
     return (
         <>
             <div id="trip-title-form" >
+                <h2>Name your trip!</h2>
                 <input type="text"  
                         value={tripTitle}
                         onChange={(e) => setTripTitle(e.target.value)}
                         placeholder="Trip Title"
                         className="inputs"
                         />
-                <button onClick={() => setShowModal(false)}>Submit</button>
+                <button id="ttf-button" onClick={() => setShowModal(false)}>Submit</button>
             </div>
         </>
     )

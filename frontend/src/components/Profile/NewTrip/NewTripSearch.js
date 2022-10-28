@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCities } from '../../../store/trips';
 import './NewTripSearch.css';
 
-const NewTripSearch = ({setCity}) => {
+const NewTripSearch = ({setCity, setShowModal}) => {
     const dispatch = useDispatch();
     // const [selectedCity, setSelectedCity] = useState('');
     const [matchedCities, setMatchedCities] = useState([]);
@@ -24,11 +24,6 @@ const NewTripSearch = ({setCity}) => {
             return city.match(regex) 
         })
     }  
-
-    const handleClick = (idx) => {
-        // e.preventDefault();
-        console.log(idx)
-    }
 
     const displayMatches = function(e) {
         // const matchArray = findMatches(e.target.value, cities);
@@ -53,17 +48,19 @@ const NewTripSearch = ({setCity}) => {
         // e.preventDefault();
         // console.log(city)
         setCity(city);
+        setShowModal(false);
    }
 
     const matchedCityList = matchedCities.map((city, idx) => {
         return (
             <li key={idx}>
-                <button onClick={() => handleSubmit(city)}>{city}</button>
+                <button className="city-cards" onClick={() => handleSubmit(city)}>{city}</button>
             </li>
         );
     });
     
     return (
+        <div id="search-modal">
         <div className="search-form">
             <input type="text" className="search" placeholder="Enter City Name..." 
                 onChange = {displayMatches}
@@ -71,6 +68,7 @@ const NewTripSearch = ({setCity}) => {
             <ul className="suggestions">
                 {matchedCityList.length > 0 ? matchedCityList : (<li>Filter for a city</li>)}
             </ul>
+        </div>
         </div>
     )
 }
