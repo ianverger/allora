@@ -9,7 +9,6 @@ Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 function ActivitiesMap({
     centerLat,
     centerLng,
-    city,
     activities,
     mapOptions = {},
     mapEventHandlers = {},
@@ -21,7 +20,28 @@ function ActivitiesMap({
     const markers = useRef({});
     const history = useHistory();
 
-     
+
+
+  const  coordinatesFinder = (place) => {
+    Geocode.fromAddress(place).then(
+      (response) => {
+        const {lat, lng } = response.results[0].geometry.location;
+        // console.log( (lat + "," + " " + lng));
+        // console.log(place)
+        // return lat + "," + " " + lng;
+        // return (lat, lng);
+        
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
+
+
+
+
+
     useEffect(() => {
         if (!map) {
             setMap(new window.google.maps.Map(mapRef.current, {
@@ -50,14 +70,15 @@ function ActivitiesMap({
         }
     }, [map, mapEventHandlers]);
 
+
     useEffect(() => {
         if (map) {
             activities.forEach((activity) => {
                 if (markers.current[activity._id]) return;
-      
+                coordinatesFinder(activity.title)
                 const marker = new window.google.maps.Marker({ 
                     map, 
-                    position: new window.google.maps.LatLng(activity.lat, activity.lng), 
+                    position: new window.google.maps.LatLng(coordinatesFinder(activity.title)), 
                     label: { 
                         text: `$${activity.title}`, 
                         fontWeight: 'bold',
@@ -98,6 +119,7 @@ function ActivitiesMap({
             })
         }
     }, [activities, history, map, markerEventHandlers]);
+
 
     return (
         <div ref={mapRef} className="map">

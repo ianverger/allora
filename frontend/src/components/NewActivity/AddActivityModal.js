@@ -8,7 +8,7 @@ function AddActivityModal({tripId, userId}) {
 
   return (
     <>
-      <button id="add-new-activity" onClick={() => setShowModal(true)}>Add an activity</button>
+      <button id='add-new-activity' onClick={() => setShowModal(true)}>Add an activity</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
             <AddNewActivity

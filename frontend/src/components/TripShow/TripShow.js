@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import  { fetchTrip } from '../../store/trips';
 import ActivitiesMap from '../Map/Map'
+import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
 import AddActivityModal from '../NewActivity/AddActivityModal'
 import { fetchTripActivities } from '../../store/activities';
 import Geocode from "react-geocode";
 Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
+
 
 
 function TripShow () {
@@ -17,6 +19,7 @@ function TripShow () {
   const trip = useSelector(state => state.trips.trip);
   const activities = useSelector(state => state.activities.all);
   const currentUser = useSelector(state => state.session.user);
+  const [dates, setDates] = useState([]);
 
   const [centerLat, setCenterLat] = useState(null);
   const [centerLng, setCenterLng] = useState(null);
@@ -45,10 +48,32 @@ function TripShow () {
   };
 
 
-  // const {tripTitle, startDate, endDate, city, country, _id } = trip
+  
+
+  const dateTranslate = (date) => {
+    let arr = date.split(" ");
+    let keep = arr.slice(0,3);
+    return keep.join(" ")
+  }
+
+  const translatedDates = () => {
+    let datesArr = [];
+
+    trip.tripDates.forEach( date => {
+      datesArr.push(dateTranslate(date));
+    })
+
+    setDates(datesArr);
+  }
+
+  
 
   useEffect(() => {
     if (trip) findLatandLng();
+  },[trip])
+
+  useEffect(() => {
+    if (trip) translatedDates();
   },[trip])
   
   
@@ -60,40 +85,42 @@ function TripShow () {
               idle: map => setBounds(map.getBounds().toUrlValue())
             }), [history]);
 
-  
-  
-   
+    
+
     return (
       <>
       <div className="trip-container">
         <div className='trip-left-container'>
-            <div id='trip-image'> <img src={'https://hippark-photos.s3.amazonaws.com/allora-pics/nicole-herrero-rWWLpxSefp8-unsplash.jpg'} alt=""></img></div>
+            <div id='trip-image'> <img id='trip-img' src={'https://hippark-photos.s3.amazonaws.com/allora-pics/nicole-herrero-rWWLpxSefp8-unsplash.jpg'} alt=""></img></div>
             <div id='trip-dates-container'>
-                <span>{trip && trip.startDate} - {trip && trip.endDate}</span>
+                <span>{trip && (dates.at(0))} - {trip && (dates.at(dates.length-1))}</span>
             </div>
             <div id='trip-title-wrapper'>
                 <span>{trip && trip.tripTitle}</span>
+            </div>
+            <div id='itinerary-list-container'>
+              {trip && dates.map((date,idx) => (
+                <ItineraryDay 
+                  key={idx}
+                  date={date}
+                  activities={activities}
+                  highlightedActivity={highlightedActivity}
+                  setHighlightedActivity={setHighlightedActivity}
+                />
 
-            </div>
-            <div>
-            <AddActivityModal 
-              tripId={trip && trip._id}
-              userId={trip && currentUser._id}
-              />
-            </div>
+              ))}
+            </div> 
+      
           
         </div>
 
   
-         
-
         <div className='trip-right-container'>
             <div id='map-container'>
               {trip &&
-                <ActivitiesMap
+                <ActivitiesMap  
                 centerLat={centerLat}
                 centerLng={centerLng}
-                city={trip.city}
                 activities={activities}
                 mapEventHandlers={mapEventHandlers}
                 markerEventHandlers={{
@@ -101,8 +128,9 @@ function TripShow () {
                   mouseover: (activity) => setHighlightedActivity(activity._id),
                   mouseout: () => setHighlightedActivity(null)
                 }}
+                highlightedActivity={highlightedActivity}
               />
-}
+              }
             </div>
         </div>
 
