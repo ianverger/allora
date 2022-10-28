@@ -6,6 +6,7 @@ const RECEIVE_USER_TRIPS = 'trips/RECEIVE_USER_TRIPS';
 const RECEIVE_TRIP_ERRORS = 'trips/RECEIVE_TRIP_ERRORS';
 const CLEAR_TRIP_ERRORS = 'trips/CLEAR_TRIP_ERRORS';
 const RECEIVE_TRIP = 'trips/RECEIVE_TRIP';
+const RECEIVE_CITIES = 'trips/RECEIVE_CITIES';
 
 const receiveNewTrip = trip => ({
     type: RECEIVE_NEW_TRIP,
@@ -30,6 +31,11 @@ const receiveTripErrors = errors => ({
 const clearTripErrors = errors => ({
     type: CLEAR_TRIP_ERRORS,
     errors
+});
+
+const receiveCities = cities => ({
+    type: RECEIVE_CITIES,
+    cities
 });
 
 // export const 
@@ -77,6 +83,16 @@ export const fetchTrip = tripId => async dispatch => {
 
 }
 
+export const fetchCities = () => async dispatch => {
+    const res = await fetch('https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json');
+    const data = await res.json();
+    const cities = data.map(city => city.city);
+
+    dispatch(receiveCities(cities));
+
+    return res;
+};
+
 const nullErrors = null;
 
 export const tripErrorsReducer = (state = nullErrors, action) => {
@@ -100,7 +116,9 @@ const tripsReducer = (state = { all: {}, new: undefined }, action) => {
         case RECEIVE_USER_TRIPS:
             return { ...state, all: action.trips, new: undefined };
         case RECEIVE_TRIP:
-            return { trip : action.trip };
+            return { ...state, trip: action.trip };
+        case RECEIVE_CITIES:
+            return { ...state, cities: action.cities };
         default:
             return state;
     }

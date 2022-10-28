@@ -1,16 +1,33 @@
 .links-nav {
     height: 70px;
-    background-color: #f3f6f6;
+    background-color: #b8ccaa;
     box-shadow: 2px 2px 2px 2px rgb(223, 222, 222);
     z-index: 5;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
-    gap: 10px;
-    margin-bottom: 2px;
+    /* gap: 10px; */
+    margin-bottom: 3px;
 }
 
-.links-nav > button {
-    height: 50px;
-    width: 70px;
+#right-nav-links > button {
+    height: 70px;
+    /* width: 70px;
+   margin: 5px; */
+   background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+#right-nav-links > button:hover {
+    background-color: #ddd;
+    height: 70px;
+}
+
+#allora-nav-logo {
+    height: 100px;
 }

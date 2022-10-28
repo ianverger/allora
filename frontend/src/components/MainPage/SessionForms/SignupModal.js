@@ -7,8 +7,6 @@ import './SignupModal.css';
 function SignupFormModal() {
   const [showModal, setShowModal] = useState(false);
 
- console.log('test')
-
 
   return (
     <>

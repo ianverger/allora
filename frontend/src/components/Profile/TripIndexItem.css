@@ -1,0 +1,8 @@
+#trip-card {
+    background-color: white;
+    height: 120px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+}

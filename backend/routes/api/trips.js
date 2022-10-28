@@ -63,7 +63,6 @@ router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, ne
             tripTitle: req.body.tripTitle,
             planner: req.user._id
         }); 
-
         let trip = await newTrip.save(); 
         trip = await trip.populate('planner', '_id, username')
         res.json(trip);
