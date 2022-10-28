@@ -42,10 +42,12 @@ function TripShow () {
         setCenterLng(lng);
       },
       (error) => {
-        console.error(error);
+        console.error(error)
       }
     );
   };
+
+  
 
 
   

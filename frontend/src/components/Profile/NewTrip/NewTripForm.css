@@ -1,4 +1,5 @@
 #new-trip-form {
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
 }

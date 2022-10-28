@@ -9,6 +9,9 @@
     padding: 10px;
     /* gap: 10px; */
     margin-bottom: 3px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 #right-nav-links > button {

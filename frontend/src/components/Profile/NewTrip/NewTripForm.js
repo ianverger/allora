@@ -22,7 +22,7 @@ function CreateNewTripForm ({userId}) {
 // console.log(tripTitle)
 // console.log(dates)
     return (
-        <>
+        <div id="new-trip-form">
         <h3>New Trip</h3>
 
         <NewTripTitleModal tripTitle={tripTitle} setTripTitle={setTripTitle}/>
@@ -33,7 +33,7 @@ function CreateNewTripForm ({userId}) {
         {city && `${city}`}<br></br>
         {tripDates && `${tripDates}`}<br></br>
         <button onClick={createTripSubmit} id="create-trip-button">Let's Go!</button>
-        </>
+        </div>
 
     )
 }

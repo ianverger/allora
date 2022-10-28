@@ -18,7 +18,7 @@ function Profile () {
 
   const tripIndexItems = userTrips.map(trip => <TripIndexItem trip={trip}/>)
 
-  // const tripsIndex = userTrips.map(trip => <p>{trip.city}</p>)
+
     return (
       <div id="profile-body">
         <h2>{`${currentUser.username}'s Profile`}</h2>
