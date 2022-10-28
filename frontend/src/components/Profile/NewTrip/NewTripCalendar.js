@@ -5,7 +5,7 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css';
 import './NewTripCalendar.css';
 
-const NewTripCalendar = () => {
+const NewTripCalendar = ({setDates}) => {
     const [dateRange, setDateRange] = useState([
         {
           startDate: new Date(),
@@ -28,7 +28,7 @@ const NewTripCalendar = () => {
         // console.log(startDate, "start");
         // console.log(endDate, "end");
         const dayzArr = getDaysArray(startDate, endDate);
-        console.log(dayzArr);
+        setDates(dayzArr);
     }
 
     return (
