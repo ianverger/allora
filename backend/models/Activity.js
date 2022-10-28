@@ -16,14 +16,13 @@ const activitySchema = Schema({
         type: String,
         required: true
     },
+    activityDate: {
+        type: String,
+        required: true
+    },
     description: {
         type: String
-    },
-    date: {
-        type: String
-    },
-}, {
-    timestamps: true
+    }
 });
 
 module.exports = mongoose.model('Activity', activitySchema); 

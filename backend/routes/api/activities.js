@@ -62,8 +62,8 @@ router.post('/', requireUser, restoreUser, validateActivityInput, async(req, res
         const newActivity = new Activity({
             trip: req.body.trip,
             title: req.body.title,
+            activityDate: req.body.activityDate,
             description: req.body.description,
-            date: req.body.tripDates,
             creator: req.user._id,
         }); 
     

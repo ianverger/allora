@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import ActivityListItem from "./ActivityItem";
 import AddActivityModal from "../NewActivity/AddActivityModal";
 
-function ItineraryDay ({date, activities, highlightedActivity, setHighlightedActivity}) {
-const dailyActivities = Object.values(activities).filter(activity => activity.tripDates.toString() === date)
-
+function ItineraryDay ({date, activities, highlightedActivity, setHighlightedActivity, tripId}) {
+const dailyActivities = Object.values(activities).filter(activity => activity.activityDate === date)
+const currentUser = useSelector(state => state.session.user);
 
 
     return (
@@ -26,7 +26,11 @@ const dailyActivities = Object.values(activities).filter(activity => activity.tr
                 ))}
             </div>
             <div id='add-activity-button-wrapper'>
-                <AddActivityModal/>
+                <AddActivityModal
+                    tripId={tripId}
+                    userId={currentUser._id}
+                    currentDate={date}
+                />
             </div>
         </div>
         </>
