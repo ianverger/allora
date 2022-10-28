@@ -11,7 +11,7 @@ function NewTripCalendarModal({setDates}) {
       <button id="new-trip-cal-modal-button" onClick={() => setShowModal(true)}>When we goin?</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-            <NewTripCalendar setDates={setDates}/>
+            <NewTripCalendar setDates={setDates} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>

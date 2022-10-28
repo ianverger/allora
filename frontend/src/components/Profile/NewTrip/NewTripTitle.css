@@ -1,0 +1,21 @@
+#trip-title-form {
+    height: 150px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 10px;
+}
+
+#ttf-button {
+    width: 200px;
+    height: 40px;
+    background-color: #fffafa;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+}
+
+#ttf-button:hover {
+    box-shadow: 3px 3px 3px 3px rgb(251, 222, 222);
+}
+
