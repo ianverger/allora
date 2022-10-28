@@ -2,6 +2,7 @@ import LoginForm from "./SessionForms/LoginForm";
 import SignupFormModal from "./SessionForms/SignupModal";
 import './MainPage.css';
 import CarouselUnit from "./Carousel";
+import DemoUserButton from "./SessionForms/DemoUser";
 
 function MainPage() {
     return (
@@ -15,6 +16,7 @@ function MainPage() {
             </div>
             <div id="break"></div>
             <LoginForm />
+            <DemoUserButton />
             <p>Don't have an account?</p>
             <SignupFormModal />
         </div>

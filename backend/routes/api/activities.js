@@ -62,24 +62,15 @@ router.post('/', requireUser, restoreUser, validateActivityInput, async(req, res
         const newActivity = new Activity({
             trip: req.body.trip,
             title: req.body.title,
+            activityDate: req.body.activityDate,
             description: req.body.description,
-            tripDates: req.body.tripDates,
-            startTime: req.body.startTime,
-            endTime: req.body.endTime,
-            maxGuests: req.body.maxGuests,
-            address: req.body.address,
-            city: req.body.city,
-            country: req.body.country,
-            zipCode: req.body.zipCode,
             creator: req.user._id,
         }); 
     
         let trip = await Trip.findById(req.body.trip)
-        console.log(trip, 'here')
         if (trip) {
 
             let activity = await newActivity.save();
-            console.log(activity, 'here')
             // activity = await activity.populate("creator", "_id, username")
             res.json(activity);
         } 

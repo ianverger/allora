@@ -22,11 +22,12 @@
     border-radius: 3px;
 }
 
-#login-button, #signup-button {
+#login-button, #signup-button, #demo-user-button{
     width: 300px;
     height: 40px;
     /* background-color: ; */
 }
+
 
 h2 {
     color: rgb(255, 255, 255);

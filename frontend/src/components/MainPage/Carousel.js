@@ -13,10 +13,13 @@ function CarouselUnit() {
 
       return (
         <div className='carousel-container'>
-           <Carousel className="slide" style={{
-          width: 350,
-          height:220
-            }}>
+           <Carousel 
+              className="slide"
+              showDots
+              hideArrows
+              autoPlay={1000}
+            >
+              
           {imageUrls.map((url, idx) => {
             return (
                 <Carousel.Item className="carousel-item" key={idx}>
