@@ -8,6 +8,7 @@ import configureStore from './store/store';
 import './index.css';
 import * as sessionActions from './store/session';
 import * as tripActions from './store/trips';
+import * as activitiesActions from './store/activities';
 
 
 
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.sessionActions = sessionActions;
   window.tripActions = tripActions;
+  window.activitiesActions = activitiesActions;
 }
 
 

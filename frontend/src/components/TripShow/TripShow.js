@@ -1,62 +1,141 @@
-import { useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import  { fetchTrip } from '../../store/trips';
 import ActivitiesMap from '../Map/Map'
+import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
-// import { fetchUserTweets, clearTweetErrors } from '../../store/tweets';
+import AddActivityModal from '../NewActivity/AddActivityModal'
+import { fetchTripActivities } from '../../store/activities';
+import Geocode from "react-geocode";
+Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
+
 
 
 function TripShow () {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { tripId } = useParams();
-  const trip = useSelector(state => state.trips[tripId])
+  const trip = useSelector(state => state.trips.trip);
+  const activities = useSelector(state => state.activities.all);
+  const currentUser = useSelector(state => state.session.user);
+  const [dates, setDates] = useState([]);
 
-  const {tripTitle, startDate, endDate, city, country } = trip
+  const [centerLat, setCenterLat] = useState(null);
+  const [centerLng, setCenterLng] = useState(null);
+  const [highlightedActivity,setHighlightedActivity] = useState(null);
+  const [bounds, setBounds] = useState(null);
+
+  
+  useEffect(() => {
+    dispatch(fetchTrip(tripId));
+    dispatch(fetchTripActivities(tripId));
+    // return () => dispatch(clearTweetErrors());
+  }, [tripId]);
+  
+
+  const findLatandLng = () => {
+    Geocode.fromAddress(trip.city).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        setCenterLat(lat);
+        setCenterLng(lng);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
+
+
+  
+
+  const dateTranslate = (date) => {
+    let arr = date.split(" ");
+    let keep = arr.slice(0,3);
+    return keep.join(" ")
+  }
+
+  const translatedDates = () => {
+    let datesArr = [];
+
+    trip.tripDates.forEach( date => {
+      datesArr.push(dateTranslate(date));
+    })
+
+    setDates(datesArr);
+  }
+
   
 
   useEffect(() => {
-    dispatch(fetchTrip(tripId));
-    // return () => dispatch(clearTweetErrors());
-  }, [tripId, dispatch]);
+    if (trip) findLatandLng();
+  },[trip])
 
-//   const mapEventHandlers = useMemo(() => ({
-//     click: event => {
-//       const search = new URLSearchParams(event.latLng.toJSON()).toString();
-//       history.push({ pathname: '/spots', search });
-//     },
-//     idle: map => setBounds(map.getBounds().toUrlValue())
-//   }), [history]);
-
+  useEffect(() => {
+    if (trip) translatedDates();
+  },[trip])
   
+  
+    const mapEventHandlers  = useMemo(() => ({
+          click: event => {
+                const search = new URLSearchParams(event.latLng.toJSON()).toString();
+                history.push({ pathname: '/trip/:tripID', search });
+              },
+              idle: map => setBounds(map.getBounds().toUrlValue())
+            }), [history]);
+
+    
+
     return (
+      <>
       <div className="trip-container">
         <div className='trip-left-container'>
-            <div id='trip-image'></div>
+            <div id='trip-image'> <img id='trip-img' src={'https://hippark-photos.s3.amazonaws.com/allora-pics/nicole-herrero-rWWLpxSefp8-unsplash.jpg'} alt=""></img></div>
             <div id='trip-dates-container'>
-                <span>{startDate} - {endDate}</span>
+                <span>{trip && (dates.at(0))} - {trip && (dates.at(dates.length-1))}</span>
             </div>
             <div id='trip-title-wrapper'>
-                <span>{tripTitle}</span>
+                <span>{trip && trip.tripTitle}</span>
             </div>
+            <div id='itinerary-list-container'>
+              {trip && dates.map((date,idx) => (
+                <ItineraryDay 
+                  key={idx}
+                  date={date}
+                  activities={activities}
+                  highlightedActivity={highlightedActivity}
+                  setHighlightedActivity={setHighlightedActivity}
+                />
 
+              ))}
+            </div> 
+      
+          
         </div>
+
+  
         <div className='trip-right-container'>
             <div id='map-container'>
-                {/* <ActivitiesMap
-                //  activities={activities}
-                 mapEventHandlers={mapEventHandlers}
-                 markerEventHandlers={{
-                   click: (activity) => history.push(`//${spot.id}`),
-                   mouseover: (activity) => setHighlightedSpot(spot.id),
-                   mouseout: () => setHighlightedSpot(null)
-                 }}
-
-                /> */}
+              {trip &&
+                <ActivitiesMap  
+                centerLat={centerLat}
+                centerLng={centerLng}
+                activities={activities}
+                mapEventHandlers={mapEventHandlers}
+                markerEventHandlers={{
+                  click: (activity) => history.push(`//${activity._id}`),
+                  mouseover: (activity) => setHighlightedActivity(activity._id),
+                  mouseout: () => setHighlightedActivity(null)
+                }}
+                highlightedActivity={highlightedActivity}
+              />
+              }
             </div>
         </div>
 
-      </div>
+      </div> 
+    </>
     );
   
 }
