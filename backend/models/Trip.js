@@ -16,8 +16,8 @@ const tripSchema = Schema({
         required: true
     }],
     tripAttendees: [{
-        type: String,
-        reqiured: true
+        type: String
+        // reqiured: true
     }],
 
     city: {

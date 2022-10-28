@@ -19,32 +19,11 @@ const activitySchema = Schema({
     description: {
         type: String
     },
-    tripDates:[{
-        type: String,
-        required: true
-    }],
-    startTime: {
+    date: {
         type: String
     },
-    endTime: {
-        type: String
-    },
-    maxGuests: {
-        type: Number
-    },
-    address: {
-        type: String
-    },
-    city: {
-        type: String
-    },
-    country: {
-        type: String
-    },
-    zipCode: {
-        type: String
-    }
-    
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Activity', activitySchema); 
