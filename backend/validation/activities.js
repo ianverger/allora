@@ -9,9 +9,9 @@ const handleValidationErrors = require('./handleValidationErrors');
         check('title')
             .exists({ checkFalsy: true})
             .withMessage('Please include a title'),
-        check('tripDates')
+        check('activityDate')
             .exists({ checkFalsy: true })
-            .withMessage('Please enter a your activity dates'),
+            .withMessage('Please enter your activity dates'),
  
         handleValidationErrors
 

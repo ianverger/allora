@@ -27,4 +27,3 @@ const history = useHistory();
 }
 
 export default ActivityListItem;
-

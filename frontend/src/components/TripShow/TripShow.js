@@ -51,9 +51,9 @@ function TripShow () {
   
 
   const dateTranslate = (date) => {
-    let arr = date.split(" ");
-    let keep = arr.slice(0,3);
-    return keep.join(" ")
+    let arr = date.split("-");
+    let parseDay = arr.at(2).slice(0,2);
+    return arr.at(1) + "/" + parseDay;
   }
 
   const translatedDates = () => {
@@ -91,14 +91,16 @@ function TripShow () {
       <>
       <div className="trip-container">
         <div className='trip-left-container'>
-            <div id='trip-image'> <img id='trip-img' src={'https://hippark-photos.s3.amazonaws.com/allora-pics/nicole-herrero-rWWLpxSefp8-unsplash.jpg'} alt=""></img></div>
+            <div id='trip-image'> <img id='trip-img' src={'https://hippark-photos.s3.amazonaws.com/allora-pics/veliko-karachiviev-hSvagWirWPA-unsplash.jpg'} alt=""></img></div>
             <div id='trip-dates-container'>
                 <span>{trip && (dates.at(0))} - {trip && (dates.at(dates.length-1))}</span>
             </div>
             <div id='trip-title-wrapper'>
                 <span>{trip && trip.tripTitle}</span>
             </div>
+
             <div id='itinerary-list-container'>
+              <div id='activities-header'><span>Your Itinerary</span></div>
               {trip && dates.map((date,idx) => (
                 <ItineraryDay 
                   key={idx}
@@ -106,6 +108,7 @@ function TripShow () {
                   activities={activities}
                   highlightedActivity={highlightedActivity}
                   setHighlightedActivity={setHighlightedActivity}
+                  tripId={trip._id}
                 />
 
               ))}

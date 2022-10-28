@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal';
 import AddNewActivity from './ActivityForm';
 // import './NewTripModal.css';
 
-function AddActivityModal({tripId, userId}) {
+function AddActivityModal({tripId, userId, currentDate}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -14,6 +14,7 @@ function AddActivityModal({tripId, userId}) {
             <AddNewActivity
               tripId={tripId}
               userId={userId}
+              currentDate={currentDate}
             />
         </Modal>
       )}

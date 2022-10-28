@@ -5,9 +5,9 @@ const validateTripInput = [
     check('tripDates')
         .exists({ checkFalsy: true})
         .withMessage('Please enter a date(s) for your Trip'),
-    check('tripAttendees')
-        .exists({ checkFalsy: true})
-        .withMessage('Please include your travel pals'),
+    // check('tripAttendees')
+    //     .exists({ checkFalsy: true})
+    //     .withMessage('Please include your travel pals'),
     check('city')
         .exists({ checkFalsy: true})
         .withMessage('Please enter a city'),

@@ -27,6 +27,9 @@ function LoginForm () {
   }
 
   return (
+
+    <>
+   
     <form className="session-form" onSubmit={handleSubmit}>
     <h2 id="login-heading">Log In</h2>
       <label>
@@ -54,6 +57,7 @@ function LoginForm () {
       <div className="errors">{errors?.email}</div>
       <div className="errors">{errors?.password}</div>
     </form>
+    </>
   );
 }
 
