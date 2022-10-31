@@ -36,7 +36,7 @@
     
 }
 
-#login-button:hover, #signup-button:hover, #demo-user-button:hover {
+#signup-button:hover, #demo-user-button:hover {
     cursor: pointer;
     box-shadow: 3px 3px 3px 3px rgb(196, 193, 193);
 }
