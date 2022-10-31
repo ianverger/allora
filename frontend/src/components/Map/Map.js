@@ -26,10 +26,6 @@ function ActivitiesMap({
     Geocode.fromAddress(place).then(
       (response) => {
         const {lat, lng } = response.results[0].geometry.location;
-        // console.log( (lat + "," + " " + lng));
-        // console.log(place)
-        // return lat + "," + " " + lng;
-        // return (lat, lng);
         
       },
       (error) => {

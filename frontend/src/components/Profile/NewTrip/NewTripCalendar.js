@@ -27,7 +27,6 @@ const NewTripCalendar = ({page, setPage, formData, setFormData, x, setX}) => {
         const startDate = dateRange[0].startDate;
         const endDate = dateRange[0].endDate;
         const dayzArr = getDaysArray(startDate, endDate);
-        // console.log(dayzArr)
         setFormData({ ...formData, tripDates: dayzArr});
         const cal = document.getElementById("calendar-div");
         const roundup = document.getElementById("final-roundup");
@@ -35,7 +34,6 @@ const NewTripCalendar = ({page, setPage, formData, setFormData, x, setX}) => {
         roundup.style.display="block";
     }
 
-    // console.log(dateRange)
     return (
         // <motion.div
         // initial={{ x: x }}

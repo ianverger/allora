@@ -58,7 +58,6 @@ function CreateNewTripForm ({userId}) {
         history.push(to);
     }
 
-    // console.log(formData.tripDates[0].toString().split(' ').slice(0,4).join(' '))
     return (
        <div id="new-trip-page">
             <h3>New Trip</h3>
