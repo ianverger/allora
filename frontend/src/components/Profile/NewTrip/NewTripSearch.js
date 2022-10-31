@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCities } from '../../../store/trips';
-import { motion } from "framer-motion";
 import './NewTripSearch.css';
 
 const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
