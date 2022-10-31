@@ -1,7 +1,7 @@
 .links-nav {
-    height: 70px;
-    background-color: #b8ccaa;
-    box-shadow: 2px 2px 2px 2px rgb(223, 222, 222);
+    height: 75px;
+    background-color: #F3CFC6;
+    box-shadow: 1px 1px 1px 1px rgb(250, 231, 231);
     z-index: 5;
     display: flex;
     justify-content: space-between;
@@ -9,25 +9,49 @@
     padding: 10px;
     /* gap: 10px; */
     margin-bottom: 3px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 #right-nav-links > button {
     height: 70px;
-    /* width: 70px;
-   margin: 5px; */
+   color: white;
+   font-size: larger;
+   font-weight: 700;
    background-color: inherit;
-  float: left;
+  /* float: left; */
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
+  padding: 14px;
+  /* transition: 0.3s; */
+  position: relative;
 }
+
 #right-nav-links > button:hover {
-    background-color: #ddd;
-    height: 70px;
+    /* background-color: #d0a59aba;
+    height: 75px; */
+    font-weight: 900;
+    color: rgb(240, 233, 233);
+    position: relative;
+}
+
+#right-nav-links > button::before {
+    content: '';
+    display: block;
+    height: 5px;
+    width: 0%;
+    background-color: rgb(240, 233, 233);
+    position: absolute;
+    top: 5px;
+    transition: all ease-in-out 250ms;
+}
+
+#right-nav-links > button:hover::before {
+    width: 75%;
 }
 
 #allora-nav-logo {
-    height: 100px;
+    height: 75px;
 }

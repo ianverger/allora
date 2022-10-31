@@ -15,8 +15,9 @@ function CarouselUnit() {
         <div className='carousel-container'>
            <Carousel 
               className="slide"
-              showDots
-              hideArrows
+              // showDots
+              // hideArrow
+              loop={true}
               autoPlay={1000}
             >
               

@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserTrips } from '../../store/trips';
-import NewTripModal from './NewTrip/NewTripModal';
 import TripIndexItem from './TripIndexItem';
 import './Profile.css'
 
@@ -18,16 +17,27 @@ function Profile () {
 
   const tripIndexItems = userTrips.map(trip => <TripIndexItem trip={trip}/>)
 
-  // const tripsIndex = userTrips.map(trip => <p>{trip.city}</p>)
+
     return (
+   
       <div id="profile-body">
-        <h2>{`${currentUser.username}'s Profile`}</h2>
-        <p>This is my bio!</p>
-        <p>Got the travel bug?</p>
-  {/* <button onClick={}>Plan your trip!</button> */}
-  <NavLink to="/newTrip">New Trip!</NavLink>
-        {tripIndexItems}
+        <div id="profile-left">
+          <div id="p-l-top">
+            <div id="bio">
+              <h2>{`@${currentUser.username}'s Profile`}</h2>
+              <p>This is my bio!</p>
+            </div>
+            <NavLink to="/newTrip">
+              <button id="new-trip-button"><span>Got the travel bug?</span></button>
+            </NavLink>
+          </div>
+          {tripIndexItems}
+        </div>
+          <div id="right">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-724345765-1579196353.jpg?crop=0.5xw:1xh;center,top&resize=640:*" alt="amalfi" style={{height: "110vh", width: "100%"}}/>
+          </div>
       </div>
+   
     );
   
 }

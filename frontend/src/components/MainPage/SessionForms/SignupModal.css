@@ -1,8 +1,13 @@
 #signup-modal-button {
-    /* color: darkgray; */
     height: 40px;
+    width: 70%;
     background-color: white;
     border-radius: 3px;
     padding: 10px;
     border: 1px solid #EEEFF0;
+}
+
+#signup-modal-button:hover {
+    cursor: pointer;
+    background-color: rgb(221, 218, 218);
 }

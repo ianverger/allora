@@ -1,8 +1,22 @@
 #trip-card {
-    background-color: white;
+    background-color: #F3CFC6;
+    border: solid 1px #fffafa;
     height: 120px;
     width: 100%;
     border-radius: 5px;
     padding: 10px;
     margin: 5px;
+    box-shadow: 1px 1px 1px 1px rgb(123, 122, 122);
 }
+
+#trip-card:hover {
+    box-shadow: 3px 3px 3px 3px rgb(64, 62, 62);
+    cursor: pointer;
+}
+
+#top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+

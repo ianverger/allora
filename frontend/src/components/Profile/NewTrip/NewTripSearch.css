@@ -14,10 +14,17 @@ html {
     width: 100%;
     padding: 10px;
   }
+
+  #search-modal {
+    width: 500px;
+    height: 400px;
+  }
   
   .search-form {
-    max-width: 400px;
-    margin: 50px auto;
+    /* max-width: 400px; */
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
   }
   
   input.search {
@@ -59,3 +66,17 @@ html {
   .hl {
     background: #b8ccaa;
   }
+
+  .city-cards {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+  }
+
+  #selectedcity {
+    padding-top: 10px;
+    text-align: center;
+    /* font-size: x-large; */
+    color: #b8ccaa;
+}

@@ -16,10 +16,10 @@ function NavBar () {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <img src="https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-transparent_adobe_express.png" alt="allora-logo" id="allora-nav-logo"/>
+          <img src="https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-pink_adobe_express.png" alt="allora-logo" id="allora-nav-logo"/>
           <div id="right-nav-links">
             <button>
-              <Link style={{textDecoration: "none", color: "black"}} to={'/profile'}>Profile</Link>
+              <Link style={{textDecoration: "none", color: "inherit"}} to={'/profile'}>Profile</Link>
             </button>
             <button onClick={logoutUser}>Logout</button>
           </div>

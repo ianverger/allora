@@ -5,12 +5,71 @@
     box-sizing: border-box;
 }
 
+
+h2 { 
+    color: black;
+}
+
 #profile-body {
+    /* margin-top: 150px; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* background-color: #fffafa; */
+    /* height: 100vh; */
+    /* padding: 20px; */
+}
+
+#profile-left {
+    margin-top: 75px;
+    /* color: black; */
+    width: 50%;
+    padding: 20px;
+    margin-right: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #F3CFC6;
-    height: 100vh;
-    width: 50%;
-    padding: 20px;
 }
+
+#p-l-top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#right {
+    width: 50%;
+    position: fixed;
+    top: 10px;
+    right: 0;
+}
+
+#new-trip-button {
+    width: 250px;
+    height: 110px;
+    background-color: #b8ccaa;
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+    border-radius: 5px;
+    border: solid lightgray;
+    box-shadow: 1px 1px 1px 1px rgb(250, 231, 231);
+}
+
+#new-trip-button:hover {
+    box-shadow: 3px 3px 3px 3px rgb(64, 62, 62);
+    cursor: pointer;
+}
+
+#new-trip-button:hover span {
+    display: none;
+}
+
+#new-trip-button:hover:before {
+    content: "Create New Trip!";
+}
+
+/* #bio {
+color: black;
+} */

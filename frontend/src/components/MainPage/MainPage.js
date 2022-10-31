@@ -7,7 +7,7 @@ import DemoUserButton from "./SessionForms/DemoUser";
 function MainPage() {
     return (
       <div id="body">
-        <div id="left">
+        <div id="main-left">
             <div id="intro">
                 <div className="logo-wrapper">
                     <img src={'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-pink_adobe_express.png'} alt="" />

@@ -1,4 +1,144 @@
-#new-trip-form {
+#new-trip-page {
+    /* overflow: hidden; */
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
+    background-color: #fffafa;
+    align-items: center;
+    /* justify-content: center; */
+    height: 100vh;
+}
+
+h3 {
+    color: #fffafa;
+}
+
+.progress-bar {
+    width: 400px;
+    height: 15px;
+    background-color: white;
+    margin-bottom: 50px;
+}
+
+.progress-bar div {
+    width: 25%;
+    height: 100%;
+    background-color: #b8ccaa;
+}
+/* 
+.nt-card {
+    width: 400px;
+    background-color: white;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+} */
+
+#calendar-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#submit-cal-button {
+    margin-top: 20px;
+    width: 300px;
+    height: 45px;
+    background-color: #fffafa;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+}
+
+#submit-cal-button:hover {
+    box-shadow: 3px 3px 3px 3px rgb(251, 222, 222);
+}
+
+#trip-title-form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+}
+
+#ttf-input {
+    width: 400px;
+    height: 55px;
+    padding: 10px;
+    font-size: larger;
+    border: 1px solid #EEEFF0;
+    border-radius: 3px;
+}
+
+#ttf-input:focus {
+    outline: none !important;
+    border-color: #F3CFC6;
+    box-shadow: 0 0 10px #F3CFC6;
+}
+
+.pn-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ntp-button {
+    width: 200px;
+    height: 40px;
+    background-color: #F3CFC6;
+    border-radius: 5px;
+    color: white;
+    font-size: large;
+    font-weight: bolder;
+    padding: 10px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.ntp-button:hover {
+    box-shadow: 3px 3px 3px 3px rgb(251, 222, 222);
+    cursor: pointer;
+}
+
+#ntp-submit {
+    background-color: #b8ccaa;
+}
+
+#final-submit {
+    background-color: #b8ccaa;
+    font-size: x-large;
+    width: 100%;
+    height: 50px;
+    box-shadow: 1px 2px 2px 2px rgb(222, 213, 213);
+}
+
+#final-submit:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px 3px 3px rgb(184, 176, 176);
+}
+
+#final-roundup {
+    /* display: flex; */
+    text-align: center;
+}
+
+#final-roundup > h2 {
+    color: #b8ccaa;
+    margin-bottom: 5px;
+}
+
+#rup-card {
+    text-align: left;
+    background-color: #F3CFC6;
+    height: 250px;
+    width: 400px;
+    border-radius: 5px;
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
