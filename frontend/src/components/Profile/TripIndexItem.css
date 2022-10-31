@@ -1,5 +1,5 @@
 #trip-card {
-    background-color: #b8ccaa;
+    background-color: #F3CFC6;
     border: solid 1px #fffafa;
     height: 120px;
     width: 100%;
@@ -11,6 +11,7 @@
 
 #trip-card:hover {
     box-shadow: 3px 3px 3px 3px rgb(64, 62, 62);
+    cursor: pointer;
 }
 
 #top {

@@ -1,64 +1,89 @@
 #new-trip-page {
-    margin-top: 100px;
+    /* overflow: hidden; */
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
+    background-color: #fffafa;
     align-items: center;
+    /* justify-content: center; */
+    height: 100vh;
 }
 
 h3 {
     color: #fffafa;
 }
 
-#new-trip-form {
-    margin-top: 10px;
-    border: 2px solid #fffafa;
-    border-radius: 5px;
-    width: 800px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+.progress-bar {
+    width: 400px;
+    height: 15px;
+    background-color: white;
+    margin-bottom: 50px;
 }
 
-#ntf-left {
-    width: 30%;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-#ntf-right {
-    color: #fffafa;
-    width: 60%;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: right;
-}
-
-#new-trip-title-modal-button, #new-trip-search-modal-button, #new-trip-cal-modal-button {
+.progress-bar div {
+    width: 25%;
+    height: 100%;
     background-color: #b8ccaa;
-    height: 50px;
-    border-radius: 3px;
-    border: solid 1px #fffafa;
-    
+}
+/* 
+.nt-card {
+    width: 400px;
+    background-color: white;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+} */
+
+#calendar-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#new-trip-title-modal-button:hover, #new-trip-search-modal-button:hover, #new-trip-cal-modal-button:hover {
-    box-shadow: 3px 3px 3px 3px rgb(64, 62, 62);
-} 
-
-#create-trip-button {
+#submit-cal-button {
+    margin-top: 20px;
+    width: 300px;
+    height: 45px;
     background-color: #fffafa;
     border-radius: 5px;
+    padding: 10px;
     border: none;
-    margin-top: 20px;
-    height: 70px;
-    width: 300px;
 }
 
-#create-trip-button:hover {
+#submit-cal-button:hover {
+    box-shadow: 3px 3px 3px 3px rgb(251, 222, 222);
+}
+
+#trip-title-form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+}
+
+#ttf-input {
+    width: 400px;
+    height: 55px;
+    padding: 10px;
+    font-size: larger;
+    border: 1px solid #EEEFF0;
+    border-radius: 3px;
+}
+
+#ttf-button {
+    width: 200px;
+    height: 40px;
+    background-color: #F3CFC6;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+}
+
+#ttf-button:hover {
     box-shadow: 3px 3px 3px 3px rgb(251, 222, 222);
 }

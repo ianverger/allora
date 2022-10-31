@@ -9,7 +9,7 @@
     display: flex;
 }
 
-#left {
+#main-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,6 +17,7 @@
     background-color: #F3CFC6;
     display: flex;
     align-items: center;
+    width: 60%;
 }
 
 #intro > h1 {
@@ -24,7 +25,7 @@
    color: rgb(255, 255, 255);
 }
 
-p {
+#main-left > p {
     color: rgb(255, 255, 255);
     padding-bottom: 5px;
     position: relative;
@@ -35,11 +36,13 @@ p {
     position: relative;
     top: -20px;
     left: 30px;
+    color: rgb(255, 255, 255);
+    position: relative;
 }
 
-#break {
-    height: 40px;
-}
+/* #break {
+    height: 10px;
+} */
 
 .carousel-unit {
     display: flex;
@@ -47,5 +50,5 @@ p {
     justify-content: center;
     height: 100vh;
     /* padding: 100px; */
-
+    background-color: #F3CFC6;
 }

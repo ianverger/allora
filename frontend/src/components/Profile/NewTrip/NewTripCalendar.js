@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { addDays } from 'date-fns';
 import { DateRange } from 'react-date-range';
+import { motion } from "framer-motion";
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css';
-import './NewTripCalendar.css';
+import './NewTripForm.css';
 
-const NewTripCalendar = ({setDates, setShowModal}) => {
+const NewTripCalendar = ({page, setPage, formData, setFormData, x, setX}) => {
     const [dateRange, setDateRange] = useState([
         {
           startDate: new Date(),
@@ -28,25 +29,45 @@ const NewTripCalendar = ({setDates, setShowModal}) => {
         // console.log(startDate, "start");
         // console.log(endDate, "end");
         const dayzArr = getDaysArray(startDate, endDate);
-        setDates(dayzArr);
-        setShowModal(false);
+        setFormData({ ...formData, tripDates: dayzArr})
     }
 
     return (
-        <div id="calendar-div">
-            <form onSubmit={handleSubmit} id="calendar-form">
-                {<DateRange
-                onChange={item => setDateRange([item.selection])}
-                showSelectionPreview={true}
-                moveRangeOnFirstSelection={false}
-                months={2}
-                ranges={dateRange}
-                rangeColors={["#F3CFC6"]}
-                direction="horizontal"
-                />}
-                <input type="submit" value="submit" id="submit-cal-button" />
-            </form>
-        </div>
+        // <motion.div
+        // initial={{ x: x }}
+        // transition={{ duration: 1 }}
+        // animate={{ x: 0 }}
+        // className="nt-card"
+        // >    
+            <div id="calendar-div">
+                <button
+                    onClick={() => {
+                    alert("You've successfully submitted this form");
+                    }}>
+                    Submit
+                </button>
+                <br />
+                <button
+                    onClick={() => {
+                    setPage(page - 1);
+                    setX(-1000);
+                    }}>
+                    Previous
+                </button>
+                <form onSubmit={handleSubmit} id="calendar-form">
+                    {<DateRange
+                    onChange={item => setDateRange([item.selection])}
+                    showSelectionPreview={true}
+                    moveRangeOnFirstSelection={false}
+                    months={2}
+                    ranges={dateRange}
+                    rangeColors={["#F3CFC6"]}
+                    direction="horizontal"
+                    />}
+                    <input type="submit" value="submit" id="submit-cal-button" />
+                </form>
+            </div>
+        // </motion.div>
     )
 }
 

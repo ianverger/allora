@@ -12,7 +12,7 @@
     gap: 5px;
     width: 350px;
     padding: 20px;
-    text-align: right;
+    /* text-align: right; */
 }
 
 .inputs {
@@ -28,19 +28,24 @@
     /* background-color: ; */
 }
 
+#demo-user-button {
+    position: relative;
+    top: -50px;
+    background-color: #b8ccaa;
+    border-radius: 3px;
+    border: solid white;
+}
 
-h2 {
+.session-form > h2 {
     color: rgb(255, 255, 255);
-  
 }
 
 #login-heading {
     position: relative;
-    left: -114px;
+    left: -106px;
 }
 
 #signup-heading {
-    margin-bottom: 5px;
     position: relative;
-    left: -105px;
+    left: -95px;
 }

@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserTrips } from '../../store/trips';
-import NewTripModal from './NewTrip/NewTripModal';
 import TripIndexItem from './TripIndexItem';
 import './Profile.css'
 
@@ -22,15 +21,14 @@ function Profile () {
     return (
    
       <div id="profile-body">
-        <div id="left">
-          <div id="top">
+        <div id="profile-left">
+          <div id="p-l-top">
             <div id="bio">
-              <h2>{`${currentUser.username}'s Profile`}</h2>
+              <h2>{`@${currentUser.username}'s Profile`}</h2>
               <p>This is my bio!</p>
-              <p>Got the travel bug?</p>
             </div>
             <NavLink to="/newTrip">
-              <button id="new-trip-button">New Trip!</button>
+              <button id="new-trip-button"><span>Got the travel bug?</span></button>
             </NavLink>
           </div>
           {tripIndexItems}
