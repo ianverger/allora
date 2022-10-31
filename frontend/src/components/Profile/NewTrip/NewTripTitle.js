@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import './NewTripForm.css';
 
 const NewTripTitle = ({page, setPage, formData, setFormData, x, setX}) => {

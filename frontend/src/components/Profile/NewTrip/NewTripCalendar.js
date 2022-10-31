@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { addDays } from 'date-fns';
 import { DateRange } from 'react-date-range';
-import { motion } from "framer-motion";
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css';
 import './NewTripForm.css';
