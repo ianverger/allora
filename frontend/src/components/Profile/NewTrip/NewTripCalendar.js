@@ -23,15 +23,19 @@ const NewTripCalendar = ({page, setPage, formData, setFormData, x, setX}) => {
     };
 
     const handleSubmit = e => {
-        e.preventDefault();
+        // e.preventDefault();
         const startDate = dateRange[0].startDate;
         const endDate = dateRange[0].endDate;
-        // console.log(startDate, "start");
-        // console.log(endDate, "end");
         const dayzArr = getDaysArray(startDate, endDate);
-        setFormData({ ...formData, tripDates: dayzArr})
+        // console.log(dayzArr)
+        setFormData({ ...formData, tripDates: dayzArr});
+        const cal = document.getElementById("calendar-div");
+        const roundup = document.getElementById("final-roundup");
+        cal.style.display = "none";
+        roundup.style.display="block";
     }
 
+    // console.log(dateRange)
     return (
         // <motion.div
         // initial={{ x: x }}
@@ -40,21 +44,20 @@ const NewTripCalendar = ({page, setPage, formData, setFormData, x, setX}) => {
         // className="nt-card"
         // >    
             <div id="calendar-div">
-                <button
-                    onClick={() => {
-                    alert("You've successfully submitted this form");
-                    }}>
+                 <div className="pn-buttons">
+                    <button className="ntp-button"
+                        onClick={() => {
+                        setPage(page - 1);
+                        setX(-1000);
+                        }}>
+                        Previous
+                    </button>
+                <button className="ntp-button" id="ntp-submit"
+                    onClick={() => handleSubmit()}>
                     Submit
                 </button>
-                <br />
-                <button
-                    onClick={() => {
-                    setPage(page - 1);
-                    setX(-1000);
-                    }}>
-                    Previous
-                </button>
-                <form onSubmit={handleSubmit} id="calendar-form">
+                </div>
+                <form id="calendar-form">
                     {<DateRange
                     onChange={item => setDateRange([item.selection])}
                     showSelectionPreview={true}
@@ -64,7 +67,7 @@ const NewTripCalendar = ({page, setPage, formData, setFormData, x, setX}) => {
                     rangeColors={["#F3CFC6"]}
                     direction="horizontal"
                     />}
-                    <input type="submit" value="submit" id="submit-cal-button" />
+                    {/* <input type="submit" value="submit" id="submit-cal-button" /> */}
                 </form>
             </div>
         // </motion.div>

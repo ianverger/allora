@@ -25,15 +25,20 @@
 #login-button, #signup-button, #demo-user-button{
     width: 300px;
     height: 40px;
-    /* background-color: ; */
+    border: none;
+    border-radius: 3px;
 }
 
 #demo-user-button {
     position: relative;
     top: -50px;
     background-color: #b8ccaa;
-    border-radius: 3px;
-    border: solid white;
+    
+}
+
+#login-button:hover, #signup-button:hover, #demo-user-button:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px 3px 3px rgb(196, 193, 193);
 }
 
 .session-form > h2 {

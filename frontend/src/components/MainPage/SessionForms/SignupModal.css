@@ -6,3 +6,8 @@
     padding: 10px;
     border: 1px solid #EEEFF0;
 }
+
+#signup-modal-button:hover {
+    cursor: pointer;
+    background-color: rgb(221, 218, 218);
+}

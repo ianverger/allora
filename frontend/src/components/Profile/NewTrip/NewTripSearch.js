@@ -55,22 +55,23 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
         // className="nt-card"
         // >
             <div id="search-modal">
-                <button 
-                    onClick={() => {
-                    setPage(page + 1);
-                    setX(1000);
-                    }}>
-                    Next
-                </button>
-                <br/>
-                <button
-                    onClick={() => {
-                    setPage(page - 1);
-                    setX(-1000);
-                    }}>
-                    Previous
-                </button>
-                {selectedCity}
+                <div className="pn-buttons">
+                    <button className="ntp-button"
+                        onClick={() => {
+                        setPage(page - 1);
+                        setX(-1000);
+                        }}>
+                        Previous
+                    </button>
+                    <button className="ntp-button"
+                        onClick={() => {
+                        setPage(page + 1);
+                        setX(1000);
+                        }}>
+                        Next
+                    </button>
+                </div>
+                <div id="selectedcity"><h1>{selectedCity ? selectedCity : "Where you off to, doll?"}</h1></div>
                 <div className="search-form">
                     <input type="text" className="search" placeholder={"Enter City Name..."} 
                         onChange = {displayMatches}
