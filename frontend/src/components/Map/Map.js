@@ -13,28 +13,40 @@ function ActivitiesMap({
     mapOptions = {},
     mapEventHandlers = {},
     markerEventHandlers = {}
+
 }) {
 
     const [map, setMap] = useState(null);
     const mapRef = useRef(null);
     const markers = useRef({});
     const history = useHistory();
+    const [activityCoords, setActivityCoords] = useState([]);
+    
 
 
-
-  const  coordinatesFinder = (place) => {
+const coordinatesHelper = (place) => {
     Geocode.fromAddress(place).then(
-      (response) => {
-        const {lat, lng } = response.results[0].geometry.location;
-        
-      },
-      (error) => {
-        console.error(error);
-      }
+        (response) => {
+            const {lat, lng } = response.results[0].geometry.location;
+            let obj = { lat: lat, lng: lng, title: place }
+            setActivityCoords(old => [...old, obj])
+        },
+        (error) => {
+            console.error(error);
+        }
     );
-  };
+};
+
+console.log(activityCoords, 'here');
 
 
+    useEffect(() => {
+        if (activities) {
+            activities.forEach((activity) => {
+                coordinatesHelper(activity.title);
+            })
+        }
+    }, [activities]);
 
 
 
@@ -68,13 +80,14 @@ function ActivitiesMap({
 
 
     useEffect(() => {
-        if (map) {
-            activities.forEach((activity) => {
+        if (map && activityCoords) {
+            activityCoords.forEach((activity) => {
                 if (markers.current[activity._id]) return;
-                coordinatesFinder(activity.title)
+                // coordinatesFinder(activity.title)
+
                 const marker = new window.google.maps.Marker({ 
                     map, 
-                    position: new window.google.maps.LatLng(coordinatesFinder(activity.title)), 
+                    position: new window.google.maps.LatLng(activity.lat, activity.lng),
                     label: { 
                         text: `$${activity.title}`, 
                         fontWeight: 'bold',
@@ -104,7 +117,7 @@ function ActivitiesMap({
                 Object.entries(markerEventHandlers).forEach(([event, handler]) => {
                     marker.addListener(event, () => handler(activity));
                 });
-                markers.current[activity._id] = marker;
+                markers.current[activity.place] = marker;
             })
     
             Object.entries(markers.current).forEach(([activityId, marker]) => {
