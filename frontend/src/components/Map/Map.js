@@ -37,8 +37,6 @@ const coordinatesHelper = (place, id) => {
     );
 };
 
-console.log(activityCoords, 'here');
-
 
     useEffect(() => {
         if (activities) {
@@ -88,29 +86,33 @@ console.log(activityCoords, 'here');
                     map, 
                     position: new window.google.maps.LatLng(activity.lat, activity.lng),
                     label: { 
-                        text: `$${activity.title}`, 
+                        text: `${activity.title}`, 
                         fontWeight: 'bold',
                         color: 'black'
                     }, 
-                    icon: {
-                        path:`
-                            M 1,0 
-                            L 2,0 
-                            A 1 1 0 0 1 3,1
-                            A 1 1 0 0 1 2,2
-                            L 1,2 
-                            A 1 1 0 0 1 0,1
-                            A 1 1 0 0 1 1,0
-                            z
-                        `,
-                        fillOpacity: 1,
-                        fillColor: 'white',
-                        strokeColor: 'black',
-                        strokeWeight: 1,
-                        scale: 15,
-                        labelOrigin: new window.google.maps.Point(1.5, 1),
-                        anchor: new window.google.maps.Point(1.5, 1)
-                    }, 
+                icon: {
+                    url: 'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-icon.png',
+                    size: 'new google.maps.Size(0.5, 0.5)'
+                },
+                    // icon: {
+                    //     path:`
+                    //         M 1,0 
+                    //         L 2,0 
+                    //         A 1 1 0 0 1 3,1
+                    //         A 1 1 0 0 1 2,2
+                    //         L 1,2 
+                    //         A 1 1 0 0 1 0,1
+                    //         A 1 1 0 0 1 1,0
+                    //         z
+                    //     `,
+                    //     fillOpacity: 1,
+                    //     fillColor: 'white',
+                    //     strokeColor: 'black',
+                    //     strokeWeight: 1,
+                    //     scale: 15,
+                    //     labelOrigin: new window.google.maps.Point(1.5, 1),
+                    //     anchor: new window.google.maps.Point(1.5, 1)
+                    // }, 
                 });
 
                 Object.entries(markerEventHandlers).forEach(([event, handler]) => {
