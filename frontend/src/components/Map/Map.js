@@ -24,11 +24,11 @@ function ActivitiesMap({
     
 
 
-const coordinatesHelper = (place) => {
+const coordinatesHelper = (place, id) => {
     Geocode.fromAddress(place).then(
         (response) => {
             const {lat, lng } = response.results[0].geometry.location;
-            let obj = { lat: lat, lng: lng, title: place }
+            let obj = { id: id, lat: lat, lng: lng, title: place }
             setActivityCoords(old => [...old, obj])
         },
         (error) => {
@@ -43,7 +43,7 @@ console.log(activityCoords, 'here');
     useEffect(() => {
         if (activities) {
             activities.forEach((activity) => {
-                coordinatesHelper(activity.title);
+                coordinatesHelper(activity.title, activity._id);
             })
         }
     }, [activities]);
@@ -82,8 +82,7 @@ console.log(activityCoords, 'here');
     useEffect(() => {
         if (map && activityCoords) {
             activityCoords.forEach((activity) => {
-                if (markers.current[activity._id]) return;
-                // coordinatesFinder(activity.title)
+                if (markers.current[activity.id]) return;
 
                 const marker = new window.google.maps.Marker({ 
                     map, 
