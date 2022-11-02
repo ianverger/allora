@@ -92,10 +92,10 @@ const coordinatesHelper = (place, id) => {
                     }, 
                 icon: {
                     url: 'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-icon.png',
-                    size: 'new google.maps.Size(0.5, 0.5)'
+                    scaledSize: new window.google.maps.Size(30, 30),
+                    anchor: new window.google.maps.Point(1.5,1)
                 },
                     // icon: {
-                    //     path:`
                     //         M 1,0 
                     //         L 2,0 
                     //         A 1 1 0 0 1 3,1
