@@ -19,6 +19,9 @@ function NavBar () {
           <img src="https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-pink_adobe_express.png" alt="allora-logo" id="allora-nav-logo"/>
           <div id="right-nav-links">
             <button>
+              <Link style={{textDecoration: "none", color: "inherit"}} to={'/meetTheTeam'}>Hire Us!</Link>
+            </button>
+            <button>
               <Link style={{textDecoration: "none", color: "inherit"}} to={'/profile'}>Profile</Link>
             </button>
             <button onClick={logoutUser}>Logout</button>
