@@ -71,7 +71,7 @@ function TripShow () {
   
 
   useEffect(() => {
-    if (trip) findLatandLng();
+    if (trip) (findLatandLng());
   },[trip])
 
   useEffect(() => {
