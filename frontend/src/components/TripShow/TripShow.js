@@ -7,7 +7,6 @@ import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
 import AddActivityModal from '../NewActivity/AddActivityModal'
 import { fetchTripActivities } from '../../store/activities';
-import { findLatandLng } from '../../store/geocode';
 import Geocode from "react-geocode";
 Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 
