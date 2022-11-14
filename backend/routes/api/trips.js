@@ -72,4 +72,33 @@ router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, ne
     }
 });
 
+// router.delete('/:userId/trips',  async(res, req) => {
+//     const currentUser = await User.findbyId(req.params.userId);
+//     const trip = await Trip.findbyId(req.body.tripId);
+
+//     trip.planner.id(currentUser.id)?.remove();
+//     currentUser.save();
+//     return res.json(currentUser);
+
+// });
+
+router.delete("/:tripId", async (req, res, next) => {
+    let trip;
+    let activities;
+    try {
+      trip = await Trip.findById(req.params.tripId);
+      activities = await Activities.find({ trip: req.params.tripId });
+      for (let i = 0; i < activities.length; i++) {
+        activities[i].remove();
+      }
+      trip.remove();
+      return res.json(trip);
+    } catch {
+      const error = new Error("Trip not found");
+      error.statusCode = 404;
+      error.errors = { message: "No trip found with that id" };
+      return next(error);
+    }
+  });
+
 module.exports = router;

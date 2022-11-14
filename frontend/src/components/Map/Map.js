@@ -88,31 +88,15 @@ const coordinatesHelper = (place, id) => {
                     label: { 
                         text: `${activity.title}`, 
                         fontWeight: 'bold',
-                        color: 'black'
+                        color: 'black',
+                        fontSize: '7px'
                     }, 
                 icon: {
-                    url: 'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-icon.png',
-                    scaledSize: new window.google.maps.Size(30, 30),
-                    anchor: new window.google.maps.Point(1.5,1)
-                },
-                    // icon: {
-                    //         M 1,0 
-                    //         L 2,0 
-                    //         A 1 1 0 0 1 3,1
-                    //         A 1 1 0 0 1 2,2
-                    //         L 1,2 
-                    //         A 1 1 0 0 1 0,1
-                    //         A 1 1 0 0 1 1,0
-                    //         z
-                    //     `,
-                    //     fillOpacity: 1,
-                    //     fillColor: 'white',
-                    //     strokeColor: 'black',
-                    //     strokeWeight: 1,
-                    //     scale: 15,
-                    //     labelOrigin: new window.google.maps.Point(1.5, 1),
-                    //     anchor: new window.google.maps.Point(1.5, 1)
-                    // }, 
+                    url: 'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-marker-pin.png',
+                    scaledSize: new window.google.maps.Size(45,45),
+                    // anchor: new window.google.maps.Point(1.5,1),
+                    labelOrigin: new window.google.maps.Point(1.5, 1)
+                    },
                 });
 
                 Object.entries(markerEventHandlers).forEach(([event, handler]) => {
