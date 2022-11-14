@@ -82,7 +82,7 @@ router.post('/', requireUser, restoreUser, validateActivityInput, async(req, res
 
 
 
-router.delete("/activityId", async (req, res, next) => {
+router.delete("/:activityId", async (req, res, next) => {
     let activity;
     try {
       activity = await Activity.findById(req.params.activityId);
