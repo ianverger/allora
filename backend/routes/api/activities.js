@@ -80,4 +80,20 @@ router.post('/', requireUser, restoreUser, validateActivityInput, async(req, res
     }
 });
 
+
+
+router.delete("/acitivityId", async (req, res, next) => {
+    let activity;
+    try {
+      activity = await Activity.findById(req.params.activityId);
+      activity.remove();
+      return res.json(activity);
+    } catch {
+      const error = new Error("Activity not found");
+      error.statusCode = 404;
+      error.errors = { message: "No activity found with that id" };
+      return next(error);
+    }
+  });
+
 module.exports = router; 
