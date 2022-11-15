@@ -13,11 +13,9 @@ const TripIndexItem = ({trip}) => {
         history.push(to);
     }, [history, trip])
 
-    // onClick={handleClick}
-
     return (
         <div id="trip-card">
-            <h3>{trip.tripTitle}</h3>
+            <h3 onClick={handleClick}>{trip.tripTitle}</h3>
             <h5>{`${trip.city}, ${trip.country}`}</h5>
             <div><button onClick={() => dispatch(deleteTrip(trip._id))}>Delete</button></div>
         </div>

@@ -85,13 +85,23 @@ export const fetchActivity = activityId => async dispatch => {
 }
 
 export const deleteActivity = (activityId) => async (dispatch) => {
-    await jwtFetch(`/api/trips/${activityId}`, {
+    const res = await jwtFetch(`/api/activities/${activityId}`, {
         method: "DELETE",
     });
-    dispatch(fetchTripActivities());
+    const data = await res.json();
+    dispatch(fetchTripActivities(data.trip));
     return;
   };
 
+//   export const deleteTrip = (tripId) => async (dispatch) => {
+//     const res = await jwtFetch(`/api/trips/${tripId}`, {
+//       method: "DELETE",
+//     });
+//     const data = await res.json();
+//     console.log(data, 'here');
+//     dispatch(fetchUserTrips(data.planner));
+//     return;
+//   };
 
 
 const nullErrors = null;

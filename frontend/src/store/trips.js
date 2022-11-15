@@ -103,7 +103,6 @@ export const deleteTrip = (tripId) => async (dispatch) => {
       method: "DELETE",
     });
     const data = await res.json();
-    console.log(data, 'here');
     dispatch(fetchUserTrips(data.planner));
     return;
   };

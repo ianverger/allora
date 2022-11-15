@@ -1,11 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { deleteActivity } from '../../store/activities';
 import AddActivityModal from '../NewActivity/AddActivityModal';
 // import './ActivityItem.css'
 
 
 function ActivityListItem ({activity, isHighlighted, setHighlightedActivity}) {
 const history = useHistory();
+const dispatch = useDispatch();
 
     return (
         <>
@@ -21,6 +24,7 @@ const history = useHistory();
             <div id='activity-description-wrapper'>
                 <span>{activity && activity.description}</span>
             </div>
+            <div><button onClick={() => dispatch(deleteActivity(activity._id))}>Delete</button></div>
         </div>
         </>
     )
