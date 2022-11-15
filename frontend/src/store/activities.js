@@ -4,7 +4,8 @@ const RECEIVE_NEW_ACTIVITY = 'activities/RECEIVE_NEW_ACTIVITY';
 const RECEIVE_TRIP_ACTIVITIES = 'activities/RECEIVE_TRIP_ACTIVITIES';
 const RECEIVE_ACTIVITY_ERRORS = 'activities/RECEIVE_ACTIVITY_ERRORS';
 const CLEAR_ACTIVITY_ERRORS = 'activities/CLEAR_ACTIVITY_ERRORS';
-const RECEIVE_ACTIVITY = 'activities/RECEIVE_ACTIVITY'
+const RECEIVE_ACTIVITY = 'activities/RECEIVE_ACTIVITY';
+const REMOVE_ACTIVITY = 'activities/REMOVE_ACTIVITY';
 
 const receiveNewActivity = activity => ({
     type: RECEIVE_NEW_ACTIVITY,
@@ -82,6 +83,15 @@ export const fetchActivity = activityId => async dispatch => {
     } 
     
 }
+
+export const deleteActivity = (activityId) => async (dispatch) => {
+    await jwtFetch(`/api/trips/${activityId}`, {
+        method: "DELETE",
+    });
+    dispatch(fetchTripActivities());
+    return;
+  };
+
 
 
 const nullErrors = null;
