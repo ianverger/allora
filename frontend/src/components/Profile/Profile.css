@@ -24,8 +24,8 @@ h2 {
     margin-top: 75px;
     /* color: black; */
     width: 50%;
-    padding: 20px;
-    margin-right: 15px;
+    padding: 35px;
+    /* margin-right: 15px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,23 +34,34 @@ h2 {
 #p-l-top {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 10px;
 }
 
 #right {
     width: 50%;
     position: fixed;
-    top: 10px;
+  height: 500px;
+    top: 8px;
     right: 0;
+    padding-right: 30px;
+    /* margin-top: 90px;
+    margin-bottom: 100px; */
+}
+
+.profile-carousel-unit {
+    /* width: 600px; */
+    /* border-top: 140px;
+    margin-bottom: 10px;
+    border: 2px solid red; */
 }
 
 #new-trip-button {
     width: 250px;
-    height: 110px;
+    height: 140px;
     background-color: #b8ccaa;
     color: white;
-    font-size: larger;
+    font-size: large;
     font-weight: bold;
     border-radius: 5px;
     border: solid lightgray;

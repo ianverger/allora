@@ -27,6 +27,11 @@
     height: 40px;
     border: none;
     border-radius: 3px;
+    
+}
+
+#login-button {
+    padding-top: 5px;
 }
 
 #demo-user-button {
