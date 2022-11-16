@@ -91,18 +91,40 @@ export const deleteActivity = (activityId) => async (dispatch) => {
     const data = await res.json();
     dispatch(fetchTripActivities(data.trip));
     return;
-  };
+};
 
-//   export const deleteTrip = (tripId) => async (dispatch) => {
-//     const res = await jwtFetch(`/api/trips/${tripId}`, {
-//       method: "DELETE",
-//     });
-//     const data = await res.json();
-//     console.log(data, 'here');
-//     dispatch(fetchUserTrips(data.planner));
-//     return;
-//   };
+export const upvoteActivity = activityId => async dispatch => {
+    // try {
+        const res = await jwtFetch(`/api/activities/${activityId}/upvote`, {
+            method: 'PUT'
+        })
+        const activity = await res.json();
+        dispatch(fetchTripActivities(activity.trip));
+        // dispatch(receiveActivity(activity));
+        // return;
+    // } catch(err) {
+    //     const resBody = await err.json();
+    //     if (resBody.statusCode === 400) {
+    //         return dispatch(receiveActivityErrors(resBody.errors));
+    //     }
+    // }
+}
 
+export const downvoteActivity = activityId => async dispatch => {
+    // try {
+        const res = await jwtFetch(`/api/activities/${activityId}/downvote`, {
+            method: 'PUT'
+        })
+        const activity = await res.json();
+        dispatch(fetchTripActivities(activity.trip));
+        // return;
+    // } catch(err) {
+    //     const resBody = await err.json();
+    //     if (resBody.statusCode === 400) {
+    //         return dispatch(receiveActivityErrors(resBody.errors));
+    //     }
+    // }
+}
 
 const nullErrors = null;
 
