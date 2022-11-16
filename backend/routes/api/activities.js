@@ -96,4 +96,37 @@ router.delete("/:activityId", async (req, res, next) => {
     }
   });
 
+  router.put('/:activityId/upvote', requireUser, restoreUser, async (req, res, next) => {
+    let activity;
+    try {
+      activity = await Activity.findByIdAndUpdate(req.params.activityId, {
+            $push:{votes: req.user._id}
+        })
+        
+      return res.json(activity);
+    } catch {
+        const error = new Error("Activity not found");
+        error.statusCode = 404;
+        error.errors = { message: "No activity found with that id" };
+        return next(error);
+      }
+    
+})
+
+router.put('/:activityId/downvote', requireUser, restoreUser, async (req, res, next) => {
+    let activity;
+    try {
+      activity = await Activity.findByIdAndUpdate(req.params.activityId, {
+            $pull:{votes: req.user._id}
+        }) 
+      return res.json(activity);
+    } catch {
+      const error = new Error("Activity not found");
+      error.statusCode = 404;
+      error.errors = { message: "No activity found with that id" };
+      return next(error);
+    }
+    
+})
+
 module.exports = router; 

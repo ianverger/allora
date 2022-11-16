@@ -22,7 +22,11 @@ const activitySchema = Schema({
     },
     description: {
         type: String
-    }
+    },
+    votes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 module.exports = mongoose.model('Activity', activitySchema); 
