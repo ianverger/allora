@@ -99,10 +99,11 @@ export const fetchCities = () => async dispatch => {
 };
 
 export const deleteTrip = (tripId) => async (dispatch) => {
-    await jwtFetch(`/api/trips/${tripId}`, {
+    const res = await jwtFetch(`/api/trips/${tripId}`, {
       method: "DELETE",
     });
-    dispatch(fetchUserTrips());
+    const data = await res.json();
+    dispatch(fetchUserTrips(data.planner));
     return;
   };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import  { fetchTrip } from '../../store/trips';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
+import  { fetchTrip, deleteTrip } from '../../store/trips';
 import ActivitiesMap from '../Map/Map'
 import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
@@ -46,6 +46,11 @@ function TripShow () {
       }
     );
   };
+
+  // const handleDeleteClick = () => {
+  //   dispatch(deleteTrip(trip._id));
+  //   Redirect top
+  // }
 
   
 
@@ -100,6 +105,13 @@ function TripShow () {
             <div id='trip-title-wrapper'>
                 <span>{trip && trip.tripTitle}</span>
             </div>
+            {/* <div>
+                {trip.planner === currentUser?._id && (
+                  <button
+                    onClick={() => dispatch(deleteTrip(trip._id))}
+                    id="delete-trip-button">Delete trip</button>
+                )}
+            </div> */}
 
             <div id='itinerary-list-container'>
               <div id='activities-header'><span>Your Itinerary</span></div>
@@ -114,9 +126,7 @@ function TripShow () {
                 />
 
               ))}
-            </div> 
-      
-          
+            </div>
         </div>
 
   
