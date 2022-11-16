@@ -43,7 +43,7 @@ router.get('/activities/:activityId', async (req, res, next) => {
     }
 })
 
-router.post('/new', requireUser, restoreUser, validateCommentInput, async(req, res, next) =>{
+router.post('/', requireUser, restoreUser, validateCommentInput, async(req, res, next) =>{
     try{
         const newComment = new Comment({
             activity: req.body.activity,
@@ -62,5 +62,42 @@ router.post('/new', requireUser, restoreUser, validateCommentInput, async(req, r
         next(err);
     }
 });
+
+router.delete('/:commentId', async (req, res, next) => {
+    let comment;
+    try {
+      comment = await Comment.findById(req.params.commentId);
+      comment.remove();
+      return res.json(comment);
+
+    } catch {
+      const error = new Error("Comment not found");
+      error.statusCode = 404;
+      error.errors = { message: "No comment found with that id" };
+      return next(error);
+
+    }
+});
+
+// router.put('/:commentId', requireUser, restoreUser, validateCommentInput, async(req, res, next) => {
+//     let comment;
+//     try {
+//         comment = await Comment.findById(req.params.commentId);
+
+//         if (req.body.text) {
+//             comment.text = req.body.text;
+//         }
+
+//         if (req.body.activity) {
+//             comment.activity = req.body.activity;
+//         }
+
+//         await comment.save();
+//         return res.json(comment);
+
+//     } catch (err) {
+//         next(err);
+//     }
+// });
 
 module.exports = router; 
