@@ -126,7 +126,6 @@ router.put('/:activityId/downvote', requireUser, restoreUser, async (req, res, n
       error.errors = { message: "No activity found with that id" };
       return next(error);
     }
-    
 })
 
 module.exports = router; 
