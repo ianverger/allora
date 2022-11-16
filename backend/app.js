@@ -61,7 +61,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/trips', tripsRouter); 
 app.use('/api/activities', activitiesRouter); 
-app.use('api/comments', commentsRouter); 
+app.use('/api/comments', commentsRouter); 
 
 // Serve static React build files statically in production
 if (isProduction) {

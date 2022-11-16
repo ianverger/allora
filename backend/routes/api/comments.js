@@ -51,7 +51,7 @@ router.post('/new', requireUser, restoreUser, validateCommentInput, async(req, r
             publisher: req.user._id
         });
 
-        let activity = await Activity.findById(req.body.trip)
+        let activity = await Activity.findById(req.body.activity)
         if (activity) {
             let comment = await newComment.save();
             // comment = await comment.populate('publisher', '_id, username');
