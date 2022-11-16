@@ -26,7 +26,7 @@ router.get('/trip/:tripId', async (req, res, next) =>{
         trip = await Trip.findById(req.params.tripId);
     }
     catch(err){
-        const error = new Error('User not found');
+        const error = new Error('Trip not found');
         error.statusCode = 404
         error.errors = { message: "No trip found with that id"}
         return next(error);
