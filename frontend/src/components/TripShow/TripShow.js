@@ -119,6 +119,7 @@ function TripShow () {
                 <ItineraryDay 
                   key={idx}
                   date={date}
+                  currentUser={currentUser}
                   activities={activities}
                   highlightedActivity={highlightedActivity}
                   setHighlightedActivity={setHighlightedActivity}

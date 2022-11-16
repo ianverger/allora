@@ -94,35 +94,36 @@ export const deleteActivity = (activityId) => async (dispatch) => {
 };
 
 export const upvoteActivity = activityId => async dispatch => {
-    try {
+    // try {
         const res = await jwtFetch(`/api/activities/${activityId}/upvote`, {
             method: 'PUT'
         })
         const activity = await res.json();
-        dispatch(receiveActivity(activity));
+        dispatch(fetchTripActivities(activity.trip));
+        // dispatch(receiveActivity(activity));
         // return;
-    } catch(err) {
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-            return dispatch(receiveActivityErrors(resBody.errors));
-        }
-    }
+    // } catch(err) {
+    //     const resBody = await err.json();
+    //     if (resBody.statusCode === 400) {
+    //         return dispatch(receiveActivityErrors(resBody.errors));
+    //     }
+    // }
 }
 
 export const downvoteActivity = activityId => async dispatch => {
-    try {
+    // try {
         const res = await jwtFetch(`/api/activities/${activityId}/downvote`, {
             method: 'PUT'
         })
         const activity = await res.json();
-        dispatch(receiveActivity(activity));
+        dispatch(fetchTripActivities(activity.trip));
         // return;
-    } catch(err) {
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-            return dispatch(receiveActivityErrors(resBody.errors));
-        }
-    }
+    // } catch(err) {
+    //     const resBody = await err.json();
+    //     if (resBody.statusCode === 400) {
+    //         return dispatch(receiveActivityErrors(resBody.errors));
+    //     }
+    // }
 }
 
 const nullErrors = null;

@@ -6,7 +6,7 @@ import AddActivityModal from '../NewActivity/AddActivityModal';
 // import './ActivityItem.css'
 
 
-function ActivityListItem ({activity, isHighlighted, setHighlightedActivity}) {
+function ActivityListItem ({activity, currentUser, isHighlighted, setHighlightedActivity}) {
 const history = useHistory();
 const dispatch = useDispatch();
 
@@ -25,13 +25,19 @@ const dispatch = useDispatch();
                 <span>{activity && activity.description}</span>
             </div>
             <div><button onClick={() => dispatch(deleteActivity(activity._id))}>Delete</button></div>
-            <button className="voting-buttons" onClick={() => dispatch(upvoteActivity(activity._id))}>
-                <i className="fa-solid fa-thumbs-up"></i>
-            </button>
-            <p>{activity.votes.length}</p>
+            {activity.votes.includes(currentUser._id)
+            ?
             <button className="voting-buttons" onClick={() => dispatch(downvoteActivity(activity._id))}>
                 <i className="fa-solid fa-thumbs-down"></i>
             </button>
+            :
+            <button className="voting-buttons" onClick={() => dispatch(upvoteActivity(activity._id))}>
+                <i className="fa-solid fa-thumbs-up"></i>
+            </button>
+            }
+            
+            <p>{activity.votes.length}</p>
+    
         </div>
         </>
     )
