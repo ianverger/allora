@@ -2,11 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deleteActivity, downvoteActivity, upvoteActivity } from '../../store/activities';
+import CommentItem from './CommentItem';
 import AddActivityModal from '../NewActivity/AddActivityModal';
 // import './ActivityItem.css'
 
 
 function ActivityListItem ({activity, currentUser, isHighlighted, setHighlightedActivity}) {
+// const comments = Object.values(comments).filter(comment => comment.activity === activity._id);
 const history = useHistory();
 const dispatch = useDispatch();
 
@@ -24,7 +26,6 @@ const dispatch = useDispatch();
             <div id='activity-description-wrapper'>
                 <span>{activity && activity.description}</span>
             </div>
-            <div><button onClick={() => dispatch(deleteActivity(activity._id))}>Delete</button></div>
             {activity.votes.includes(currentUser._id)
             ?
             <button className="voting-buttons" onClick={() => dispatch(downvoteActivity(activity._id))}>
@@ -35,8 +36,18 @@ const dispatch = useDispatch();
                 <i className="fa-solid fa-thumbs-up"></i>
             </button>
             }
-            
+            <div><button onClick={() => dispatch(deleteActivity(activity._id))}>Delete</button></div>
             <p>{activity.votes.length}</p>
+            <div id='comments-container'>
+                {/* {comments && comments.map((comment,idx) => (
+                    <CommentItem
+                        key={idx}
+                        currentUser={currentUser}
+                        comment={comment}
+                    />
+                ))} */}
+            </div>
+            
     
         </div>
         </>
