@@ -7,7 +7,7 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
     const dispatch = useDispatch();
     const [selectedCity, setSelectedCity] = useState('');
     const [matchedCities, setMatchedCities] = useState([]);
-    // const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    const [inputValue, setInputValue] = useState("");
     const cities = useSelector(({ trips: { cities } }) => cities);
 
     useEffect(() => {
@@ -23,6 +23,7 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
 
     const displayMatches = function(e) {
         // const matchArray = findMatches(e.target.value, cities);
+        setInputValue(e.target.value);
         const value = e.target.value;
         let matches = [];
 
@@ -33,8 +34,8 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
    const handleSubmit = (city, idx) => {
         // e.preventDefault();
         setSelectedCity(city);
-        // const selectedCity = document.getElementById(`${idx}-city`)
-        // selectedCity.style={backgroundColor: "red"}
+        setMatchedCities([]);
+        setInputValue("");
         setFormData({ ...formData, city: city});
    }
 
@@ -73,7 +74,7 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
                 <div id="selectedcity"><h1>{selectedCity ? selectedCity : "Where you off to, doll?"}</h1></div>
                 <div className="search-form">
                     <input type="text" className="search" placeholder={"Enter City Name..."} 
-                        onChange = {displayMatches}
+                        onChange = {displayMatches} value={inputValue}
                     />
                     <ul className="suggestions">
                         {matchedCityList.length > 0 ? matchedCityList : (<li>Filter for a city</li>)}
