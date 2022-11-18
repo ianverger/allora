@@ -7,6 +7,8 @@
     padding: 10px;
     margin: 5px;
     box-shadow: 1px 1px 1px 1px rgb(123, 122, 122);
+    display: flex;
+    justify-content: space-between;
 }
 
 #trip-card:hover {

@@ -105,7 +105,23 @@ export const deleteTrip = (tripId) => async (dispatch) => {
     const data = await res.json();
     dispatch(fetchUserTrips(data.planner));
     return;
-  };
+};
+
+export const addAttendee = (tripId, userId) => async dispatch => {
+    const res = await jwtFetch(`/api/trips/${tripId}/addAttendee/${userId}`, {
+        method: 'PUT'
+    })
+    const trip = await res.json();
+    dispatch(receiveTrip(trip))
+}
+
+export const removeAttendee = (tripId, userId) => async dispatch => {
+    const res = await jwtFetch(`/api/trips/${tripId}/removeAttendee/${userId}`, {
+        method: 'PUT'
+    })
+    const trip = await res.json();
+    dispatch(receiveTrip(trip))
+}
 
 const nullErrors = null;
 
