@@ -14,10 +14,14 @@ const TripIndexItem = ({trip}) => {
     }, [history, trip])
 
     return (
-        <div id="trip-card">
-            <h3 onClick={handleClick}>{trip.tripTitle}</h3>
-            <h5>{`${trip.city}, ${trip.country}`}</h5>
-            <div><button onClick={() => dispatch(deleteTrip(trip._id))}>Delete</button></div>
+        <div id="trip-card" onClick={handleClick}>
+            <div id="tc-left">
+                <h3>{trip.tripTitle}</h3>
+                <h5>{`${trip.city}, ${trip.country}`}</h5>
+            </div>
+            <div id="tc-right">
+                <button onClick={() => dispatch(deleteTrip(trip._id))}>Delete</button>
+            </div>
         </div>
     )
 }

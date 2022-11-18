@@ -16,7 +16,9 @@ function NavBar () {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <img src="https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-pink_adobe_express.png" alt="allora-logo" id="allora-nav-logo"/>
+          <Link to={'/profile'}>
+            <img src="https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-pink_adobe_express.png" alt="allora-logo" id="allora-nav-logo"/>
+          </Link>
           <div id="right-nav-links">
             <button>
               <Link style={{textDecoration: "none", color: "inherit"}} to={'/meetTheTeam'}>Hire Us!</Link>
