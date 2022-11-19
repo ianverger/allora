@@ -80,7 +80,7 @@ export const commentErrorsReducer = (state = nullErrors, action) => {
     }
 };
 
-const commentsReducer = (state = {all : {}, new: undefined}, action) => {
+const commentsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_NEW_COMMENT:
             let newState = { ...state };

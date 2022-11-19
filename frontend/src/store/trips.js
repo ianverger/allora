@@ -136,7 +136,7 @@ export const tripErrorsReducer = (state = nullErrors, action) => {
     }
 };
 
-const tripsReducer = (state = { all: {}, new: undefined }, action) => {
+const tripsReducer = (state = {}, action) => {
     switch(action.type) {
         case RECEIVE_NEW_TRIP:
             let newState = { ...state };

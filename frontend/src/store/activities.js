@@ -140,7 +140,7 @@ export const activityErrorsReducer = (state = nullErrors, action) => {
 
 
 
-const activitiesReducer = (state = { all: {}, new: undefined }, action) => {
+const activitiesReducer = (state = {}, action) => {
     switch(action.type) {
         case RECEIVE_NEW_ACTIVITY:
             let newState = { ...state };
