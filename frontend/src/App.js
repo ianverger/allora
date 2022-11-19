@@ -11,6 +11,7 @@ import CreateNewTripForm from './components/Profile/NewTrip/NewTripForm';
 import MeetTheTeam from './components/MeetTheTeam/MeetTheTeam';
 
 import { getCurrentUser } from './store/session';
+import UserSearch from './components/UserSearch/UserSearch';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,7 +28,7 @@ function App() {
         {/* <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} /> */}
    
-        {/* <ProtectedRoute exact path="/search" component={NewTripSearch} /> */}
+        <ProtectedRoute exact path="/search" component={UserSearch} />
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/newTrip" component={CreateNewTripForm}/>
         <ProtectedRoute exact path="/trips/:tripId" component={TripShow} />
