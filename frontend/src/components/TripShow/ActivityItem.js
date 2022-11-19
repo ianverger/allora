@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deleteActivity, downvoteActivity, upvoteActivity } from '../../store/activities';
 import CommentItem from './CommentItem';
+import AddNewComment from './NewCommentForm';
 import AddActivityModal from '../NewActivity/AddActivityModal';
 // import './ActivityItem.css'
 
@@ -46,6 +47,13 @@ const dispatch = useDispatch();
                         comment={comment}
                     />
                 ))} */}
+            </div>
+
+            <div id="add-comment-box">
+                <AddNewComment
+                    activityId={activity._id}
+                    userId={currentUser._id}
+                />
             </div>
             
     
