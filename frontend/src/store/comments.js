@@ -113,10 +113,7 @@ export const commentErrorsReducer = (state = nullErrors, action) => {
 const commentsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_NEW_COMMENT:
-            let newState = { ...state };
-            newState.all[action.comment.id] = action.comment;
-            newState.new = action.comment;
-            return newState;
+           return { ...state, ...action.comment };
         case RECEIVE_ACTIVITY_COMMENTS:
             return {...state, all: action.comments, new: undefined };
         default:
