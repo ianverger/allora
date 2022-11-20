@@ -16,8 +16,8 @@ function TripShow () {
   const dispatch = useDispatch();
   const history = useHistory();
   const { tripId } = useParams();
-  const trip = useSelector(state => state.trips[tripId]);
-  const activities = useSelector(state => state.activities.all);
+  const trip = useSelector(state => state.trips);
+  const activities = useSelector(state => Object.values(state.trips.activity));
   const currentUser = useSelector(state => state.session.user);
   const [dates, setDates] = useState([]);
 
@@ -137,7 +137,7 @@ function TripShow () {
                 <ActivitiesMap  
                 centerLat={centerLat}
                 centerLng={centerLng}
-                activities={activities}
+                // activities={activities}
                 mapEventHandlers={mapEventHandlers}
                 markerEventHandlers={{
                   click: (activity) => history.push(`//${activity._id}`),

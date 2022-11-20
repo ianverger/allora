@@ -163,33 +163,19 @@ export const tripErrorsReducer = (state = nullErrors, action) => {
     }
 };
 
-// const tripsReducer = (state = {}, action) => {
-//     switch(action.type) {
-//         case RECEIVE_NEW_TRIP:
-//             let newState = { ...state };
-//             newState.all[action.trip.id] = action.trip; 
-//             newState.new = action.trip;
-//             return newState;
-//         case RECEIVE_USER_TRIPS:
-//             return { ...state, all: action.trips, new: undefined };
-//         case RECEIVE_TRIP:
-//             return { ...state, trip: action.trip };
-//         case RECEIVE_CITIES:
-//             return { ...state, cities: action.cities };
-//         default:
-//             return state;
-//     }
-// };
 
 const tripsReducer = (state = {}, action) => {
     switch(action.type) {
         case RECEIVE_TRIP:
             return { ...state, ...action.trip };
-        case RECEIVE_TRIP_ACTIVITIES:
-            state.activities = action.activites;
-            return {...state};
+
         case RECEIVE_CITIES:
             return { ...state, cities: action.cities };
+
+        case RECEIVE_TRIP_ACTIVITIES:
+            state.activity = action.activities;
+            return { ...state };
+            // return { ...state, ...action.activities };
         default:
             return state;
     }
