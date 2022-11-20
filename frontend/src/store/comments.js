@@ -115,8 +115,6 @@ const commentsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_NEW_COMMENT:
            return { ...state, ...action.comment };
-        case RECEIVE_ACTIVITY_COMMENTS:
-            return {...state, all: action.comments, new: undefined };
         default:
             return state;
 
