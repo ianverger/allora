@@ -1,28 +1,34 @@
 import jwtFetch from './jwt';
 import { RECEIVE_USER_LOGOUT } from './session';
+import receiveActivityErrors from './activities';
 
-const RECEIVE_NEW_TRIP = 'trips/RECEIVE_NEW_TRIP';
-const RECEIVE_USER_TRIPS = 'trips/RECEIVE_USER_TRIPS';
+// const RECEIVE_NEW_TRIP = 'trips/RECEIVE_NEW_TRIP';
+// const RECEIVE_USER_TRIPS = 'trips/RECEIVE_USER_TRIPS';
 const RECEIVE_TRIP_ERRORS = 'trips/RECEIVE_TRIP_ERRORS';
 const CLEAR_TRIP_ERRORS = 'trips/CLEAR_TRIP_ERRORS';
 const RECEIVE_TRIP = 'trips/RECEIVE_TRIP';
 const RECEIVE_CITIES = 'trips/RECEIVE_CITIES';
 const REMOVE_TRIP = 'trips/REMOVE_TRIP';
 
-const receiveNewTrip = trip => ({
-    type: RECEIVE_NEW_TRIP,
-    trip
-});
+const RECEIVE_TRIP_ACTIVITIES = 'activities/RECEIVE_TRIP_ACTIVITIES';
+
+
+
+// const receiveNewTrip = trip => ({
+//     type: RECEIVE_NEW_TRIP,
+//     trip
+// });
 
 const receiveTrip = trip => ({
     type: RECEIVE_TRIP,
     trip
 });
 
-const receiveUserTrips = trips => ({
-    type: RECEIVE_USER_TRIPS,
-    trips
-});
+
+// const receiveUserTrips = trips => ({
+//     type: RECEIVE_USER_TRIPS,
+//     trips
+// });
 
 const receiveTripErrors = errors => ({
     type: RECEIVE_TRIP_ERRORS,
@@ -44,19 +50,25 @@ const removeTrip = tripId => ({
     tripId
 });
 
+const receiveTripActivities = activities => ({
+    type: RECEIVE_TRIP_ACTIVITIES,
+    activities
+})
 
-export const fetchUserTrips = userId => async dispatch => {
-    try {
-        const res = await jwtFetch(`/api/trips/user/${userId}`);
-        const trips = await res.json();
-        dispatch(receiveUserTrips(trips));
-    } catch(err) {
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-          return dispatch(receiveTripErrors(resBody.errors));
-        }
-    }
-};
+
+
+// export const fetchUserTrips = userId => async dispatch => {
+//     try {
+//         const res = await jwtFetch(`/api/trips/user/${userId}`);
+//         const trips = await res.json();
+//         dispatch(receiveUserTrips(trips));
+//     } catch(err) {
+//         const resBody = await err.json();
+//         if (resBody.statusCode === 400) {
+//           return dispatch(receiveTripErrors(resBody.errors));
+//         }
+//     }
+// };
 
 export const createTrip = data => async dispatch => {
     try {
@@ -65,7 +77,7 @@ export const createTrip = data => async dispatch => {
             body: JSON.stringify(data)
         });
         const trip = await res.json();
-        dispatch(receiveNewTrip(trip));
+        dispatch(receiveTrip(trip));
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
@@ -103,7 +115,7 @@ export const deleteTrip = (tripId) => async (dispatch) => {
       method: "DELETE",
     });
     const data = await res.json();
-    dispatch(fetchUserTrips(data.planner));
+    // dispatch(fetchUserTrips(data.planner));
     return;
 };
 
@@ -123,6 +135,21 @@ export const removeAttendee = (tripId, userId) => async dispatch => {
     dispatch(receiveTrip(trip))
 }
 
+
+
+export const fetchTripActivities = tripId => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/activities/trip/${tripId}`);
+        const activities = await res.json();
+        dispatch(receiveTripActivities(activities));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            return dispatch(receiveActivityErrors(resBody.errors));
+        }
+    }
+}
+
 const nullErrors = null;
 
 export const tripErrorsReducer = (state = nullErrors, action) => {
@@ -136,17 +163,31 @@ export const tripErrorsReducer = (state = nullErrors, action) => {
     }
 };
 
+// const tripsReducer = (state = {}, action) => {
+//     switch(action.type) {
+//         case RECEIVE_NEW_TRIP:
+//             let newState = { ...state };
+//             newState.all[action.trip.id] = action.trip; 
+//             newState.new = action.trip;
+//             return newState;
+//         case RECEIVE_USER_TRIPS:
+//             return { ...state, all: action.trips, new: undefined };
+//         case RECEIVE_TRIP:
+//             return { ...state, trip: action.trip };
+//         case RECEIVE_CITIES:
+//             return { ...state, cities: action.cities };
+//         default:
+//             return state;
+//     }
+// };
+
 const tripsReducer = (state = {}, action) => {
     switch(action.type) {
-        case RECEIVE_NEW_TRIP:
-            let newState = { ...state };
-            newState.all[action.trip.id] = action.trip; 
-            newState.new = action.trip;
-            return newState;
-        case RECEIVE_USER_TRIPS:
-            return { ...state, all: action.trips, new: undefined };
         case RECEIVE_TRIP:
-            return { ...state, trip: action.trip };
+            return { ...state, ...action.trip };
+        case RECEIVE_TRIP_ACTIVITIES:
+            state.trip = action.activites;
+            return {...state};
         case RECEIVE_CITIES:
             return { ...state, cities: action.cities };
         default:
@@ -154,4 +195,6 @@ const tripsReducer = (state = {}, action) => {
     }
 };
 
+
 export default tripsReducer;
+

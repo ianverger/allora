@@ -7,7 +7,11 @@ import activities from './activities';
 import comments from './comments';
 
 const rootReducer = combineReducers({
-  session, trips, activities, comments, errors
+  session, 
+  errors,
+  trips, 
+  activities, 
+  comments
 });
 
 let enhancer;

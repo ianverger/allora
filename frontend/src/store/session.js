@@ -1,9 +1,13 @@
 import jwtFetch from './jwt';
+import receiveTripErrors from './trips';
 
 const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
+
+const RECEIVE_USER_TRIPS = 'trips/RECEIVE_USER_TRIPS';
+
 
 // Dispatch receiveCurrentUser when a user logs in.
 const receiveCurrentUser = currentUser => ({
@@ -26,6 +30,13 @@ const logoutUser = () => ({
 export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 });
+
+
+const receiveUserTrips = trips => ({
+  type: RECEIVE_USER_TRIPS,
+  trips
+});
+
 
 export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');
@@ -58,6 +69,20 @@ export const logout = () => dispatch => {
   dispatch(logoutUser());
 };
 
+
+export const fetchUserTrips = userId => async dispatch => {
+  try {
+      const res = await jwtFetch(`/api/trips/user/${userId}`);
+      const trips = await res.json();
+      dispatch(receiveUserTrips(trips));
+  } catch(err) {
+      const resBody = await err.json();
+      if (resBody.statusCode === 400) {
+        return dispatch(receiveTripErrors(resBody.errors));
+      }
+  }
+};
+
 const nullErrors = null;
 
 export const sessionErrorsReducer = (state = nullErrors, action) => {
@@ -82,6 +107,10 @@ const initialState = {
         return { user: action.currentUser };
       case RECEIVE_USER_LOGOUT:
         return initialState;
+      
+      case RECEIVE_USER_TRIPS:
+        state.user = action.trips;
+        return {...state};
       default:
         return state;
     }

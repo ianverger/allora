@@ -6,7 +6,7 @@ import ActivitiesMap from '../Map/Map'
 import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
 import AddActivityModal from '../NewActivity/AddActivityModal'
-import { fetchTripActivities } from '../../store/activities';
+import { fetchTripActivities } from '../../store/trips';
 import Geocode from "react-geocode";
 Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 
@@ -16,7 +16,7 @@ function TripShow () {
   const dispatch = useDispatch();
   const history = useHistory();
   const { tripId } = useParams();
-  const trip = useSelector(state => state.trips.trip);
+  const trip = useSelector(state => state.trips[tripId]);
   const activities = useSelector(state => state.activities.all);
   const currentUser = useSelector(state => state.session.user);
   const [dates, setDates] = useState([]);
