@@ -186,7 +186,7 @@ const tripsReducer = (state = {}, action) => {
         case RECEIVE_TRIP:
             return { ...state, ...action.trip };
         case RECEIVE_TRIP_ACTIVITIES:
-            state.trip = action.activites;
+            state.activities = action.activites;
             return {...state};
         case RECEIVE_CITIES:
             return { ...state, cities: action.cities };

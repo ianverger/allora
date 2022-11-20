@@ -1,6 +1,7 @@
 import jwtFetch from "./jwt";
 import { fetchTripActivities } from "./trips";
 
+
 // const RECEIVE_NEW_ACTIVITY = 'activities/RECEIVE_NEW_ACTIVITY';
 // const RECEIVE_TRIP_ACTIVITIES = 'activities/RECEIVE_TRIP_ACTIVITIES';
 const RECEIVE_ACTIVITY_ERRORS = 'activities/RECEIVE_ACTIVITY_ERRORS';
@@ -142,7 +143,7 @@ export const fetchActivityComments = activityId => async dispatch => {
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
-            return dispatch (receiveCommentErrors(resBody.errors));
+            return dispatch (receiveActivityErrors(resBody.errors));
         }
     }
 }

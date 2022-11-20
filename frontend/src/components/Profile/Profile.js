@@ -10,7 +10,7 @@ import './Profile.css'
 function Profile () {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-  const userTrips = useSelector(state => Object.values(state.trips.all).filter(trip => trip.planner._id === currentUser._id));
+  const userTrips = useSelector(state => state.session.trip);
 
   useEffect(() => {
     dispatch(fetchUserTrips(currentUser._id));

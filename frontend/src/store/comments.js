@@ -1,4 +1,5 @@
 import jwtFetch from "./jwt";
+import { fetchActivityComments } from "./activities";
 
 const RECEIVE_NEW_COMMENT = 'comments/RECEIVE_NEW_COMMENT';
 const RECEIVE_ACTIVITY_COMMENTS = 'comments/RECEIVE_ACTIVITY_COMMENTS';

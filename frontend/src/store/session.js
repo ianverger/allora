@@ -109,7 +109,7 @@ const initialState = {
         return initialState;
       
       case RECEIVE_USER_TRIPS:
-        state.user = action.trips;
+        state.trips = action.trips;
         return {...state};
       default:
         return state;
