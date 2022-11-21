@@ -8,7 +8,7 @@ import AddActivityModal from '../NewActivity/AddActivityModal';
 // import './ActivityItem.css'
 
 
-function ActivityListItem ({activity, currentUser, isHighlighted, setHighlightedActivity}) {
+function ActivityListItem ({activity, currentUser}) {
 // const comments = Object.values(comments).filter(comment => comment.activity === activity._id);
 const history = useHistory();
 const dispatch = useDispatch();
@@ -16,9 +16,9 @@ const dispatch = useDispatch();
     return (
         <>
         <div 
-            className={"activity-list-item-container" + (isHighlighted ? "highlighted" : "")}
-            onMouseEnter={()=> setHighlightedActivity(activity._id)}
-            onMouseLeave={() => setHighlightedActivity(null)}
+            className="activity-list-item-container" //+ (isHighlighted ? "highlighted" : "")}
+            // onMouseEnter={()=> setHighlightedActivity(activity._id)}
+            // onMouseLeave={() => setHighlightedActivity(null)}
         >
             <header id="activity-item-header">
                 <div id="small-icon-logo"><img src={'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-icon.png'} alt=""></img></div>

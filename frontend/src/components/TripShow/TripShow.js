@@ -2,12 +2,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import  { fetchTrip, deleteTrip } from '../../store/trips';
-import ActivitiesMap from '../Map/Map'
 import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
-import Geocode from "react-geocode";
 import TripInfoHeader from './TripInfoHeader';
-Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
+import TripMap from './TripMap';
 
 
 
@@ -29,15 +27,6 @@ function TripShow () {
   //dateTranslate from state 
   const [dates, setDates] = useState([]);
 
-  //mapElements
-  const [mapLoaded, setMapLoaded] = useState(false);
-  const [highlightedActivity,setHighlightedActivity] = useState(null);
-  const [bounds, setBounds] = useState(null);
-  const [centerLat, setCenterLat] = useState(null);
-  const [centerLng, setCenterLng] = useState(null);
-  const [activityCoords, setActivityCoords] = useState([]);
-
-
 
   //API fetch
   useEffect(() => {
@@ -48,7 +37,7 @@ function TripShow () {
     }
     
     getTrip();
-  }, [])
+  }, [dispatch, tripId])
 
   //Date Translate for specific date format 
   const translatedDates = () => {
@@ -74,61 +63,6 @@ function TripShow () {
   },[trip]);
   
 
-  //Map Stuff
-  const generateActivityCoords = (place, id) => {
-    Geocode.fromAddress(place).then(
-        (response) => {
-            const {lat, lng } = response.results[0].geometry.location;
-            let obj = { id: id, lat: lat, lng: lng, title: place }
-            setActivityCoords(old => [...old, obj])
-        },
-        (error) => {
-            console.error(error);
-        }
-    );
-  };
-
-  const generateCityLatLng = (city) => {
-    Geocode.fromAddress(city).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        setCenterLat(lat);
-        setCenterLng(lng);
-      },
-      (error) => {
-        console.error(error)
-      }
-    );
-  };
-
-  useEffect(() => {
-    if (city) {
-        generateCityLatLng(city);
-    }
-  }, [city]);
-
-  useEffect(() => {
-    if (activities) {
-        activities.forEach((activity) => {
-            generateActivityCoords(activity.title, activity._id);
-        })
-    }
-  }, [activities]);
-
-  useEffect(() => {
-    if (activities && activityCoords.length > 0) {
-      setMapLoaded(true);
-    }
-  }, [activities]);
-
-  const mapEventHandlers  = useMemo(() => ({
-      click: event => {
-        const search = new URLSearchParams(event.latLng.toJSON()).toString();
-        history.push({ pathname: '/trip/:tripID', search });
-        },
-        idle: map => setBounds(map.getBounds().toUrlValue())
-  }), [history]);
-
 
   if (loadContent) return (
     <>
@@ -146,8 +80,8 @@ function TripShow () {
                 date={date}
                 currentUser={currentUser}
                 activities={activities}
-                highlightedActivity={highlightedActivity}
-                setHighlightedActivity={setHighlightedActivity}
+                // highlightedActivity={highlightedActivity}
+                // setHighlightedActivity={setHighlightedActivity}
                 tripId={_id}
               />
             ))}
@@ -157,20 +91,10 @@ function TripShow () {
 
       <div className='trip-right-container'>
           <div id='map-container'>
-            {mapLoaded &&
-              <ActivitiesMap  
-              centerLat={centerLat}
-              centerLng={centerLng}
-              activities={activityCoords}
-              mapEventHandlers={mapEventHandlers}
-              markerEventHandlers={{
-                click: (activity) => history.push(`//${activity._id}`),
-                mouseover: (activity) => setHighlightedActivity(activity._id),
-                mouseout: () => setHighlightedActivity(null)
-              }}
-              highlightedActivity={highlightedActivity}
+            <TripMap 
+              city={city}
+              activities={activities}
             />
-            }
           </div>
       </div>
 
