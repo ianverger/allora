@@ -10,18 +10,18 @@ import './Profile.css'
 function Profile () {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
+  const userTrips = useSelector(state => state.session.trip);
   
   useEffect(() => {
     dispatch(fetchUserTrips(currentUser._id));
     // return () => dispatch(clearTripErrors());
-  }, []);
+  }, [dispatch]);
   
   
   
-  // const userTrips = useSelector(state => Object.values(state.session.trip));
-  // const tripIndexItems = userTrips.map(trip => <TripIndexItem trip={trip}/>)
     return (
-   
+      <>
+      
       <div id="profile-body">
         <div id="profile-left">
           <div id="p-l-top">
@@ -33,6 +33,12 @@ function Profile () {
               <button id="new-trip-button"><span>Got the travel bug?</span></button>
             </NavLink>
           </div>
+          {userTrips && userTrips.map((trip, idx) => (
+            <TripIndexItem
+              key={idx}
+              trip={trip}
+            />
+          ))}
           {/* {tripIndexItems} */}
         </div>
           <div id="right">
@@ -98,6 +104,8 @@ function Profile () {
         </div>
           </div>
       </div>
+
+      </>
    
     );
   
