@@ -7,8 +7,7 @@ Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 
 
 function ActivitiesMap({
-    centerLat,
-    centerLng,
+    city,
     activities,
     mapOptions = {},
     mapEventHandlers = {},
@@ -17,6 +16,8 @@ function ActivitiesMap({
 }) {
 
     const [map, setMap] = useState(null);
+    const [centerLat, setCenterLat] = useState(null);
+    const [centerLng, setCenterLng] = useState(null);
     const mapRef = useRef(null);
     const markers = useRef({});
     const history = useHistory();
@@ -24,18 +25,39 @@ function ActivitiesMap({
     
 
 
-const coordinatesHelper = (place, id) => {
-    Geocode.fromAddress(place).then(
-        (response) => {
-            const {lat, lng } = response.results[0].geometry.location;
-            let obj = { id: id, lat: lat, lng: lng, title: place }
-            setActivityCoords(old => [...old, obj])
-        },
-        (error) => {
-            console.error(error);
+    const coordinatesHelper = (place, id) => {
+        Geocode.fromAddress(place).then(
+            (response) => {
+                const {lat, lng } = response.results[0].geometry.location;
+                let obj = { id: id, lat: lat, lng: lng, title: place }
+                setActivityCoords(old => [...old, obj])
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+    };
+
+    const findLatandLng = (city) => {
+        Geocode.fromAddress(city).then(
+          (response) => {
+            const { lat, lng } = response.results[0].geometry.location;
+            setCenterLat(lat);
+            setCenterLng(lng);
+          },
+          (error) => {
+            console.error(error)
+          }
+        );
+      };
+
+    useEffect(() => {
+        if (city) {
+            findLatandLng(city);
         }
-    );
-};
+    }, [city]);
+
+
 
 
     useEffect(() => {

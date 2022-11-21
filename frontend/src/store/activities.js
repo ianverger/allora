@@ -162,23 +162,6 @@ export const activityErrorsReducer = (state = nullErrors, action) => {
 };
 
 
-
-// const activitiesReducer = (state = {}, action) => {
-//     switch(action.type) {
-//         case RECEIVE_NEW_ACTIVITY:
-//             let newState = { ...state };
-//             newState.all[action.activity.id] = action.activity; 
-//             newState.new = action.activity;
-//             return newState;
-//         case RECEIVE_TRIP_ACTIVITIES:
-//             return { ...state, all: action.activities, new: undefined };
-//         case RECEIVE_ACTIVITY:
-//             return {activity : action.activity };
-//         default:
-//             return state;
-//     }
-
-
 const activitiesReducer = (state = {}, action) => {
     switch(action.type) {
         case RECEIVE_ACTIVITY:

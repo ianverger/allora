@@ -39,7 +39,6 @@ function Profile () {
               trip={trip}
             />
           ))}
-          {/* {tripIndexItems} */}
         </div>
           <div id="right">
           <div className="profile-carousel-unit">

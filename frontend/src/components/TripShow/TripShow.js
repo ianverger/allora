@@ -17,35 +17,36 @@ function TripShow () {
   const history = useHistory();
   const { tripId } = useParams();
   const trip = useSelector(state => state.trips);
-  const activities = useSelector(state => Object.values(state.trips.activity));
+  const activities = useSelector(state => state.trips.activity);
   const currentUser = useSelector(state => state.session.user);
   const [dates, setDates] = useState([]);
 
-  const [centerLat, setCenterLat] = useState(null);
-  const [centerLng, setCenterLng] = useState(null);
+  // const [centerLat, setCenterLat] = useState(null);
+  // const [centerLng, setCenterLng] = useState(null);
   const [highlightedActivity,setHighlightedActivity] = useState(null);
   const [bounds, setBounds] = useState(null);
+
+
 
   
   useEffect(() => {
     dispatch(fetchTrip(tripId));
-    dispatch(fetchTripActivities(tripId));
     // return () => dispatch(clearTweetErrors());
   }, [tripId]);
   
 
-  const findLatandLng = () => {
-    Geocode.fromAddress(trip.city).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        setCenterLat(lat);
-        setCenterLng(lng);
-      },
-      (error) => {
-        console.error(error)
-      }
-    );
-  };
+  // const findLatandLng = () => {
+  //   Geocode.fromAddress(trip.city).then(
+  //     (response) => {
+  //       const { lat, lng } = response.results[0].geometry.location;
+  //       setCenterLat(lat);
+  //       setCenterLng(lng);
+  //     },
+  //     (error) => {
+  //       console.error(error)
+  //     }
+  //   );
+  // };
 
   // const handleDeleteClick = () => {
   //   dispatch(deleteTrip(trip._id));
@@ -66,33 +67,34 @@ function TripShow () {
   const translatedDates = () => {
     let datesArr = [];
 
-    trip.tripDates.forEach( date => {
+    if (trip) {
+      trip.tripDates.forEach( date => {
       datesArr.push(dateTranslate(date));
-    })
+      })
+    }
 
     setDates(datesArr);
   }
 
   
 
-  useEffect(() => {
-    if (trip) (findLatandLng());
-  },[trip])
+  // useEffect(() => {
+  //   if (trip) (findLatandLng());
+  // },[trip])
 
   useEffect(() => {
-    if (trip) translatedDates();
+    if (trip)  translatedDates();
   },[trip])
   
   
-    const mapEventHandlers  = useMemo(() => ({
-          click: event => {
-                const search = new URLSearchParams(event.latLng.toJSON()).toString();
-                history.push({ pathname: '/trip/:tripID', search });
-              },
-              idle: map => setBounds(map.getBounds().toUrlValue())
-            }), [history]);
+    // const mapEventHandlers  = useMemo(() => ({
+    //       click: event => {
+    //             const search = new URLSearchParams(event.latLng.toJSON()).toString();
+    //             history.push({ pathname: '/trip/:tripID', search });
+    //           },
+    //           idle: map => setBounds(map.getBounds().toUrlValue())
+    //         }), [history]);
 
-    
 
     return (
       <>
@@ -135,10 +137,9 @@ function TripShow () {
             <div id='map-container'>
               {trip &&
                 <ActivitiesMap  
-                centerLat={centerLat}
-                centerLng={centerLng}
-                // activities={activities}
-                mapEventHandlers={mapEventHandlers}
+                city={trip.city}
+                activities={activities}
+                // mapEventHandlers={mapEventHandlers}
                 markerEventHandlers={{
                   click: (activity) => history.push(`//${activity._id}`),
                   mouseover: (activity) => setHighlightedActivity(activity._id),
