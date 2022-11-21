@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TripInfoHeader ({ city, dates, title }) {
+function TripInfoHeader ({ dates, title }) {
     
 
     return (

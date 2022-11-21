@@ -8,7 +8,8 @@ Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 
 
 function ActivitiesMap({
-    city,
+    centerLat,
+    centerLng,
     activities,
     mapOptions = {},
     mapEventHandlers = {},
@@ -18,58 +19,10 @@ function ActivitiesMap({
     {
 
     const [map, setMap] = useState(null);
-    const [centerLat, setCenterLat] = useState(null);
-    const [centerLng, setCenterLng] = useState(null);
     const mapRef = useRef(null);
     const markers = useRef({});
     const history = useHistory();
-    const [activityCoords, setActivityCoords] = useState([]);
     
-
-
-    const coordinatesHelper = (place, id) => {
-        Geocode.fromAddress(place).then(
-            (response) => {
-                const {lat, lng } = response.results[0].geometry.location;
-                let obj = { id: id, lat: lat, lng: lng, title: place }
-                setActivityCoords(old => [...old, obj])
-            },
-            (error) => {
-                console.error(error);
-            }
-        );
-    };
-
-    const findLatandLng = (city) => {
-        Geocode.fromAddress(city).then(
-          (response) => {
-            const { lat, lng } = response.results[0].geometry.location;
-            setCenterLat(lat);
-            setCenterLng(lng);
-          },
-          (error) => {
-            console.error(error)
-          }
-        );
-      };
-
-    useEffect(() => {
-        if (city) {
-            findLatandLng(city);
-        }
-    }, [city]);
-
-
-
-
-    useEffect(() => {
-        if (activities) {
-            activities.forEach((activity) => {
-                coordinatesHelper(activity.title, activity._id);
-            })
-        }
-    }, [activities]);
-
 
 
     useEffect(() => {
@@ -102,8 +55,8 @@ function ActivitiesMap({
 
 
     useEffect(() => {
-        if (map && activityCoords) {
-            activityCoords.forEach((activity) => {
+        if (map && activities) {
+            activities.forEach((activity) => {
                 if (markers.current[activity.id]) return;
 
                 const marker = new window.google.maps.Marker({ 
@@ -130,7 +83,7 @@ function ActivitiesMap({
             })
     
             Object.entries(markers.current).forEach(([activityId, marker]) => {
-                if (activities.some(activity => activity._id.toString() === activityId)) return;
+                if (activities.some(activity => activity.id.toString() === activityId)) return;
                 
                 marker.setMap(null);
                 delete markers.current[activityId];
