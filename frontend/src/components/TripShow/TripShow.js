@@ -68,10 +68,10 @@ function TripShow () {
     <>
     <div className="trip-container">
       <div className='trip-left-container'>
-          <TripInfoHeader 
+          {trip && <TripInfoHeader 
             dates={dates}
             title={tripTitle}
-          />
+          />}
           <div id='itinerary-list-container'>
             <div id='activities-header'><span>Your Itinerary</span></div>
             {activities && dates.map((date,idx) => (
@@ -88,13 +88,12 @@ function TripShow () {
           </div>
       </div>
 
-
       <div className='trip-right-container'>
           <div id='map-container'>
-            <TripMap 
+            {trip && <TripMap 
               city={city}
               activities={activities}
-            />
+            />}
           </div>
       </div>
 

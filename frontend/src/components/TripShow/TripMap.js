@@ -55,35 +55,41 @@ function TripMap ({city, activities}) {
     }
   }, [activities]);
 
-  useEffect(() => {
-    if (activities && activityCoords.length > 0) {
-      setMapLoaded(true);
-    }
-  }, [activityCoords]);
+//   useEffect(() => {
+//     if (activities && activityCoords.length > 0) {
+//       setMapLoaded(true);
+//     } else if (!activities) {
+//         setMapLoaded(true);
+//     }
+//   }, [activityCoords]);
 
-  const mapEventHandlers  = useMemo(() => ({
-      click: event => {
-        const search = new URLSearchParams(event.latLng.toJSON()).toString();
-        history.push({ pathname: '/trip/:tripID', search });
-        },
-        idle: map => setBounds(map.getBounds().toUrlValue())
-  }), [history]);
+//   const mapEventHandlers  = useMemo(() => ({
+//       click: event => {
+//         const search = new URLSearchParams(event.latLng.toJSON()).toString();
+//         history.push({ pathname: '/trip/:tripID', search });
+//         },
+//         idle: map => setBounds(map.getBounds().toUrlValue())
+//   }), [history]);
 
 
 
-    if (mapLoaded) return (
-        <ActivitiesMap  
-        centerLat={centerLat}
-        centerLng={centerLng}
-        activities={activityCoords}
-        mapEventHandlers={mapEventHandlers}
-        markerEventHandlers={{
-          click: (activity) => history.push(`//${activity._id}`),
-          mouseover: (activity) => setHighlightedActivity(activity._id),
-          mouseout: () => setHighlightedActivity(null)
-        }}
-        highlightedActivity={highlightedActivity}
-        />
+    return (
+        <>
+            <div className='act-map-container'>
+                <ActivitiesMap  
+                centerLat={centerLat}
+                centerLng={centerLng}
+                activities={activityCoords}
+                // mapEventHandlers={mapEventHandlers}
+                markerEventHandlers={{
+                    click: (activity) => history.push(`//${activity._id}`),
+                    mouseover: (activity) => setHighlightedActivity(activity._id),
+                    mouseout: () => setHighlightedActivity(null)
+                }}
+                highlightedActivity={highlightedActivity}
+                />
+            </div>
+        </>
     )
 }
 
