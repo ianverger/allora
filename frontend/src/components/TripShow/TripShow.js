@@ -16,9 +16,10 @@ function TripShow () {
   const dispatch = useDispatch();
   const history = useHistory();
   const { tripId } = useParams();
-  const trip = useSelector(state => state.trips);
-  const activities = useSelector(state => state.trips.activity);
   const currentUser = useSelector(state => state.session.user);
+  const trip = useSelector(state => state.trips);
+  const { _id, city, tripDates, tripTitle} = trip;
+  const activities = useSelector(state => state.trips.activity);
   const [dates, setDates] = useState([]);
 
   // const [centerLat, setCenterLat] = useState(null);
@@ -68,7 +69,7 @@ function TripShow () {
     let datesArr = [];
 
     if (trip) {
-      trip.tripDates.forEach( date => {
+      tripDates.forEach( date => {
       datesArr.push(dateTranslate(date));
       })
     }
@@ -105,7 +106,7 @@ function TripShow () {
                 <span>{trip && (dates.at(0))} - {trip && (dates.at(dates.length-1))}</span>
             </div>
             <div id='trip-title-wrapper'>
-                <span>{trip && trip.tripTitle}</span>
+                <span>{trip && tripTitle}</span>
             </div>
             {/* <div>
                 {trip.planner === currentUser?._id && (
@@ -125,7 +126,7 @@ function TripShow () {
                   activities={activities}
                   highlightedActivity={highlightedActivity}
                   setHighlightedActivity={setHighlightedActivity}
-                  tripId={trip._id}
+                  tripId={_id}
                 />
 
               ))}
@@ -137,7 +138,7 @@ function TripShow () {
             <div id='map-container'>
               {trip &&
                 <ActivitiesMap  
-                city={trip.city}
+                city={city}
                 activities={activities}
                 // mapEventHandlers={mapEventHandlers}
                 markerEventHandlers={{

@@ -90,8 +90,9 @@ export const fetchTrip = tripId => async dispatch => {
     try {
         const res = await jwtFetch(`/api/trips/${tripId}`);
         const trip = await res.json();
+        console.log(trip, 'here');
         dispatch(receiveTrip(trip));
-        dispatch(fetchTripActivities(trip));
+        dispatch(fetchTripActivities(tripId));
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
