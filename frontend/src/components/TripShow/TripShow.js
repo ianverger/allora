@@ -1,29 +1,32 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import  { fetchTrip, deleteTrip } from '../../store/trips';
 import ActivitiesMap from '../Map/Map'
 import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
-import AddActivityModal from '../NewActivity/AddActivityModal'
-import { fetchTripActivities } from '../../store/trips';
 import Geocode from "react-geocode";
+import TripInfoHeader from './TripInfoHeader';
 Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 
 
 
 function TripShow () {
+
   const dispatch = useDispatch();
   const history = useHistory();
   const { tripId } = useParams();
-  const currentUser = useSelector(state => state.session.user);
+  const [loadContent, setLoadContent] = useState(false);
+
+  const activities = useSelector(state => state.trips.activity);
+
   const trip = useSelector(state => state.trips);
   const { _id, city, tripDates, tripTitle} = trip;
-  const activities = useSelector(state => state.trips.activity);
+  
+  const currentUser = useSelector(state => state.session.user);
+  
   const [dates, setDates] = useState([]);
 
-  // const [centerLat, setCenterLat] = useState(null);
-  // const [centerLng, setCenterLng] = useState(null);
   const [highlightedActivity,setHighlightedActivity] = useState(null);
   const [bounds, setBounds] = useState(null);
 
@@ -31,33 +34,27 @@ function TripShow () {
 
   
   useEffect(() => {
-    dispatch(fetchTrip(tripId));
-    // return () => dispatch(clearTweetErrors());
-  }, [tripId]);
-  
-
-  // const findLatandLng = () => {
-  //   Geocode.fromAddress(trip.city).then(
-  //     (response) => {
-  //       const { lat, lng } = response.results[0].geometry.location;
-  //       setCenterLat(lat);
-  //       setCenterLng(lng);
-  //     },
-  //     (error) => {
-  //       console.error(error)
-  //     }
-  //   );
-  // };
-
-  // const handleDeleteClick = () => {
-  //   dispatch(deleteTrip(trip._id));
-  //   Redirect top
-  // }
-
-  
+    const getTrip = async () => {
+      const trip = await dispatch(fetchTrip(tripId))
+      .then(setLoadContent(true))
+      const data = await trip;
+    }
+    
+    getTrip();
+  }, [])
 
 
-  
+  const translatedDates = () => {
+    let datesArr = [];
+    
+    if (trip) {
+        tripDates.forEach( date => {
+            datesArr.push(dateTranslate(date));
+        })
+    }
+    
+    setDates(datesArr);
+  }
 
   const dateTranslate = (date) => {
     let arr = date.split("-");
@@ -65,57 +62,37 @@ function TripShow () {
     return arr.at(1) + "/" + parseDay;
   }
 
-  const translatedDates = () => {
-    let datesArr = [];
-
-    if (trip) {
-      tripDates.forEach( date => {
-      datesArr.push(dateTranslate(date));
-      })
-    }
-
-    setDates(datesArr);
-  }
-
-  
-
-  // useEffect(() => {
-  //   if (trip) (findLatandLng());
-  // },[trip])
-
   useEffect(() => {
-    if (trip)  translatedDates();
+      if (trip)  translatedDates();
   },[trip])
   
+
+
+  // const handleDeleteClick = () => {
+  //   dispatch(deleteTrip(trip._id));
+  //   Redirect top
+  // }
+
   
-    // const mapEventHandlers  = useMemo(() => ({
-    //       click: event => {
-    //             const search = new URLSearchParams(event.latLng.toJSON()).toString();
-    //             history.push({ pathname: '/trip/:tripID', search });
-    //           },
-    //           idle: map => setBounds(map.getBounds().toUrlValue())
-    //         }), [history]);
+  
+    const mapEventHandlers  = useMemo(() => ({
+          click: event => {
+                const search = new URLSearchParams(event.latLng.toJSON()).toString();
+                history.push({ pathname: '/trip/:tripID', search });
+              },
+              idle: map => setBounds(map.getBounds().toUrlValue())
+            }), [history]);
 
 
-    return (
+    if (loadContent) return (
       <>
       <div className="trip-container">
         <div className='trip-left-container'>
-            <div id='trip-image'> <img id='trip-img' src={'https://hippark-photos.s3.amazonaws.com/allora-pics/veliko-karachiviev-hSvagWirWPA-unsplash.jpg'} alt=""></img></div>
-            <div id='trip-dates-container'>
-                <span>{trip && (dates.at(0))} - {trip && (dates.at(dates.length-1))}</span>
-            </div>
-            <div id='trip-title-wrapper'>
-                <span>{trip && tripTitle}</span>
-            </div>
-            {/* <div>
-                {trip.planner === currentUser?._id && (
-                  <button
-                    onClick={() => dispatch(deleteTrip(trip._id))}
-                    id="delete-trip-button">Delete trip</button>
-                )}
-            </div> */}
-
+            <TripInfoHeader 
+              city={city}
+              dates={dates}
+              title={tripTitle}
+            />
             <div id='itinerary-list-container'>
               <div id='activities-header'><span>Your Itinerary</span></div>
               {trip && dates.map((date,idx) => (
