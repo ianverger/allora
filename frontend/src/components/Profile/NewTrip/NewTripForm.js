@@ -6,6 +6,7 @@ import NewTripTitle from './NewTripTitle';
 import NewTripSearch from './NewTripSearch';
 import NewTripCalendar from './NewTripCalendar';
 import { useHistory } from 'react-router-dom';
+import NewTripFriendsSearch from './NewTripFriendsSearch';
 
 function CreateNewTripForm ({userId}) {
     const dispatch = useDispatch();
@@ -16,12 +17,9 @@ function CreateNewTripForm ({userId}) {
         tripTitle: "",
         tripDates: [],
         city: "",
-        country: "USA"
+        country: "USA",
+        tripAttendees: []
     })
-    // const [tripTitle, setTripTitle] = useState("");
-    // const [tripDates, setDates] = useState([]);
-    // const [city, setCity] = useState("");
-    // const [country, setCountry] = useState("");
 
     const componentList = [
         <NewTripTitle 
@@ -33,6 +31,14 @@ function CreateNewTripForm ({userId}) {
         setX={setX}
         />,
         <NewTripSearch 
+        formData={formData}
+        setFormData={setFormData}
+        page={page}
+        setPage={setPage}
+        x={x}
+        setX={setX}
+        />,
+        <NewTripFriendsSearch
         formData={formData}
         setFormData={setFormData}
         page={page}
@@ -52,17 +58,18 @@ function CreateNewTripForm ({userId}) {
 
     const createTripSubmit = e => {
         e.preventDefault();
-       const trip = { ...formData, planner: userId}
-       dispatch(createTrip(trip))
+        const friendIds = formData.tripAttendees.map(friend => friend._id)
+        const trip = { ...formData, tripAttendees: friendIds, planner: userId}
+        debugger
+        dispatch(createTrip(trip))
         const to = `/profile`;
         history.push(to);
     }
-
     return (
        <div id="new-trip-page">
             <h3>New Trip</h3>
             <div className="progress-bar">
-                <div style={{width: page === 0? "33%": page === 1? "66%": page === 2? "100%" : "100%"}}></div>
+                <div style={{width: page === 0? "25%": page === 1? "50%": page === 2? "75%": page === 3? "100%" : "100%"}}></div>
             </div> 
             <div>{componentList[page]}</div>
             <div id="final-roundup" style={{display: "none"}}>
