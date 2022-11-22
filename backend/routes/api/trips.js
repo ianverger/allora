@@ -19,6 +19,27 @@ router.get('/', async(req, res) =>{
     }
 });
 
+// router.get('/user/oldOne/:userId', async (req, res, next) =>{
+//     let user; 
+//     try{
+//         user = await User.findById(req.params.userId); 
+//     } catch(err){
+//         const error = new Error('User not found'); 
+//         error.statusCode = 404; 
+//         error.errors = { message: 'Unable to find user with that id'}
+//         return next(error); 
+//     }
+//     try{
+//         const trips = await Trip.find({ planner: user._id })
+//                                 .sort({ createdAt: -1 })
+//                                 .populate("planner", "_id, username");
+//         return res.json(trips);
+//     }
+//     catch(err){
+//         return res.json([]); 
+//     }
+// });
+
 router.get('/user/:userId', async (req, res, next) =>{
     let user; 
     try{
@@ -30,35 +51,9 @@ router.get('/user/:userId', async (req, res, next) =>{
         return next(error); 
     }
     try{
-        const trips = await Trip.find({ planner: user._id })
+        const trips = await Trip.find({ tripAttendees: user._id })        
                                 .sort({ createdAt: -1 })
                                 .populate("planner", "_id, username");
-        return res.json(trips);
-    }
-    catch(err){
-        return res.json([]); 
-    }
-});
-
-router.get('/user/test/:userId', async (req, res, next) =>{
-    let user; 
-    try{
-        user = await User.findById(req.params.userId); 
-    } catch(err){
-        const error = new Error('User not found'); 
-        error.statusCode = 404; 
-        error.errors = { message: 'Unable to find user with that id'}
-        return next(error); 
-    }
-    try{
-        const trips = await Trip.find({ planner: user._id })
-
-        // const trips = await Trip.filter(trip => trip.tripAttendees.includes(user._id))
-        // console.log(trips, "trips")
-        // const trips = await Trip.findOne({"user._id": {$in: tripAttendees}})
-        
-                                // .sort({ createdAt: -1 })
-                                // .populate("planner", "_id, username");
         return res.json(trips);
     }
     catch(err){
@@ -88,6 +83,8 @@ router.post('/', requireUser, restoreUser, validateTripInput, async(req, res, ne
             city: req.body.city,
             country: req.body.country,
             tripTitle: req.body.tripTitle,
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
             planner: req.user._id
         }); 
         let trip = await newTrip.save(); 
