@@ -8,8 +8,9 @@ import NewTripCalendar from './NewTripCalendar';
 import { useHistory } from 'react-router-dom';
 import NewTripFriendsSearch from './NewTripFriendsSearch';
 
-function CreateNewTripForm ({userId}) {
+function CreateNewTripForm () {
     const dispatch = useDispatch();
+    const currentUser = useSelector(state => state.session.user);
     const history = useHistory();
     const [x, setX] = useState(0);
     const [page, setPage] = useState(0);
@@ -59,12 +60,13 @@ function CreateNewTripForm ({userId}) {
     const createTripSubmit = e => {
         e.preventDefault();
         const friendIds = formData.tripAttendees.map(friend => friend._id)
-        const trip = { ...formData, tripAttendees: friendIds, planner: userId}
-        debugger
+        friendIds.push(currentUser._id)
+        const trip = { ...formData, tripAttendees: friendIds, planner: currentUser}
         dispatch(createTrip(trip))
         const to = `/profile`;
         history.push(to);
     }
+    // console.log(currentUser._id);
     return (
        <div id="new-trip-page">
             <h3>New Trip</h3>
