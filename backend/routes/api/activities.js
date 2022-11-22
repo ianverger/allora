@@ -64,6 +64,8 @@ router.post('/', requireUser, restoreUser, validateActivityInput, async(req, res
             title: req.body.title,
             activityDate: req.body.activityDate,
             description: req.body.description,
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
             creator: req.user._id,
         }); 
     
