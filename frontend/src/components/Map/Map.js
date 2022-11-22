@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Map.css';
 import { Wrapper } from "@googlemaps/react-wrapper";
+import { Loader } from '@googlemaps/js-api-loader';
 import { useHistory } from "react-router-dom";
 import Geocode from "react-geocode";
 Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
@@ -13,39 +14,15 @@ function ActivitiesMap({
     mapOptions = {},
     mapEventHandlers = {},
     markerEventHandlers = {}
+    }) 
 
-}) {
+    {
 
     const [map, setMap] = useState(null);
     const mapRef = useRef(null);
     const markers = useRef({});
     const history = useHistory();
-    const [activityCoords, setActivityCoords] = useState([]);
     
-
-
-const coordinatesHelper = (place, id) => {
-    Geocode.fromAddress(place).then(
-        (response) => {
-            const {lat, lng } = response.results[0].geometry.location;
-            let obj = { id: id, lat: lat, lng: lng, title: place }
-            setActivityCoords(old => [...old, obj])
-        },
-        (error) => {
-            console.error(error);
-        }
-    );
-};
-
-
-    useEffect(() => {
-        if (activities) {
-            activities.forEach((activity) => {
-                coordinatesHelper(activity.title, activity._id);
-            })
-        }
-    }, [activities]);
-
 
 
     useEffect(() => {
@@ -78,8 +55,8 @@ const coordinatesHelper = (place, id) => {
 
 
     useEffect(() => {
-        if (map && activityCoords) {
-            activityCoords.forEach((activity) => {
+        if (activities) {
+            activities.forEach((activity) => {
                 if (markers.current[activity.id]) return;
 
                 const marker = new window.google.maps.Marker({ 
@@ -106,7 +83,7 @@ const coordinatesHelper = (place, id) => {
             })
     
             Object.entries(markers.current).forEach(([activityId, marker]) => {
-                if (activities.some(activity => activity._id.toString() === activityId)) return;
+                if (activities.some(activity => activity.id.toString() === activityId)) return;
                 
                 marker.setMap(null);
                 delete markers.current[activityId];

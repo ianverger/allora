@@ -4,9 +4,14 @@ import session from './session';
 import errors from './errors';
 import trips from './trips';
 import activities from './activities';
+import comments from './comments';
 
 const rootReducer = combineReducers({
-  session, trips, activities, errors
+  session, 
+  errors,
+  trips, 
+  activities, 
+  comments
 });
 
 let enhancer;

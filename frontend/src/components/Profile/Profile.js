@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserTrips } from '../../store/trips';
+import { fetchUserTrips } from '../../store/session';
 import TripIndexItem from './TripIndexItem';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,18 +10,18 @@ import './Profile.css'
 function Profile () {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-  const userTrips = useSelector(state => Object.values(state.trips.all).filter(trip => trip.planner._id === currentUser._id));
-
+  const userTrips = useSelector(state => state.session.trip);
+  
   useEffect(() => {
     dispatch(fetchUserTrips(currentUser._id));
     // return () => dispatch(clearTripErrors());
-  }, [currentUser]);
-
-  const tripIndexItems = userTrips.map(trip => <TripIndexItem trip={trip}/>)
-
-
+  }, [dispatch]);
+  
+  
+  
     return (
-   
+      <>
+      
       <div id="profile-body">
         <div id="profile-left">
           <div id="p-l-top">
@@ -33,7 +33,12 @@ function Profile () {
               <button id="new-trip-button"><span>Got the travel bug?</span></button>
             </NavLink>
           </div>
-          {tripIndexItems}
+          {userTrips && userTrips.map((trip, idx) => (
+            <TripIndexItem
+              key={idx}
+              trip={trip}
+            />
+          ))}
         </div>
           <div id="right">
           <div className="profile-carousel-unit">
@@ -98,6 +103,8 @@ function Profile () {
         </div>
           </div>
       </div>
+
+      </>
    
     );
   

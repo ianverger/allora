@@ -195,3 +195,8 @@
 
 }
 
+#comments-container {
+    display: flex;
+    border: 3px purple solid;
+}
+
