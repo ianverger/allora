@@ -8,8 +8,8 @@ Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 
 
 function ActivitiesMap({
-    centerLat,
-    centerLng,
+    cityLat,
+    cityLng,
     activities,
     mapOptions = {},
     mapEventHandlers = {},
@@ -29,8 +29,8 @@ function ActivitiesMap({
         if (!map) {
             setMap(new window.google.maps.Map(mapRef.current, {
                 center: {
-                    lat: centerLat,
-                    lng: centerLng
+                    lat: cityLat,
+                    lng: cityLng
                 }, 
             zoom: 13,
             clickableIcons: false,
