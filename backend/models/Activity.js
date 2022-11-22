@@ -23,6 +23,12 @@ const activitySchema = Schema({
     description: {
         type: String
     },
+    latitude: {
+        type: Schema.Types.Decimal128
+    },
+    longitude: {
+        type: Schema.Types.Decimal128
+    },
     votes: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
