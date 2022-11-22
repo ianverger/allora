@@ -108,6 +108,11 @@ h3 {
     background-color: #b8ccaa;
 }
 
+#new-trip-friend-search {
+    width: 665px;
+    height: 400px;
+}
+
 #final-submit {
     background-color: #b8ccaa;
     font-size: x-large;

@@ -77,7 +77,7 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
                         onChange = {displayMatches} value={inputValue}
                     />
                     <ul className="suggestions">
-                        {matchedCityList.length > 0 ? matchedCityList : (<li>Filter for a city</li>)}
+                        {matchedCityList.length > 0 ? matchedCityList : (<li style={{padding: "10px"}}>Filter for a city</li>)}
                     </ul>
                 </div>
             </div>
