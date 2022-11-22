@@ -14,69 +14,67 @@ function TripMap ({city, activities}) {
     const [centerLng, setCenterLng] = useState(null);
     const [activityCoords, setActivityCoords] = useState([]);
 
+    console.log(city, 'city')
+    console.log(activities, 'act')
+
+    const generateActivityCoords = (place, id) => {
+        Geocode.fromAddress(place).then(
+            (response) => {
+                const {lat, lng } = response.results[0].geometry.location;
+                let obj = { id: id, lat: lat, lng: lng, title: place }
+                setActivityCoords(old => [...old, obj])
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+    };
+
+    useEffect(() => {
+        const generateCityLatLng = async (city) => {
+                const res = await Geocode.fromAddress(city);
+                const { lat, lng } = res.results[0].geometry.location;
+                setCenterLat(lat);
+                setCenterLng(lng);
+                setMapLoaded(true);
+            
+        };
+        generateCityLatLng();
+    });
+
+
+
+
+    useEffect(() => {
+            activities.forEach((activity) => {
+                generateActivityCoords(activity.title, activity._id);
+            });  
+    }, [activities]);
+
     
-  const generateActivityCoords = (place, id) => {
-    Geocode.fromAddress(place).then(
-        (response) => {
-            const {lat, lng } = response.results[0].geometry.location;
-            let obj = { id: id, lat: lat, lng: lng, title: place }
-            setActivityCoords(old => [...old, obj])
-        },
-        (error) => {
-            console.error(error);
-        }
-    );
-  };
 
-  const generateCityLatLng = (city) => {
-    Geocode.fromAddress(city).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        setCenterLat(lat);
-        setCenterLng(lng);
-      },
-      (error) => {
-        console.error(error)
-      }
-    );
-  };
+    //   useEffect(() => {
+    //     if (activities && activityCoords.length > 0) {
+    //       setMapLoaded(true);
+    //     } else if (!activities) {
+    //         setMapLoaded(true);
+    //     }
+    //   }, [activityCoords]);
 
-  useEffect(() => {
-    if (city) {
-        generateCityLatLng(city);
-    }
-  }, [city]);
-
-  useEffect(() => {
-    if (activities) {
-        activities.forEach((activity) => {
-            generateActivityCoords(activity.title, activity._id);
-        })
-    }
-  }, [activities]);
-
-//   useEffect(() => {
-//     if (activities && activityCoords.length > 0) {
-//       setMapLoaded(true);
-//     } else if (!activities) {
-//         setMapLoaded(true);
-//     }
-//   }, [activityCoords]);
-
-//   const mapEventHandlers  = useMemo(() => ({
-//       click: event => {
-//         const search = new URLSearchParams(event.latLng.toJSON()).toString();
-//         history.push({ pathname: '/trip/:tripID', search });
-//         },
-//         idle: map => setBounds(map.getBounds().toUrlValue())
-//   }), [history]);
+    //   const mapEventHandlers  = useMemo(() => ({
+    //       click: event => {
+    //         const search = new URLSearchParams(event.latLng.toJSON()).toString();
+    //         history.push({ pathname: '/trip/:tripID', search });
+    //         },
+    //         idle: map => setBounds(map.getBounds().toUrlValue())
+    //   }), [history]);
 
 
 
-    return (
+    if (mapLoaded) return (
         <>
             <div className='act-map-container'>
-                <ActivitiesMap  
+                { centerLat&& <ActivitiesMap  
                 centerLat={centerLat}
                 centerLng={centerLng}
                 activities={activityCoords}
@@ -87,7 +85,7 @@ function TripMap ({city, activities}) {
                     mouseout: () => setHighlightedActivity(null)
                 }}
                 highlightedActivity={highlightedActivity}
-                />
+                />}
             </div>
         </>
     )

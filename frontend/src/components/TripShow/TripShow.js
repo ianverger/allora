@@ -39,6 +39,7 @@ function TripShow () {
     getTrip();
   }, [dispatch, tripId])
 
+
   //Date Translate for specific date format 
   const translatedDates = () => {
     let datesArr = [];

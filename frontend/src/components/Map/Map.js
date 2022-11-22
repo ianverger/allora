@@ -55,7 +55,7 @@ function ActivitiesMap({
 
 
     useEffect(() => {
-        if (map && activities) {
+        if (activities) {
             activities.forEach((activity) => {
                 if (markers.current[activity.id]) return;
 
