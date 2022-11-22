@@ -116,34 +116,34 @@ router.delete("/:tripId", async (req, res, next) => {
     }
 });
 
-// router.put('/:tripId/addAttendee/:userId', async (req, res, next) => {
-//     let trip;
-//     try {
-//       trip = await Trip.findByIdAndUpdate(req.params.tripId, {
-//             $push:{tripAttendees: req.params.userId}
-//         })
-//       return res.json(trip);
-//     } catch {
-//         const error = new Error("Trip not found");
-//         error.statusCode = 404;
-//         error.errors = { message: "No trip found with that id" };
-//         return next(error);
-//     }
-// })
+router.put('/:tripId/addAttendee/:userId', async (req, res, next) => {
+    let trip;
+    try {
+      trip = await Trip.findByIdAndUpdate(req.params.tripId, {
+            $push:{tripAttendees: req.params.userId}
+        })
+      return res.json(trip);
+    } catch {
+        const error = new Error("Trip not found");
+        error.statusCode = 404;
+        error.errors = { message: "No trip found with that id" };
+        return next(error);
+    }
+})
 
-// router.put('/:tripId/removeAttendee/:userId', async (req, res, next) => {
-//     let trip;
-//     try {
-//       trip = await Trip.findByIdAndUpdate(req.params.tripId, {
-//             $pull:{tripAttendees: req.params.userId}
-//         })
-//       return res.json(trip);
-//     } catch {
-//         const error = new Error("Trip not found");
-//         error.statusCode = 404;
-//         error.errors = { message: "No trip found with that id" };
-//         return next(error);
-//     }
-// })
+router.put('/:tripId/removeAttendee/:userId', async (req, res, next) => {
+    let trip;
+    try {
+      trip = await Trip.findByIdAndUpdate(req.params.tripId, {
+            $pull:{tripAttendees: req.params.userId}
+        })
+      return res.json(trip);
+    } catch {
+        const error = new Error("Trip not found");
+        error.statusCode = 404;
+        error.errors = { message: "No trip found with that id" };
+        return next(error);
+    }
+})
 
 module.exports = router;

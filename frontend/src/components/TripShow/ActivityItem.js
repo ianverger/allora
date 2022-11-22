@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { deleteActivity, downvoteActivity, upvoteActivity } from '../../store/activities';
+import { deleteActivity, likeActivity, unlikeActivity } from '../../store/activities';
 import CommentItem from './CommentItem';
 import AddNewComment from './NewCommentForm';
 import AddActivityModal from '../NewActivity/AddActivityModal';
@@ -29,16 +29,16 @@ const dispatch = useDispatch();
             </div>
             {activity.votes.includes(currentUser._id)
             ?
-            <button className="voting-buttons" onClick={() => dispatch(downvoteActivity(activity._id))}>
+            <button className="voting-buttons" onClick={() => dispatch(likeActivity(activity._id))}>
                 <i className="fa-solid fa-thumbs-down"></i>
             </button>
             :
-            <button className="voting-buttons" onClick={() => dispatch(upvoteActivity(activity._id))}>
+            <button className="voting-buttons" onClick={() => dispatch(unlikeActivity(activity._id))}>
                 <i className="fa-solid fa-thumbs-up"></i>
             </button>
             }
             <div><button onClick={() => dispatch(deleteActivity(activity._id))}>Delete</button></div>
-            <p>{activity.votes.length}</p>
+            <p>{activity.likes.length}</p>
             <div id='comments-container'>
                 {/* {comments && comments.map((comment,idx) => (
                     <CommentItem

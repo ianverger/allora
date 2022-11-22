@@ -10,9 +10,6 @@ const userSchema = Schema({
     type: String,
     required: true
   },
-  trips: [{
-
-  }],
   hashedPassword: {
     type: String,
     required: true

@@ -101,9 +101,9 @@ export const deleteActivity = (activityId) => async (dispatch) => {
     return;
 };
 
-export const upvoteActivity = activityId => async dispatch => {
+export const likeActivity = activityId => async dispatch => {
     // try {
-        const res = await jwtFetch(`/api/activities/${activityId}/upvote`, {
+        const res = await jwtFetch(`/api/activities/${activityId}/like`, {
             method: 'PUT'
         })
         const activity = await res.json();
@@ -118,9 +118,9 @@ export const upvoteActivity = activityId => async dispatch => {
     // }
 }
 
-export const downvoteActivity = activityId => async dispatch => {
+export const unlikeActivity = activityId => async dispatch => {
     // try {
-        const res = await jwtFetch(`/api/activities/${activityId}/downvote`, {
+        const res = await jwtFetch(`/api/activities/${activityId}/unlike`, {
             method: 'PUT'
         })
         const activity = await res.json();

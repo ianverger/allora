@@ -29,7 +29,7 @@ const activitySchema = Schema({
     longitude: {
         type: String
     },
-    votes: [{
+    likes: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }]
