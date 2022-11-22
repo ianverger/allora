@@ -27,6 +27,7 @@ function ActivitiesMap({
 
 
     useEffect(() => {
+        console.log(centerLat, 'hereeee')
         if (!map) {
             setMap(new window.google.maps.Map(mapRef.current, {
                 center: {

@@ -25,6 +25,9 @@ function TripShow () {
   const { _id, city, tripDates, tripTitle, latitude, longitude } = trip;
   const currentUser = useSelector(state => state.session.user);
 
+  const lat = latitude.$numberDecimal
+  const long = longitude.$numberDecimal
+
  
   //dateTranslate from state 
   const [dates, setDates] = useState([]);
@@ -95,8 +98,8 @@ function TripShow () {
           <div id='map-container'>
             {trip && 
               <ActivitiesMap
-              centerLat={latitude}
-              centerLng={longitude}
+              centerLat={latitude.$numberDecimal}
+              centerLng={longitude.$numberDecimal}
             />}
           </div>
       </div>

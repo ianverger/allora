@@ -90,7 +90,6 @@ export const fetchTrip = tripId => async dispatch => {
     try {
         const res = await jwtFetch(`/api/trips/${tripId}`);
         const trip = await res.json();
-        console.log(trip, 'here');
         dispatch(receiveTrip(trip));
         dispatch(fetchTripActivities(tripId));
     } catch(err) {
