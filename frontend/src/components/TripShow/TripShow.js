@@ -91,10 +91,10 @@ function TripShow () {
 
       <div className='trip-right-container'>
           <div id='map-container'>
-            {trip && <TripMap 
+            {/* {trip && <TripMap 
               city={city}
               activities={activities}
-            />}
+            />} */}
           </div>
       </div>
 

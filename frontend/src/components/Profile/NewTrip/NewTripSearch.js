@@ -31,7 +31,7 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
         setMatchedCities(matches);
     }
 
-   const handleSubmit = (city, idx) => {
+   const handleSubmit = async (city, idx) => {
         // e.preventDefault();
         setSelectedCity(city);
         setMatchedCities([]);

@@ -7,6 +7,8 @@ import NewTripSearch from './NewTripSearch';
 import NewTripCalendar from './NewTripCalendar';
 import { useHistory } from 'react-router-dom';
 import NewTripFriendsSearch from './NewTripFriendsSearch';
+import { getCoords } from '../../../util/geocode';
+
 
 function CreateNewTripForm () {
     const dispatch = useDispatch();
@@ -57,11 +59,20 @@ function CreateNewTripForm () {
         />
     ];
 
-    const createTripSubmit = e => {
+    const createTripSubmit = async (e) => {
         e.preventDefault();
-        const friendIds = formData.tripAttendees.map(friend => friend._id)
-        friendIds.push(currentUser._id)
-        const trip = { ...formData, tripAttendees: friendIds, planner: currentUser}
+        const geoCity = formData.city
+        const { lat, lng } = await getCoords(geoCity);
+        const friendIds = formData.tripAttendees.map(friend => friend._id);
+        friendIds.push(currentUser._id);
+        const trip = { 
+            ...formData, 
+            tripAttendees: friendIds,
+            latitude: lat,
+            longitude: lng,
+            planner: currentUser
+        }
+        console.log(trip, 'test')
         dispatch(createTrip(trip))
         const to = `/profile`;
         history.push(to);

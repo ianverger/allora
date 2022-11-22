@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { createActivity } from '../../store/activities';
+import { getCoords } from '../../util/geocode';
 
 function AddNewActivity ({tripId, userId, currentDate}) {
     const dispatch = useDispatch();
@@ -10,8 +11,18 @@ function AddNewActivity ({tripId, userId, currentDate}) {
     
   
     
-    const handleSubmit = e => {
-        const activity = {title, description, activityDate, trip: tripId, creator: userId}
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { lat, lng } = await getCoords(title);
+        const activity = {
+            title, 
+            description, 
+            activityDate,
+            latitude: lat,
+            longitude: lng,
+            trip: tripId, 
+            creator: userId
+        }
         dispatch(createActivity(activity));
     }
 
