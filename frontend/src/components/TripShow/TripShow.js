@@ -6,6 +6,7 @@ import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
 import TripInfoHeader from './TripInfoHeader';
 import TripMap from './TripMap';
+import ActivitiesMap from '../Map/Map';
 
 
 
@@ -21,9 +22,10 @@ function TripShow () {
   //general activities,trip,user info from state
   const activities = useSelector(state => state.trips.activity);
   const trip = useSelector(state => state.trips);
-  const { _id, city, tripDates, tripTitle} = trip;
+  const { _id, city, tripDates, tripTitle, latitude, longitude } = trip;
   const currentUser = useSelector(state => state.session.user);
-  
+
+ 
   //dateTranslate from state 
   const [dates, setDates] = useState([]);
 
@@ -91,10 +93,11 @@ function TripShow () {
 
       <div className='trip-right-container'>
           <div id='map-container'>
-            {/* {trip && <TripMap 
-              city={city}
-              activities={activities}
-            />} */}
+            {trip && 
+              <ActivitiesMap
+              centerLat={latitude}
+              centerLng={longitude}
+            />}
           </div>
       </div>
 

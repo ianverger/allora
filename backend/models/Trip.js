@@ -29,10 +29,10 @@ const tripSchema = Schema({
         required: true
     },
     latitude: {
-        type: String
+        type: Schema.Types.Decimal128
     },
     longitude: {
-        type: String
+        type: Schema.Types.Decimal128
     }
 }, {
     timestamps: true

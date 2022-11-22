@@ -8,8 +8,8 @@ Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 
 
 function ActivitiesMap({
-    cityLat,
-    cityLng,
+    centerLat,
+    centerLng,
     activities,
     mapOptions = {},
     mapEventHandlers = {},
@@ -22,6 +22,7 @@ function ActivitiesMap({
     const mapRef = useRef(null);
     const markers = useRef({});
     const history = useHistory();
+
     
 
 
@@ -29,8 +30,8 @@ function ActivitiesMap({
         if (!map) {
             setMap(new window.google.maps.Map(mapRef.current, {
                 center: {
-                    lat: cityLat,
-                    lng: cityLng
+                    lat: centerLat,
+                    lng: centerLng
                 }, 
             zoom: 13,
             clickableIcons: false,
@@ -57,11 +58,11 @@ function ActivitiesMap({
     useEffect(() => {
         if (activities) {
             activities.forEach((activity) => {
-                if (markers.current[activity.id]) return;
+                if (markers.current[activity._id]) return;
 
                 const marker = new window.google.maps.Marker({ 
                     map, 
-                    position: new window.google.maps.LatLng(activity.lat, activity.lng),
+                    position: new window.google.maps.LatLng(activity.latitude, activity.longitude),
                     label: { 
                         text: `${activity.title}`, 
                         fontWeight: 'bold',
@@ -83,7 +84,7 @@ function ActivitiesMap({
             })
     
             Object.entries(markers.current).forEach(([activityId, marker]) => {
-                if (activities.some(activity => activity.id.toString() === activityId)) return;
+                if (activities.some(activity => activity.id.toString() === activity._id)) return;
                 
                 marker.setMap(null);
                 delete markers.current[activityId];

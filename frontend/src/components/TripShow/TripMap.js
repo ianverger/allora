@@ -17,9 +17,8 @@ function TripMap ({city, activities}) {
         <>
             <div className='act-map-container'>
                 && <ActivitiesMap  
-                // cityLat={}
-                // cityLng={centerLng}
-                // activities={activityCoords}
+                city={city}
+                activities={activities}
                 // mapEventHandlers={mapEventHandlers}
                 markerEventHandlers={{
                     click: (activity) => history.push(`//${activity._id}`),
