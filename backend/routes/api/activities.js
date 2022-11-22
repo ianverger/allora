@@ -98,11 +98,11 @@ router.delete("/:activityId", async (req, res, next) => {
     }
   });
 
-  router.put('/:activityId/upvote', requireUser, restoreUser, async (req, res, next) => {
+  router.put('/:activityId/like', requireUser, restoreUser, async (req, res, next) => {
     let activity;
     try {
       activity = await Activity.findByIdAndUpdate(req.params.activityId, {
-            $push:{votes: req.user._id}
+            $push:{likes: req.user._id}
         })
         
       return res.json(activity);
@@ -115,11 +115,11 @@ router.delete("/:activityId", async (req, res, next) => {
     
 })
 
-router.put('/:activityId/downvote', requireUser, restoreUser, async (req, res, next) => {
+router.put('/:activityId/unlike', requireUser, restoreUser, async (req, res, next) => {
     let activity;
     try {
       activity = await Activity.findByIdAndUpdate(req.params.activityId, {
-            $pull:{votes: req.user._id}
+            $pull:{likes: req.user._id}
         }) 
       return res.json(activity);
     } catch {
