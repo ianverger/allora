@@ -21,8 +21,6 @@ function ActivitiesMap({
     const mapRef = useRef(null);
     const markers = useRef({});
     const history = useHistory();
-    
-
     const latFloat = parseFloat(centerLat)
     const lngFloat = parseFloat(centerLng)
 
@@ -66,7 +64,7 @@ function ActivitiesMap({
 
                 const marker = new window.google.maps.Marker({ 
                     map, 
-                    position: new window.google.maps.LatLng(activity.latitude, activity.longitude),
+                    position: new window.google.maps.LatLng(parseFloat(activity.latitude), parseFloat(activity.longitude)),
                     label: { 
                         text: `${activity.title}`, 
                         fontWeight: 'bold',
@@ -84,7 +82,7 @@ function ActivitiesMap({
                 Object.entries(markerEventHandlers).forEach(([event, handler]) => {
                     marker.addListener(event, () => handler(activity));
                 });
-                markers.current[activity.place] = marker;
+                markers.current[activity._id] = marker;
             })
     
             Object.entries(markers.current).forEach(([activityId, marker]) => {

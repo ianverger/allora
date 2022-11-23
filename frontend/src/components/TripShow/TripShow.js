@@ -19,16 +19,13 @@ function TripShow () {
 
   //ensuring trip info is loaded before page is loaded
   const [loadContent, setLoadContent] = useState(false);
-  const [mapReady, setMapReady] = useState(false);
 
   //general activities,trip,user info from state
   const activities = useSelector(state => state.trips.activity);
   const trip = useSelector(state => state.trips);
-  const { _id, city, tripDates, tripTitle, latitude, longitude } = trip;
+  const { _id, tripDates, tripTitle, latitude, longitude } = trip;
   const currentUser = useSelector(state => state.session.user);
 
- 
-  //dateTranslate from state 
   const [dates, setDates] = useState([]);
 
 
@@ -54,13 +51,11 @@ function TripShow () {
           datesArr.push(dateTranslate(date));
         })
       }
-
       setDates(datesArr);
     }
 
     translatedDates();
-      
-  },[trip]);
+  },[]);
 
   console.log(latitude, longitude, 'here')
 
@@ -69,7 +64,7 @@ function TripShow () {
     <>
     <div className="trip-container">
       <div className='trip-left-container'>
-          {trip && <TripInfoHeader 
+          {dates && <TripInfoHeader 
             dates={dates}
             title={tripTitle}
           />}
