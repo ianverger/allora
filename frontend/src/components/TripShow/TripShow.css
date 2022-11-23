@@ -202,15 +202,26 @@
 
 #attendees-spotlight-container {
     display: flex;
-    height: 50px;
+    flex-direction: row;
+    /* border: 5px red solid; */
+    /* height: 50px; */
 }
 
 #profile-pic-container {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    height: 60px;
 }
 
-#pro-pic {
-    height: 50px;
-    width: 50px;
+#attendee-icon-each {
+    display: flex;
+    width: 60px;
+}
+
+#pro-pic-in-header {
+    /* width: 70px; */
+    /* height: 70px; */
+    font-size: 34px;
 }
 
