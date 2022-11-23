@@ -2,10 +2,10 @@ import UserSearch from "../../UserSearch/UserSearch";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
-const NewTripFriendsSearch = ({page, setPage, formData, setFormData, x, setX, friendsList, setFriendsList}) => {
+const NewTripFriendsSearch = ({page, setPage, formData, setFormData, x, setX, friendsList, setFriendsList, currentUser}) => {
     const dispatch = useDispatch();
     // const [friendsList, setFriendsList] = useState([]);
-    
+
     return (
         <div id="new-trip-friend-search">
             <div className="pn-buttons">
@@ -25,7 +25,7 @@ const NewTripFriendsSearch = ({page, setPage, formData, setFormData, x, setX, fr
                     Next
                 </button>
             </div>
-            <UserSearch friendsList={friendsList} setFriendsList={setFriendsList}/>
+            <UserSearch friendsList={friendsList} setFriendsList={setFriendsList} currentUser={currentUser}/>
         </div>
     )
 }
