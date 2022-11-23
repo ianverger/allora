@@ -19,7 +19,6 @@ const tripSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-
     city: {
         type: String,
         required: true

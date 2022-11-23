@@ -14,10 +14,11 @@ h3 {
 }
 
 .progress-bar {
-    width: 400px;
+    width: 500px;
     height: 15px;
     background-color: white;
     margin-bottom: 50px;
+     border: 1px solid #EEEFF0;
 }
 
 .progress-bar div {
@@ -67,17 +68,24 @@ h3 {
 }
 
 #ttf-input {
-    width: 400px;
-    height: 55px;
-    padding: 10px;
-    font-size: larger;
-    border: 1px solid #EEEFF0;
+    margin: 0;
+    text-align: center;
+    outline: 0;
+    width: 600px;
+    height: 95px;
+    /* padding: 10px; */
+    /* font-size: larger; */
+    top: 10px;
+    border: 10px solid #F7F7F7;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    font-size: 40px;
     border-radius: 3px;
 }
 
 #ttf-input:focus {
-    outline: none !important;
-    border-color: #F3CFC6;
+    /* outline: none !important; */
+    /* border-color: #F3CFC6; */
     box-shadow: 0 0 10px #F3CFC6;
 }
 
@@ -94,7 +102,7 @@ h3 {
     color: white;
     font-size: large;
     font-weight: bolder;
-    padding: 10px;
+    /* padding: 10px; */
     border: none;
     margin-bottom: 10px;
 }
@@ -127,7 +135,7 @@ h3 {
 }
 
 #final-roundup {
-    /* display: flex; */
+   margin-top: -35px;
     text-align: center;
 }
 
@@ -139,11 +147,33 @@ h3 {
 #rup-card {
     text-align: left;
     background-color: #F3CFC6;
-    height: 250px;
-    width: 400px;
+    width: 500px;
     border-radius: 5px;
     padding: 20px;
     color: white;
     font-weight: bold;
     margin-bottom: 10px;
 }
+
+.rup-card-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+#attendees {
+    width: 300px;
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.a-u {
+    padding: none;
+    margin-bottom: 0;
+}
+
+.trip-dates {
+    margin-bottom: 3px;
+/* background-color: green; */
+ }
