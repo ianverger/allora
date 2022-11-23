@@ -63,7 +63,7 @@ function TripShow () {
     <>
     <div className="trip-container">
       <div className='trip-left-container'>
-          {dates && <TripInfoHeader 
+          {(dates && tripAttendees) && <TripInfoHeader 
             dates={dates}
             title={tripTitle}
             attendees={tripAttendees}

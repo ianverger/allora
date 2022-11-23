@@ -16,7 +16,7 @@ function TripInfoHeader ({ dates, title, attendees }) {
             <div id='trip-title-wrapper'>
                 <span>{title}</span>
             </div>
-            <div id='attenndees-spotlight-container'>
+             <div id='attenndees-spotlight-container'>
                 {attendees.map((attendee, idx) => (
                     <div key={idx}>
                         <AttendeeIcon
