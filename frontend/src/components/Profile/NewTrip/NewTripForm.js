@@ -54,6 +54,7 @@ function CreateNewTripForm () {
         setX={setX}
         friendsList={friendsList}
         setFriendsList={setFriendsList}
+        currentUser={currentUser}
         />,
         <NewTripCalendar  
         formData={formData}
@@ -78,14 +79,13 @@ function CreateNewTripForm () {
             longitude: lng,
             planner: currentUser
         }
-        console.log(trip, 'test')
         dispatch(createTrip(trip))
-        const to = `/profile`;
+        const to = `/trips/${trip._id}`;
         history.push(to);
     }
+
     const attendees = formData.tripAttendees.map((attendee, idx) => <p className="a-u" key={idx}>{`@${attendee.username}`}</p>)
-    
-    console.log(formData);
+  
     return (
        <div id="new-trip-page">
             <h3>New Trip</h3>

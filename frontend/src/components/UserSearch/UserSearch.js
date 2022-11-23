@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import jwtFetch from '../../store/jwt';
 import './UserSearch.css'
 
-const UserSearch = ({friendsList, setFriendsList}) => {
+const UserSearch = ({friendsList, setFriendsList, currentUser}) => {
     const dispatch = useDispatch();
     const [users, setUsers] = useState([]);
     const [matchedUsers, setMatchedUsers] = useState([]);
@@ -14,8 +14,10 @@ const UserSearch = ({friendsList, setFriendsList}) => {
     const fetchUsers = () => async dispatch => {
         const res = await jwtFetch('/api/users/');
         const data = await res.json();
-        // setUsers(data.map(user => user.username));
-        setUsers(data)
+        let filtered = data.filter(function(value, index, data) { 
+            return value._id !== currentUser._id
+        });
+        setUsers(filtered);
     }
 
     useEffect(() => {
@@ -30,13 +32,11 @@ const UserSearch = ({friendsList, setFriendsList}) => {
     }  
 
     const displayMatches = function(e) {
-        // const matchArray = findMatches(e.target.value, cities);
         setInputValue(e.target.value);
         const value = e.target.value;
         let matches = [];
 
-        if(value) matches = findMatches(value, users);
-        console.log(matches)
+        if (value) matches = findMatches(value, users);
         setMatchedUsers(matches);
     }
 
@@ -44,6 +44,10 @@ const UserSearch = ({friendsList, setFriendsList}) => {
         if (!friendsList.includes(user)) setFriendsList([...friendsList, user]) 
         setMatchedUsers([]);
         setInputValue("");
+        let filtered = users.filter(function(value, index, data) { 
+            return value._id !== user._id
+        });
+        setUsers(filtered);
     }
 
     const matchedUsersList = matchedUsers.map((user, idx) => {

@@ -16,9 +16,19 @@
     cursor: pointer;
 }
 
-#top {
+/* #top {
     display: flex;
     align-items: center;
     gap: 20px;
+} */
+
+#tc-right {
+    gap: none;
+    margin-top: -3px;
+}
+
+.trip-card-attendees{
+    font-size: 10px;
+    margin-bottom: 0;
 }
 

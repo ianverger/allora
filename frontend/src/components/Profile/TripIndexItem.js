@@ -15,8 +15,8 @@ const TripIndexItem = ({trip}) => {
         history.push(to);
     }, [history, trip])
 
-    const attendees = trip.tripAttendees.map((attendee, idx) => <p className="a-u" key={idx}>{`@${attendee}`}</p>)
-console.log(trip.tripAttendees)
+    const attendees = trip.tripAttendees.map((attendee, idx) => <p className="trip-card-attendees" key={idx}>{`@${attendee.username}`}</p>)
+
     return (
         <div id="trip-card" onClick={handleClick}>
             <div id="tc-left">
@@ -25,7 +25,8 @@ console.log(trip.tripAttendees)
             </div>
             <div id="tc-right">
                 {/* <button onClick={() => dispatch(deleteTrip(trip._id))}>Delete</button> */}
-                {/* {attendees} */}
+                {attendees.length < 7 ? attendees : attendees.slice(0, 6)}
+                {attendees.length < 7 ? "" : <p className="trip-card-attendees">{`+ ${attendees.length - 6} more`}</p>}
             </div>
         </div>
     )
