@@ -53,7 +53,8 @@ router.get('/user/:userId', async (req, res, next) =>{
     try{
         const trips = await Trip.find({ tripAttendees: user._id })        
                                 .sort({ createdAt: -1 })
-                                .populate("planner", "_id, username");
+                                .populate("tripAttendees", "_id, username");
+                                // .populate("planner", "_id, username");
         return res.json(trips);
     }
     catch(err){

@@ -16,11 +16,13 @@ function CreateNewTripForm () {
     const history = useHistory();
     const [x, setX] = useState(0);
     const [page, setPage] = useState(0);
+    const [selectedCity, setSelectedCity] = useState('');
+    const [friendsList, setFriendsList] = useState([]);
     const [formData, setFormData] = useState({
         tripTitle: "",
         tripDates: [],
         city: "",
-        country: "USA",
+        country: "",
         tripAttendees: []
     })
 
@@ -40,6 +42,8 @@ function CreateNewTripForm () {
         setPage={setPage}
         x={x}
         setX={setX}
+        selectedCity={selectedCity}
+        setSelectedCity={setSelectedCity}
         />,
         <NewTripFriendsSearch
         formData={formData}
@@ -48,6 +52,8 @@ function CreateNewTripForm () {
         setPage={setPage}
         x={x}
         setX={setX}
+        friendsList={friendsList}
+        setFriendsList={setFriendsList}
         />,
         <NewTripCalendar  
         formData={formData}
@@ -63,11 +69,11 @@ function CreateNewTripForm () {
         e.preventDefault();
         const geoCity = formData.city
         const { lat, lng } = await getCoords(geoCity);
-        const friendIds = formData.tripAttendees.map(friend => friend._id);
-        friendIds.push(currentUser._id);
+        // const friendIds = formData.tripAttendees.map(friend => friend._id);
+        formData.tripAttendees.push(currentUser);
         const trip = { 
             ...formData, 
-            tripAttendees: friendIds,
+            // tripAttendees: friendIds,
             latitude: lat,
             longitude: lng,
             planner: currentUser
@@ -77,7 +83,9 @@ function CreateNewTripForm () {
         const to = `/profile`;
         history.push(to);
     }
-    // console.log(currentUser._id);
+    const attendees = formData.tripAttendees.map((attendee, idx) => <p className="a-u" key={idx}>{`@${attendee.username}`}</p>)
+    
+    console.log(formData);
     return (
        <div id="new-trip-page">
             <h3>New Trip</h3>
@@ -88,12 +96,29 @@ function CreateNewTripForm () {
             <div id="final-roundup" style={{display: "none"}}>
                 <h2>You're off!</h2>
                 <div id="rup-card">
-                    <p>Title: {formData.tripTitle}</p>
-                    <p>City: {formData.city}</p>
-                    <p>Country: {formData.country}</p>
-                    <p>Trip Dates:</p>
-                    {(formData.tripDates.length > 0) && <p>{`${formData.tripDates[0].toString().split(' ').slice(0,4).join(' ')} -`}</p>}
-                    {(formData.tripDates.length > 0) && <p>{formData.tripDates[formData.tripDates.length - 1].toString().split(' ').slice(0,4).join(' ')}</p>}
+                    <div className="rup-card-row">
+                        <div className="rcr-left"><p>Title:</p></div>
+                        <div className="rcr-right"><p>{formData.tripTitle}</p></div>
+                    </div>
+                    <div className="rup-card-row">
+                        <div className="rcr-left"><p>City:</p></div>
+                        <div className="rcr-right"><p>{formData.city}</p></div>
+                    </div>
+                    <div className="rup-card-row">
+                        <div className="rcr-left"><p>Country:</p></div>
+                        <div className="rcr-right"><p>{formData.country}</p></div>
+                    </div>
+                    <div className="rup-card-row">
+                        <div className="rcr-left"><p>Trip Dates:</p></div>
+                        <div className="rcr-right">
+                            {(formData.tripDates.length > 0) && <p className="trip-dates">{`${formData.tripDates[0].toString().split(' ').slice(0,4).join(' ')} -`}</p>}
+                            {(formData.tripDates.length > 0) && <p>{formData.tripDates[formData.tripDates.length - 1].toString().split(' ').slice(0,4).join(' ')}</p>}
+                        </div>
+                    </div>
+                    <div className="rup-card-row">
+                        <div className="rcr-left"><p>Friends:</p></div>
+                        <div className="rcr-right">{(formData.tripAttendees.length > 0) && <div id="attendees">{attendees}</div>}</div>
+                    </div>
                 </div>
                 <button className="ntp-button" id="final-submit" onClick={createTripSubmit}>Let's Go!</button>
             </div>
