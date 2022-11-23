@@ -40,22 +40,21 @@ function TripShow () {
     getTrip();
   }, [dispatch, tripId])
 
+  const translatedDates = () => {
+    let datesArr = [];
+
+    tripDates.forEach((date) => {
+      datesArr.push(dateTranslate(date));
+    })
+
+    setDates(datesArr);
+  }
 
 
   useEffect(() => {
-    const translatedDates = () => {
-      let datesArr = [];
-
-      if (trip) {
-        tripDates.forEach ((date) => {
-          datesArr.push(dateTranslate(date));
-        })
-      }
-      setDates(datesArr);
-    }
-
-    translatedDates();
-  },[]);
+    if (loadContent) translatedDates();
+   
+  },[trip]);
 
   console.log(latitude, longitude, 'here')
 
@@ -86,7 +85,7 @@ function TripShow () {
 
       <div className='trip-right-container'>
           <div id='map-container'>
-            {trip && 
+            {latitude && 
               <ActivitiesMap  
                 centerLat={latitude}
                 centerLng={longitude}
