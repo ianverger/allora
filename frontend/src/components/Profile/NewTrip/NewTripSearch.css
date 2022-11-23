@@ -42,6 +42,10 @@ html {
     font-size: 40px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
   }
+
+  input.search:focus {
+    box-shadow: 0 0 10px #F3CFC6;
+  }
   
   .suggestions {
     margin: 0;

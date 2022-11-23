@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCities } from '../../../store/trips';
 import './NewTripSearch.css';
 
-const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
+const NewTripSearch = ({page, setPage, formData, setFormData, x, setX, selectedCity, setSelectedCity}) => {
     const dispatch = useDispatch();
-    const [selectedCity, setSelectedCity] = useState('');
+    // const [selectedCity, setSelectedCity] = useState('');
     const [matchedCities, setMatchedCities] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const cities = useSelector(({ trips: { cities } }) => cities);
@@ -17,7 +17,7 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
     const findMatches = function(wordToMatch, cities) {
         return cities.filter(city => {
             const regex = new RegExp(wordToMatch, 'gi');
-            return city.match(regex) 
+            return city[0].match(regex) 
         })
     }  
 
@@ -36,17 +36,17 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
         setSelectedCity(city);
         setMatchedCities([]);
         setInputValue("");
-        setFormData({ ...formData, city: city});
+        setFormData({ ...formData, city: city[0], country: city[2]});
    }
 
     const matchedCityList = matchedCities.map((city, idx) => {
         return (
             <li key={idx}>
-                <button id={`${idx}-city`} className="city-cards" onClick={() => handleSubmit(city, idx)}>{city}</button>
+                <button id={`${idx}-city`} className="city-cards" onClick={() => handleSubmit(city, idx)}>{`${city[0]}, ${city[1]}, ${city[2]}`}</button>
             </li>
         );
     });
-    
+
     return (
         // <motion.div
         // initial={{ x: x }}
@@ -71,7 +71,7 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX}) => {
                         Next
                     </button>
                 </div>
-                <div id="selectedcity"><h1>{selectedCity ? selectedCity : "Where you off to, doll?"}</h1></div>
+                <div id="selectedcity"><h1>{selectedCity ? `${selectedCity[0]}, ${selectedCity[1]}, ${selectedCity[2]}` : "Where you off to, doll?"}</h1></div>
                 <div className="search-form">
                     <input type="text" className="search" placeholder={"Enter City Name..."} 
                         onChange = {displayMatches} value={inputValue}

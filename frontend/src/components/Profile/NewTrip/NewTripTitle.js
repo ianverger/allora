@@ -22,6 +22,7 @@ const NewTripTitle = ({page, setPage, formData, setFormData, x, setX}) => {
                 }}>
                 Next
                 </button>
+                <h1>What's the sitch?</h1>
                 <input type="text"  
                     value={formData.tripTitle}
                     onChange={(e) => setFormData({ ...formData, tripTitle: e.target.value})}

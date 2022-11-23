@@ -5,18 +5,19 @@ import { fetchUserTrips } from '../../store/session';
 import TripIndexItem from './TripIndexItem';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import jwtFetch from '../../store/jwt';
 import './Profile.css'
 
 function Profile () {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const userTrips = useSelector(state => state.session.trip);
-  
+
   useEffect(() => {
     dispatch(fetchUserTrips(currentUser._id));
     // return () => dispatch(clearTripErrors());
+ 
   }, [dispatch]);
-  
   
   
     return (
@@ -37,6 +38,7 @@ function Profile () {
             <TripIndexItem
               key={idx}
               trip={trip}
+              // users={users}
             />
           ))}
         </div>

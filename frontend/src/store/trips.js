@@ -103,9 +103,10 @@ export const fetchTrip = tripId => async dispatch => {
 }
 
 export const fetchCities = () => async dispatch => {
-    const res = await fetch('https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json');
+    const res = await fetch('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json');
+    // const res = await fetch('https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json');
     const data = await res.json();
-    const cities = data.map(city => city.city);
+    const cities = data.map(city => [city.name, city.subcountry, city.country]);
 
     dispatch(receiveCities(cities));
 
