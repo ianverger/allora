@@ -1,15 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Map.css';
 import { Wrapper } from "@googlemaps/react-wrapper";
-import { Loader } from '@googlemaps/js-api-loader';
 import { useHistory } from "react-router-dom";
 import Geocode from "react-geocode";
 Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
 
 
 function ActivitiesMap({
-    cityLat,
-    cityLng,
+    centerLat,
+    centerLng,
     activities,
     mapOptions = {},
     mapEventHandlers = {},
@@ -22,6 +21,10 @@ function ActivitiesMap({
     const mapRef = useRef(null);
     const markers = useRef({});
     const history = useHistory();
+    const latFloat = parseFloat(centerLat)
+    const lngFloat = parseFloat(centerLng)
+
+
     
 
 
@@ -29,8 +32,8 @@ function ActivitiesMap({
         if (!map) {
             setMap(new window.google.maps.Map(mapRef.current, {
                 center: {
-                    lat: cityLat,
-                    lng: cityLng
+                    lat: latFloat,
+                    lng: lngFloat
                 }, 
             zoom: 13,
             clickableIcons: false,
@@ -57,11 +60,11 @@ function ActivitiesMap({
     useEffect(() => {
         if (activities) {
             activities.forEach((activity) => {
-                if (markers.current[activity.id]) return;
+                if (markers.current[activity._id]) return;
 
                 const marker = new window.google.maps.Marker({ 
                     map, 
-                    position: new window.google.maps.LatLng(activity.lat, activity.lng),
+                    position: new window.google.maps.LatLng(parseFloat(activity.latitude), parseFloat(activity.longitude)),
                     label: { 
                         text: `${activity.title}`, 
                         fontWeight: 'bold',
@@ -79,11 +82,11 @@ function ActivitiesMap({
                 Object.entries(markerEventHandlers).forEach(([event, handler]) => {
                     marker.addListener(event, () => handler(activity));
                 });
-                markers.current[activity.place] = marker;
+                markers.current[activity._id] = marker;
             })
     
             Object.entries(markers.current).forEach(([activityId, marker]) => {
-                if (activities.some(activity => activity.id.toString() === activityId)) return;
+                if (activities.some(activity => activity.id.toString() === activity._id)) return;
                 
                 marker.setMap(null);
                 delete markers.current[activityId];

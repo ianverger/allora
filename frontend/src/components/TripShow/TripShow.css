@@ -200,3 +200,17 @@
     border: 3px purple solid;
 }
 
+#attendees-spotlight-container {
+    display: flex;
+    height: 50px;
+}
+
+#profile-pic-container {
+    display: inline-block;
+}
+
+#pro-pic {
+    height: 50px;
+    width: 50px;
+}
+

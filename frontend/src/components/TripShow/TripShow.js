@@ -2,10 +2,11 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import  { fetchTrip, deleteTrip } from '../../store/trips';
+import { dateTranslate } from '../../util/util';
 import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
 import TripInfoHeader from './TripInfoHeader';
-import TripMap from './TripMap';
+import ActivitiesMap from '../Map/Map';
 
 
 
@@ -21,10 +22,9 @@ function TripShow () {
   //general activities,trip,user info from state
   const activities = useSelector(state => state.trips.activity);
   const trip = useSelector(state => state.trips);
-  const { _id, city, tripDates, tripTitle} = trip;
+  const { _id, tripDates, tripTitle, latitude, longitude, tripAttendees } = trip;
   const currentUser = useSelector(state => state.session.user);
-  
-  //dateTranslate from state 
+
   const [dates, setDates] = useState([]);
 
 
@@ -39,39 +39,34 @@ function TripShow () {
     getTrip();
   }, [dispatch, tripId])
 
-
-  //Date Translate for specific date format 
   const translatedDates = () => {
     let datesArr = [];
-    
-    if (trip) {
-        tripDates.forEach( date => {
-            datesArr.push(dateTranslate(date));
-        })
-    }
-    
+
+    tripDates.forEach((date) => {
+      datesArr.push(dateTranslate(date));
+    })
+
     setDates(datesArr);
   }
 
-  const dateTranslate = (date) => {
-    let arr = date.split("-");
-    let parseDay = arr.at(2).slice(0,2);
-    return arr.at(1) + "/" + parseDay;
-  }
 
   useEffect(() => {
-      if (loadContent) translatedDates();
+    if (loadContent) translatedDates();
+   
   },[trip]);
-  
+
+  console.log(latitude, longitude, 'here')
+  console.log(tripAttendees, 'attendees')
 
 
   if (loadContent) return (
     <>
     <div className="trip-container">
       <div className='trip-left-container'>
-          {trip && <TripInfoHeader 
+          {(dates && tripAttendees) && <TripInfoHeader 
             dates={dates}
             title={tripTitle}
+            attendees={tripAttendees}
           />}
           <div id='itinerary-list-container'>
             <div id='activities-header'><span>Your Itinerary</span></div>
@@ -91,10 +86,19 @@ function TripShow () {
 
       <div className='trip-right-container'>
           <div id='map-container'>
-            {/* {trip && <TripMap 
-              city={city}
-              activities={activities}
-            />} */}
+            {latitude && 
+              <ActivitiesMap  
+                centerLat={latitude}
+                centerLng={longitude}
+                activities={activities}
+                // mapEventHandlers={mapEventHandlers}
+                markerEventHandlers={{
+                    click: (activity) => history.push(`//${activity._id}`),
+                    // mouseover: (activity) => setHighlightedActivity(activity._id),
+                    // mouseout: () => setHighlightedActivity(null)
+                }}
+                // highlightedActivity={highlightedActivity}
+            />}
           </div>
       </div>
 

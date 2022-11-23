@@ -7,7 +7,7 @@ import NewTripSearch from './NewTripSearch';
 import NewTripCalendar from './NewTripCalendar';
 import { useHistory } from 'react-router-dom';
 import NewTripFriendsSearch from './NewTripFriendsSearch';
-import { getCoords } from '../../../util/geocode';
+import { getCoords } from '../../../util/util';
 
 
 function CreateNewTripForm () {
