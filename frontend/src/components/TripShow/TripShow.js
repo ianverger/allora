@@ -62,11 +62,8 @@ function TripShow () {
       
   },[trip]);
 
+  console.log(latitude, longitude, 'here')
 
-  const lat = latitude.$numberDecimal
-  const long = longitude.$numberDecimal
-
-  console.log(lat, long, 'hit')
 
   if (loadContent) return (
     <>
@@ -94,10 +91,18 @@ function TripShow () {
 
       <div className='trip-right-container'>
           <div id='map-container'>
-            {mapReady && 
-              <ActivitiesMap
-              centerLat={lat}
-              centerLng={long}
+            {trip && 
+              <ActivitiesMap  
+                centerLat={latitude}
+                centerLng={longitude}
+                activities={activities}
+                // mapEventHandlers={mapEventHandlers}
+                markerEventHandlers={{
+                    click: (activity) => history.push(`//${activity._id}`),
+                    // mouseover: (activity) => setHighlightedActivity(activity._id),
+                    // mouseout: () => setHighlightedActivity(null)
+                }}
+                // highlightedActivity={highlightedActivity}
             />}
           </div>
       </div>

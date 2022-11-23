@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Map.css';
 import { Wrapper } from "@googlemaps/react-wrapper";
-import { Loader } from '@googlemaps/js-api-loader';
 import { useHistory } from "react-router-dom";
 import Geocode from "react-geocode";
 Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
@@ -22,17 +21,21 @@ function ActivitiesMap({
     const mapRef = useRef(null);
     const markers = useRef({});
     const history = useHistory();
+    
+
+    const latFloat = parseFloat(centerLat)
+    const lngFloat = parseFloat(centerLng)
+
 
     
 
 
     useEffect(() => {
-        console.log(centerLat, 'hereeee')
         if (!map) {
             setMap(new window.google.maps.Map(mapRef.current, {
                 center: {
-                    lat: centerLat,
-                    lng: centerLng
+                    lat: latFloat,
+                    lng: lngFloat
                 }, 
             zoom: 13,
             clickableIcons: false,
