@@ -27,8 +27,7 @@ function Profile () {
         <div id="profile-left">
           <div id="p-l-top">
             <div id="bio">
-              <h2>{`@${currentUser.username}'s Profile`}</h2>
-              <p>This is my bio!</p>
+              <h2>{`Welcome @${currentUser.username}`}</h2>
             </div>
             <NavLink to="/newTrip">
               <button id="new-trip-button"><span>Got the travel bug?</span></button>

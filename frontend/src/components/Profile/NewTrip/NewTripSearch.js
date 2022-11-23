@@ -27,8 +27,8 @@ const NewTripSearch = ({page, setPage, formData, setFormData, x, setX, selectedC
         const value = e.target.value;
         let matches = [];
 
-        if(value) matches = findMatches(value, cities);
-        setMatchedCities(matches);
+        if (value) matches = findMatches(value, cities);
+        setMatchedCities(matches.slice(0, 100));
     }
 
    const handleSubmit = async (city, idx) => {
