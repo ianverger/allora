@@ -10,3 +10,9 @@ export const getCoords = async (place) => {
         console.error(error);
     }
 }
+
+export const dateTranslate = (date) => {
+    let arr = date.split("-");
+    let parseDay = arr.at(2).slice(0,2);
+    return arr.at(1) + "/" + parseDay;
+  }

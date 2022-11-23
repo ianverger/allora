@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import  { fetchTrip, deleteTrip } from '../../store/trips';
+import { dateTranslate } from '../../util/util';
 import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
 import TripInfoHeader from './TripInfoHeader';
@@ -18,15 +19,13 @@ function TripShow () {
 
   //ensuring trip info is loaded before page is loaded
   const [loadContent, setLoadContent] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
 
   //general activities,trip,user info from state
   const activities = useSelector(state => state.trips.activity);
   const trip = useSelector(state => state.trips);
   const { _id, city, tripDates, tripTitle, latitude, longitude } = trip;
   const currentUser = useSelector(state => state.session.user);
-
-  const lat = latitude.$numberDecimal
-  const long = longitude.$numberDecimal
 
  
   //dateTranslate from state 
@@ -45,30 +44,29 @@ function TripShow () {
   }, [dispatch, tripId])
 
 
-  //Date Translate for specific date format 
-  const translatedDates = () => {
-    let datesArr = [];
-    
-    if (trip) {
-        tripDates.forEach( date => {
-            datesArr.push(dateTranslate(date));
-        })
-    }
-    
-    setDates(datesArr);
-  }
-
-  const dateTranslate = (date) => {
-    let arr = date.split("-");
-    let parseDay = arr.at(2).slice(0,2);
-    return arr.at(1) + "/" + parseDay;
-  }
 
   useEffect(() => {
-      if (loadContent) translatedDates();
-  },[trip]);
-  
+    const translatedDates = () => {
+      let datesArr = [];
 
+      if (trip) {
+        tripDates.forEach ((date) => {
+          datesArr.push(dateTranslate(date));
+        })
+      }
+
+      setDates(datesArr);
+    }
+
+    translatedDates();
+      
+  },[trip]);
+
+
+  const lat = latitude.$numberDecimal
+  const long = longitude.$numberDecimal
+
+  console.log(lat, long, 'hit')
 
   if (loadContent) return (
     <>
@@ -96,10 +94,10 @@ function TripShow () {
 
       <div className='trip-right-container'>
           <div id='map-container'>
-            {trip && 
+            {mapReady && 
               <ActivitiesMap
-              centerLat={latitude.$numberDecimal}
-              centerLng={longitude.$numberDecimal}
+              centerLat={lat}
+              centerLng={long}
             />}
           </div>
       </div>
