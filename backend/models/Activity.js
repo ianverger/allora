@@ -24,10 +24,10 @@ const activitySchema = Schema({
         type: String
     },
     latitude: {
-        type: Schema.Types.Decimal128
+        type: String
     },
     longitude: {
-        type: Schema.Types.Decimal128
+        type: String
     },
     likes: [{
         type: Schema.Types.ObjectId,
