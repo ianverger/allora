@@ -72,26 +72,9 @@
   margin-bottom: 20px;
 }
 
-#trip-dates-container {
-    display: flex;
-    margin-left: 75px;
-    margin-top: 10px;
-    width: 100%;
-    height: 30px;
-    /* border: 5px solid purple; */
-    font-size: 14px;
-    align-items: baseline;
-}
 
-#trip-title-wrapper {
-    margin-left: 75px;
-    display: flex;
-    width: 100%;
-    height: 30px;
-    /* border: 5px solid purple; */
+#trip-title-wrapper, #trip-dates-container {
     font-size: 26px;
-    align-items: baseline;
-    /* border-bottom: 1px black solid; */
 }
 
 #activities-header {
@@ -223,5 +206,11 @@
     /* width: 70px; */
     /* height: 70px; */
     font-size: 34px;
+}
+
+#under-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
