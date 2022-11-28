@@ -7,6 +7,8 @@ import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
 import TripInfoHeader from './TripInfoHeader';
 import ActivitiesMap from '../Map/Map';
+import DateCard from './DatesFilterBar';
+import ItineraryBook from './ItineraryBook';
 
 
 
@@ -55,8 +57,7 @@ function TripShow () {
    
   },[trip]);
 
-  console.log(latitude, longitude, 'here')
-  console.log(tripAttendees, 'attendees')
+
 
 
   if (loadContent) return (
@@ -69,19 +70,14 @@ function TripShow () {
             city={city}
             attendees={tripAttendees}
           />}
-          <div id='itinerary-list-container'>
-            <div id='activities-header'><span>Your Itinerary</span></div>
-            {activities && dates.map((date,idx) => (
-              <ItineraryDay 
-                key={idx}
-                date={date}
-                currentUser={currentUser}
+          <div id='itinerary-container'>
+            {(activities && dates) &&
+              <ItineraryBook 
+                dates={dates}
                 activities={activities}
-                // highlightedActivity={highlightedActivity}
-                // setHighlightedActivity={setHighlightedActivity}
+                currentUser={currentUser}
                 tripId={_id}
-              />
-            ))}
+              />}
           </div>
       </div>
 
