@@ -193,18 +193,17 @@
 #profile-pic-container {
     display: flex;
     flex-direction: column;
-    width: 60px;
-    height: 60px;
+    /* width: 60px; */
+    /* height: 60px; */
 }
 
 #attendee-icon-each {
-    display: flex;
-    width: 60px;
+    width: 35px; /* no overlap
+    /* width: 24px;  */
 }
 
 #pro-pic-in-header {
-    /* width: 70px; */
-    /* height: 70px; */
+
     font-size: 34px;
 }
 
@@ -213,4 +212,23 @@
     flex-direction: column;
     align-items: center;
 }
+
+#trip-title {
+    font-size: 35px;
+    font-weight: 600;
+}
+
+#under-title-wrapper {
+    font-size: 25px;
+}
+
+#num-days, #under-title-city {
+    font-weight: 600;
+}
+
+#trip-dates-container {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
 

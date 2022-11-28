@@ -12,10 +12,15 @@ function TripInfoHeader ({ city, dates, title, attendees }) {
             </div>
             <div id='under-image-container'>
                 <header id='trip-title-wrapper'>
-                    <div id='trip-title'>{title}</div>
+                    <span id='trip-title'>{title}</span>
                 </header>
                 <div id='under-title-wrapper'>
-                    <span>{dates.length} Days in {city}</span>
+                    <span id='num-days'>{dates.length} </span>
+                    <span id='days-in'>Days in </span>
+                    <span id='under-title-city'>{city}</span>
+                </div>
+                <div id='trip-dates-container'>
+                    <span>{dates.at(0)} - {dates.at(dates.length-1)}</span>
                 </div>
                 <div id='attendees-spotlight-container'>
                     {attendees.map((attendee, idx) => (
@@ -25,9 +30,6 @@ function TripInfoHeader ({ city, dates, title, attendees }) {
                                 />
                         </div>
                     ))}
-                </div>
-                <div id='trip-dates-container'>
-                    <span>{dates.at(0)} - {dates.at(dates.length-1)}</span>
                 </div>
             </div>
 
