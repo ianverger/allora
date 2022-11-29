@@ -6,7 +6,7 @@ import AddActivityModal from "../NewActivity/AddActivityModal";
 
 function ItineraryDay ({date, currentUser, activities, highlightedActivity, setHighlightedActivity, tripId}) {
 const dailyActivities = Object.values(activities).filter(activity => activity.activityDate === date)
-console.log(dailyActivities, 'da')
+
 
     return (
         <>

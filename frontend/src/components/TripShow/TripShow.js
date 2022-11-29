@@ -76,9 +76,23 @@ function TripShow () {
                 dates={dates}
                 activities={activities}
                 currentUser={currentUser}
-                tripId={_id}
               />}
           </div>
+          <div id='itinerary-list-container'>
+                {(trip && activities) && dates.map((date, idx) => (
+                    <ItineraryDay
+                        key={idx}
+                        date={date}
+                        activities={activities}
+                        currentUser={currentUser}
+                        tripId={_id}
+                        // highlightedActivity={highlightedActivity}
+                        // setHighlightedActivity={setHighlightedActivity} 
+                        // tripId={tripId}
+                    />
+
+                ))}
+            </div>
       </div>
 
       <div className='trip-right-container'>
