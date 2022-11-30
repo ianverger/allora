@@ -12,9 +12,8 @@ function ItineraryBook ({ dates, activities}) {
         <div id='itinerary-book-section-container'>
             <div id='date-cards-container'>
                 {dates && dates.map((date, idx) => (
-                    <button onClick={(e) => setSelectedDate(date)}>
+                    <button key={idx} onClick={(e) => setSelectedDate(date)}>
                     <DateCard
-                        key={idx}
                         date={date}
                         numDay={idx+1}
                         />

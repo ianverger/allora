@@ -27,7 +27,7 @@ const dispatch = useDispatch();
             <div id='activity-description-wrapper'>
                 <span>{activity && activity.description}</span>
             </div>
-            {activity.votes.includes(currentUser._id)
+            {activity.likes.includes(currentUser._id)
             ?
             <button className="voting-buttons" onClick={() => dispatch(likeActivity(activity._id))}>
                 <i className="fa-solid fa-thumbs-down"></i>
