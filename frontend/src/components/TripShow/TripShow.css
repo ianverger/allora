@@ -103,23 +103,25 @@
     margin-right: 30px;
     display: flex;
     flex-direction: column;
-    background-color: whitesmoke;
-    border: 1px solid #F3CFC6;
+    background-color: white;    
+    border: 1px solid lightgray;
+    box-shadow: 10px 5px 5px lightgray;
     border-radius: 6px;
 }
 
 #day-header {
     display: block;
-    color: pink;
+    color: black;
     font-size: 24px;
     font-weight: 600;
     border: 1px lightgray solid;
+    padding: 5px;
 }
 
 .activity-list-item-container {
     display: block;
     flex-direction: column;
-    border: 1px red solid;
+    border: 1px lightgray dashed;
     padding-top: 8px;
     padding-bottom: 15px;
 
@@ -211,6 +213,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 #trip-title {

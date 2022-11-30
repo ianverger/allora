@@ -167,8 +167,7 @@ const activitiesReducer = (state = {}, action) => {
         case RECEIVE_ACTIVITY:
             return { ...state, ...action.activity };
         case RECEIVE_ACTIVITY_COMMENTS:
-            state.activity = action.comments;
-            return {...state};
+            return {...state, comments: action.comments};
         default:
             return state;
     }

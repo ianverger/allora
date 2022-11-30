@@ -26,6 +26,7 @@ function ItineraryBook ({ dates, activities, tripId, currentUser}) {
                     <ItineraryDay
                         key={idx}
                         date={date}
+                        numDay={idx + 1}
                         activities={activities}
                         currentUser={currentUser}
                         tripId={tripId}

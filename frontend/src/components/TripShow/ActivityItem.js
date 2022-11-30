@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deleteActivity, likeActivity, unlikeActivity } from '../../store/activities';
 import CommentItem from './CommentItem';
 import AddNewComment from './NewCommentForm';
+import { fetchActivityComments } from '../../store/activities';
 import AddActivityModal from '../NewActivity/AddActivityModal';
 // import './ActivityItem.css'
 
@@ -12,6 +13,18 @@ function ActivityListItem ({activity, currentUser}) {
 // const comments = Object.values(comments).filter(comment => comment.activity === activity._id);
 const history = useHistory();
 const dispatch = useDispatch();
+const [loadComments, setLoadComments] = useState(false);
+
+
+useEffect(() => {
+    const getComments = async () => {
+      const comments = await dispatch(fetchActivityComments(activity._id))
+      .then(setLoadComments(true))
+      const data = await comments;
+    }
+    
+    getComments();
+  }, [dispatch, activity])
 
     return (
         <>
