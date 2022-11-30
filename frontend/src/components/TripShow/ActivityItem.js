@@ -16,15 +16,15 @@ const dispatch = useDispatch();
 const [loadComments, setLoadComments] = useState(false);
 
 
-useEffect(() => {
-    const getComments = async () => {
-      const comments = await dispatch(fetchActivityComments(activity._id))
-      .then(setLoadComments(true))
-      const data = await comments;
-    }
+// useEffect(() => {
+//     const getComments = async () => {
+//       const comments = await dispatch(fetchActivityComments(activity._id))
+//       .then(setLoadComments(true))
+//       const data = await comments;
+//     }
     
-    getComments();
-  }, [dispatch, activity])
+//     getComments();
+//   }, [dispatch, activity])
 
     return (
         <>
