@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import ActivityListItem from "./ActivityItem";
 import AddActivityModal from "../NewActivity/AddActivityModal";
 
-function ItineraryDay ({date, currentUser, activities, highlightedActivity, setHighlightedActivity, tripId}) {
+function ItineraryDay ({numDay, date, currentUser, activities, tripId}) {
 const dailyActivities = Object.values(activities).filter(activity => activity.activityDate === date)
 
 
@@ -20,8 +20,7 @@ const dailyActivities = Object.values(activities).filter(activity => activity.ac
                         key={idx}
                         currentUser={currentUser}
                         activity={activity}
-                        isHighlighted={highlightedActivity === activity._id}
-                        setHighlightedActivity={setHighlightedActivity}
+ 
                     />
                 ))}
             </div>

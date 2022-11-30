@@ -15,11 +15,7 @@ const dispatch = useDispatch();
 
     return (
         <>
-        <div 
-            className="activity-list-item-container" //+ (isHighlighted ? "highlighted" : "")}
-            // onMouseEnter={()=> setHighlightedActivity(activity._id)}
-            // onMouseLeave={() => setHighlightedActivity(null)}
-        >
+        <div className="activity-list-item-container">
             <header id="activity-item-header">
                 <div id="small-icon-logo"><img src={'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-icon.png'} alt=""></img></div>
                 <span id='act-title'>{activity && activity.title}</span>

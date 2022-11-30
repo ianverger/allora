@@ -86,7 +86,7 @@ function ActivitiesMap({
             })
     
             Object.entries(markers.current).forEach(([activityId, marker]) => {
-                if (activities.some(activity => activity.id.toString() === activity._id)) return;
+                if (activities.some(activity => activity._id.toString() === activity._id)) return;
                 
                 marker.setMap(null);
                 delete markers.current[activityId];
