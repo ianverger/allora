@@ -26,11 +26,11 @@ const dailyActivities = Object.values(activities).filter(activity => activity.ac
                 ))}
             </div>
             <div id='add-activity-button-wrapper'>
-                <AddActivityModal
+                {tripId && <AddActivityModal
                     tripId={tripId}
                     userId={currentUser._id}
                     currentDate={date}
-                />
+                />}
             </div>
         </div>
         </>

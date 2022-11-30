@@ -57,7 +57,7 @@ function TripShow () {
    
   },[trip]);
 
-
+ console.log(_id, 'here')
 
 
   if (loadContent) return (
