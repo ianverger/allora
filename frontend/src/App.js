@@ -9,7 +9,7 @@ import Profile from './components/Profile/Profile';
 import TripShow from './components/TripShow/TripShow';
 import CreateNewTripForm from './components/Profile/NewTrip/NewTripForm';
 import MeetTheTeam from './components/MeetTheTeam/MeetTheTeam';
-
+import PersonalPage from './components/PersonalPage/PersonalPage';
 import { getCurrentUser } from './store/session';
 import UserSearch from './components/UserSearch/UserSearch';
 
@@ -27,7 +27,7 @@ function App() {
         <AuthRoute exact path="/" component={MainPage} />
         {/* <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} /> */}
-   
+        <ProtectedRoute exact path="/users/:userId" component={PersonalPage} />
         <ProtectedRoute exact path="/search" component={UserSearch} />
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/newTrip" component={CreateNewTripForm}/>
