@@ -72,26 +72,9 @@
   margin-bottom: 20px;
 }
 
-#trip-dates-container {
-    display: flex;
-    margin-left: 75px;
-    margin-top: 10px;
-    width: 100%;
-    height: 30px;
-    /* border: 5px solid purple; */
-    font-size: 14px;
-    align-items: baseline;
-}
 
-#trip-title-wrapper {
-    margin-left: 75px;
-    display: flex;
-    width: 100%;
-    height: 30px;
-    /* border: 5px solid purple; */
+#trip-title-wrapper, #trip-dates-container {
     font-size: 26px;
-    align-items: baseline;
-    /* border-bottom: 1px black solid; */
 }
 
 #activities-header {
@@ -120,23 +103,25 @@
     margin-right: 30px;
     display: flex;
     flex-direction: column;
-    background-color: whitesmoke;
-    border: 1px solid #F3CFC6;
+    background-color: white;    
+    border: 1px solid lightgray;
+    box-shadow: 10px 5px 5px lightgray;
     border-radius: 6px;
 }
 
 #day-header {
     display: block;
-    color: pink;
+    color: black;
     font-size: 24px;
     font-weight: 600;
     border: 1px lightgray solid;
+    padding: 5px;
 }
 
 .activity-list-item-container {
     display: block;
     flex-direction: column;
-    border: 1px red solid;
+    border: 1px lightgray dashed;
     padding-top: 8px;
     padding-bottom: 15px;
 
@@ -156,7 +141,9 @@
 
 #activity-item-header {
     display: flex;
+    align-content: space-between;
     margin-bottom: 5px;
+    width: 100%;
 }
 
 #small-icon-logo{   
@@ -173,8 +160,9 @@
 
 #act-title {
     display: block;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;   
+
 }
 
 
@@ -182,6 +170,7 @@
     margin-left: 35px;
     font-size: 15px;
     font-weight: 400;
+    border: 2px solid gray;
 }
 
 #add-new-activity {
@@ -195,22 +184,147 @@
 
 }
 
-#comments-container {
-    display: flex;
-    border: 3px purple solid;
-}
+
 
 #attendees-spotlight-container {
     display: flex;
-    height: 50px;
+    flex-direction: row;
+    /* border: 5px red solid; */
+    /* height: 50px; */
 }
 
 #profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    /* width: 60px; */
+    /* height: 60px; */
+}
+
+#attendee-icon-each {
+    width: 35px; /* no overlap
+    /* width: 24px;  */
+}
+
+#pro-pic-in-header {
+
+    font-size: 34px;
+}
+
+#under-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#trip-title {
+    font-size: 35px;
+    font-weight: 600;
+}
+
+#under-title-wrapper {
+    font-size: 25px;
+}
+
+#num-days, #under-title-city {
+    font-weight: 600;
+}
+
+#trip-dates-container {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#date-cards-container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    justify-content: space-around;
+}
+
+.date-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    height: 100px;
+    border: 2px solid red;
+}
+
+#num-day-wrapper {
+    display: flex;
+    font-size: 18px;
+
+}
+
+#activity-dropdown-container {
+    /* display: block; */
+    /* position: absolute; */
+    display: flex;
+    /* border: 4px purple solid; */
+}
+
+#activity-menu-container {
+    display: flex;
+    /* border: 5px red solid; */
+}
+
+#activity-menu-button {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    /* color: black; */
+    /* border: 1px red solid; */
+}
+
+#bar1, #bar2, #bar3 {
+    width: 20px;
+    height: 3px;
+    background-color: gray; 
+    margin: 1px;
+    border-radius: 1px;
+}
+
+#act-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /* border: 2px red solid; */
+}
+
+#likes-container {
+    display: flex;
+    /* border: 1px red solid; */
+    justify-content: flex-end;
+}
+
+.voting-buttons {
+    background-color: white;
+    border: none;
+}
+
+#comments-container {
+    display: flex;
+    flex-direction: row;
+    /* border: 3px purple solid; */
+    margin-left: 35px;
+    margin-right: 35px;
+    border-radius: 18px;
+}
+
+#comments-container{
+    display: flex;
+    width: 25%;
+    /* flex-direction: row; */
+    /* border: 2px red solid; */
+}
+.comment-item-container {
+    display: flex;
+    /* flex-direction: row; */
+    width: 100%;
+    /* border: 5px purple solid; */
+}
+
+#comment-text {
     display: inline-block;
+    font-size: 16px;
 }
-
-#pro-pic {
-    height: 50px;
-    width: 50px;
-}
-

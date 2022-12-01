@@ -65,7 +65,7 @@ router.get('/user/:userId', async (req, res, next) =>{
 router.get('/:id', async(req, res, next) =>{
     try{
         const trip = await Trip.findById(req.params.id)
-                               .populate("planner", "_id, username");
+                               .populate("tripAttendees", "_id, username");
         return res.json(trip);
     }
     catch(err){

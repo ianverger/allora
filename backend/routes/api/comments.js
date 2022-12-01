@@ -19,7 +19,7 @@ router.get('/', async(req, res) =>{
     }
 })
 
-router.get('/activities/:activityId', async (req, res, next) => {
+router.get('/activity/:activityId', async (req, res, next) => {
     let activity;
     try {
         activity = await Activity.findById(req.params.activityId);
@@ -34,7 +34,7 @@ router.get('/activities/:activityId', async (req, res, next) => {
     try {
         const comments = await Comment.find({ activity: activity._id})
                                       .sort( {createdAt: -1 })
-                                      .populate("publisher", "-id, username");
+                                      .populate("publisher", "_id, username");
         return res.json(comments);
 
     }

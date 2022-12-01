@@ -7,6 +7,8 @@ import ItineraryDay from './ItineraryDay';
 import './TripShow.css'
 import TripInfoHeader from './TripInfoHeader';
 import ActivitiesMap from '../Map/Map';
+import DateCard from './DatesFilterBar';
+import ItineraryBook from './ItineraryBook';
 
 
 
@@ -22,7 +24,7 @@ function TripShow () {
   //general activities,trip,user info from state
   const activities = useSelector(state => state.trips.activity);
   const trip = useSelector(state => state.trips);
-  const { _id, tripDates, tripTitle, latitude, longitude, tripAttendees } = trip;
+  const { _id, city, tripDates, tripTitle, latitude, longitude, tripAttendees } = trip;
   const currentUser = useSelector(state => state.session.user);
 
   const [dates, setDates] = useState([]);
@@ -55,9 +57,6 @@ function TripShow () {
    
   },[trip]);
 
-  console.log(latitude, longitude, 'here')
-  console.log(tripAttendees, 'attendees')
-
 
   if (loadContent) return (
     <>
@@ -66,27 +65,23 @@ function TripShow () {
           {(dates && tripAttendees) && <TripInfoHeader 
             dates={dates}
             title={tripTitle}
+            city={city}
             attendees={tripAttendees}
           />}
-          <div id='itinerary-list-container'>
-            <div id='activities-header'><span>Your Itinerary</span></div>
-            {activities && dates.map((date,idx) => (
-              <ItineraryDay 
-                key={idx}
-                date={date}
-                currentUser={currentUser}
+          <div id='itinerary-container'>
+            {(activities && dates) &&
+              <ItineraryBook 
+                dates={dates}
                 activities={activities}
-                // highlightedActivity={highlightedActivity}
-                // setHighlightedActivity={setHighlightedActivity}
+                currentUser={currentUser}
                 tripId={_id}
-              />
-            ))}
+              />}
           </div>
       </div>
 
       <div className='trip-right-container'>
           <div id='map-container'>
-            {latitude && 
+            {(latitude && activities) && 
               <ActivitiesMap  
                 centerLat={latitude}
                 centerLng={longitude}

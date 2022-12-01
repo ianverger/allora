@@ -8,7 +8,7 @@ const RECEIVE_ACTIVITY_ERRORS = 'activities/RECEIVE_ACTIVITY_ERRORS';
 const CLEAR_ACTIVITY_ERRORS = 'activities/CLEAR_ACTIVITY_ERRORS';
 const RECEIVE_ACTIVITY = 'activities/RECEIVE_ACTIVITY';
 
-const RECEIVE_ACTIVITY_COMMENTS = 'comments/RECEIVE_ACTIVITY_COMMENTS';
+// const RECEIVE_ACTIVITY_COMMENTS = 'comments/RECEIVE_ACTIVITY_COMMENTS';
 
 // const receiveNewActivity = activity => ({
 //     type: RECEIVE_NEW_ACTIVITY,
@@ -24,10 +24,10 @@ const receiveActivity = activity => ({
 //     activities
 // })
 
-const receiveActivityComments = comments => ({
-    type: RECEIVE_ACTIVITY_COMMENTS,
-    comments
-})
+// const receiveActivityComments = comments => ({
+//     type: RECEIVE_ACTIVITY_COMMENTS,
+//     comments
+// })
 
 const receiveActivityErrors = errors => ({
     type: RECEIVE_ACTIVITY_ERRORS,
@@ -135,18 +135,6 @@ export const unlikeActivity = activityId => async dispatch => {
 }
 
 
-export const fetchActivityComments = activityId => async dispatch => {
-    try {
-        const res = await jwtFetch(`/api/comments/activity/${activityId}`);
-        const comments = await res.json();
-        dispatch(receiveActivityComments(comments));
-    } catch(err) {
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-            return dispatch (receiveActivityErrors(resBody.errors));
-        }
-    }
-}
 
 const nullErrors = null;
 
@@ -166,9 +154,8 @@ const activitiesReducer = (state = {}, action) => {
     switch(action.type) {
         case RECEIVE_ACTIVITY:
             return { ...state, ...action.activity };
-        case RECEIVE_ACTIVITY_COMMENTS:
-            state.activity = action.comments;
-            return {...state};
+        // case RECEIVE_ACTIVITY_COMMENTS:
+        //     return {...state, comments: action.comments};
         default:
             return state;
     }
