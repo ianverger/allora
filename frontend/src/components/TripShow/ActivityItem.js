@@ -11,7 +11,7 @@ import ActivityMenu from './ActivityMenu';
 
 
 function ActivityListItem ({activity, currentUser}) {
-    const comments = useSelector(state => state.comments);
+    const comments = useSelector(state => Object.values(state.comments));
     const history = useHistory();
     const dispatch = useDispatch();
     const [loadComments, setLoadComments] = useState(false);
@@ -37,6 +37,8 @@ useEffect(() => {
     dispatch(deleteActivity(activity._id));
     setMenuOpen(false);
 }
+
+console.log(comments, 'here')
 
     if (loadComments) return (
         <>
@@ -80,15 +82,16 @@ useEffect(() => {
             // </div>
             }
             </div>
-            <p>{activity.likes.length}</p>
+            {/* <p>{activity.likes.length}</p> */}
             <div id='comments-container'>
-                {/* {comments && comments.map((comment,idx) => (
-                    <CommentItem
-                        key={idx}
-                        currentUser={currentUser}
-                        comment={comment}
-                    />
-                ))} */}
+                {comments && comments.map((comment,idx) => (
+                    <div id='comment-item' key={idx}>
+                        <CommentItem
+                            text={comment.text}
+                            publisherName={comment.publisher.username}
+                            />
+                    </div>
+                ))}
             </div>
 
             <div id="add-comment-box">

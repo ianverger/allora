@@ -184,10 +184,7 @@
 
 }
 
-#comments-container {
-    display: flex;
-    border: 3px purple solid;
-}
+
 
 #attendees-spotlight-container {
     display: flex;
@@ -296,6 +293,38 @@
 
 #likes-container {
     display: flex;
-    border: 1px red solid;
+    /* border: 1px red solid; */
     justify-content: flex-end;
+}
+
+.voting-buttons {
+    background-color: white;
+    border: none;
+}
+
+#comments-container {
+    display: flex;
+    flex-direction: row;
+    /* border: 3px purple solid; */
+    margin-left: 35px;
+    margin-right: 35px;
+    border-radius: 18px;
+}
+
+#comments-container{
+    display: flex;
+    width: 25%;
+    /* flex-direction: row; */
+    /* border: 2px red solid; */
+}
+.comment-item-container {
+    display: flex;
+    /* flex-direction: row; */
+    width: 100%;
+    /* border: 5px purple solid; */
+}
+
+#comment-text {
+    display: inline-block;
+    font-size: 16px;
 }
