@@ -160,8 +160,9 @@
 
 #act-title {
     display: block;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;   
+
 }
 
 
@@ -288,6 +289,13 @@
 
 #act-header {
     display: flex;
-    border: 2px red solid;
+    width: 100%;
+    justify-content: space-between;
+    /* border: 2px red solid; */
 }
 
+#likes-container {
+    display: flex;
+    border: 1px red solid;
+    justify-content: flex-end;
+}

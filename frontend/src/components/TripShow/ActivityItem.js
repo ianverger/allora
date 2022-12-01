@@ -66,16 +66,20 @@ useEffect(() => {
             </div>
 
 
+            <div id='likes-container'>
             {activity.likes.includes(currentUser._id)
             ?
-            <button className="voting-buttons" onClick={() => dispatch(likeActivity(activity._id))}>
-                <i className="fa-solid fa-thumbs-down"></i>
-            </button>
-            :
-            <button className="voting-buttons" onClick={() => dispatch(unlikeActivity(activity._id))}>
-                <i className="fa-solid fa-thumbs-up"></i>
-            </button>
+            // <div id='likes-box'>
+                <button className="voting-buttons" onClick={() => dispatch(unlikeActivity(activity._id))}>
+                    <i className="fa-solid fa-thumbs-down"></i>
+                </button>
+                :
+                <button className="voting-buttons" onClick={() => dispatch(likeActivity(activity._id))}>
+                    <i className="fa-solid fa-thumbs-up"></i>
+                </button>
+            // </div>
             }
+            </div>
             <p>{activity.likes.length}</p>
             <div id='comments-container'>
                 {/* {comments && comments.map((comment,idx) => (
