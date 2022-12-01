@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { createActivity } from '../../store/activities';
-import { getCoords } from '../../util/geocode';
+import { getCoords } from '../../util/util';
 
 function AddNewActivity ({tripId, userId, currentDate}) {
     const dispatch = useDispatch();

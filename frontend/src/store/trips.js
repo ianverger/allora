@@ -1,6 +1,7 @@
 import jwtFetch from './jwt';
 import { RECEIVE_USER_LOGOUT } from './session';
-import receiveActivityErrors from './activities';
+import receiveActivityErrors, { fetchActivityComments } from './activities';
+import { createDispatchHook } from 'react-redux';
 
 // const RECEIVE_NEW_TRIP = 'trips/RECEIVE_NEW_TRIP';
 // const RECEIVE_USER_TRIPS = 'trips/RECEIVE_USER_TRIPS';
