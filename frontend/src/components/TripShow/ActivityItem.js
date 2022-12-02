@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { deleteActivity, likeActivity, unlikeActivity } from '../../store/activities';
+import { deleteActivity} from '../../store/activities';
 import CommentItem from './CommentItem';
 import AddNewComment from './NewCommentForm';
 import { fetchActivityComments } from '../../store/comments';
 import AddActivityModal from '../NewActivity/AddActivityModal';
 import ActivityMenu from './ActivityMenu';
+import LikesSection from './LikesSpotlight';
 // import './ActivityItem.css'
 
 
@@ -68,20 +69,14 @@ useEffect(() => {
 
 
             <div id='likes-container'>
-            {activity.likes.includes(currentUser._id)
-            ?
-            // <div id='likes-box'>
-                <button className="voting-buttons" onClick={() => dispatch(unlikeActivity(activity._id))}>
-                    <i className="fa-solid fa-thumbs-down"></i>
-                </button>
-                :
-                <button className="voting-buttons" onClick={() => dispatch(likeActivity(activity._id))}>
-                    <i className="fa-solid fa-thumbs-up"></i>
-                </button>
-            // </div>
-            }
+                {activity && 
+                    <LikesSection 
+                        likes={activity.likes}
+                        currentUserId={currentUser._id}
+                        activityId={activityId}
+
+                />}
             </div>
-            {/* <p>{activity.likes.length}</p> */}
             <div id='comments-container'>
                 {comments && comments.map((comment,idx) => (
                     <div id='comment-item' key={idx}>

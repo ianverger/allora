@@ -8,12 +8,15 @@
 
 @media screen and (min-width: 0px) {
     #map-container {
+        width: 100%;
+        /* position: sticky; */
         position: -webkit-sticky;
-        position: sticky;
-        top: 0px;
+        align-self: flex-start;
+        /* display: flex; */
+        top: 0;
         /* display: flex; */
         /* height: calc(100vh - 70px); */
-        height: 90px;
+        /* height: 100vh; */
         /* border: 5px black solid; */
     }
     .map {
@@ -40,11 +43,8 @@
     align-content: center;
 }
 .trip-right-container {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
     height: 100vh;
-    /* border: 3px blue solid; */
+    width: 50%;
 }
 
 
@@ -297,14 +297,32 @@
 
 #likes-container {
     display: flex;
-    /* border: 1px red solid; */
+    border: 1px red solid;
     justify-content: flex-end;
     border-top: lightgray 1px solid;
+    padding: 8px;
 }
 
-.voting-buttons {
+#num-likes-wrapper {
+    font-size: 15px;
+}
+
+#likes-wrapper {
+    display: flex;
+}
+
+.green-button, .gray-button {
     background-color: white;
     border: none;
+    margin-left: 3px;
+}
+
+.green-button {
+    color: green;
+}
+
+.gray-button {
+    color: gray;
 }
 
 #comments-container {
@@ -325,7 +343,7 @@
     /* border: 5px red solid; */
     /* align-content: center; */
     text-align: baseline;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 #commenter {
