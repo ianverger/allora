@@ -124,6 +124,8 @@
     border: 1px lightgray dashed;
     padding-top: 8px;
     padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
 
 }
 
@@ -170,7 +172,7 @@
     margin-left: 35px;
     font-size: 15px;
     font-weight: 400;
-    border: 2px solid gray;
+    /* border: 2px solid gray; */
 }
 
 #add-new-activity {
@@ -295,6 +297,7 @@
     display: flex;
     /* border: 1px red solid; */
     justify-content: flex-end;
+    border-top: lightgray 1px solid;
 }
 
 .voting-buttons {
@@ -327,4 +330,12 @@
 #comment-text {
     display: inline-block;
     font-size: 16px;
+}
+
+.comment-box {
+    display: flex;
+    margin-left: 35px;
+    width: 90%;
+    height: 20px;
+    border-radius: 20px;
 }

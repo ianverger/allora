@@ -13,14 +13,18 @@ function AddNewComment ({activityId, userId}) {
     }
 
     return (
+        <div>
         <form onSubmit={handleSubmit}>
-            <input type="text"
+            <input 
+            className='comment-box'
+            type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Comment here..."
             />
-            <button type='submit'>Submit</button>
+            <button type='submit' className='comment-submit'>Submit</button>
         </form>
+            </div>
     )
 
 }
