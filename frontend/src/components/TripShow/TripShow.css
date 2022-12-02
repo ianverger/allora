@@ -332,10 +332,42 @@
     font-size: 16px;
 }
 
-.comment-box {
+.comment-box-container {
     display: flex;
     margin-left: 35px;
-    width: 90%;
-    height: 20px;
+    height: 35px;
     border-radius: 20px;
+    border: 1px lightgray solid;
+    justify-content: space-between;
+    padding: 3px;
+    padding-left: 8px;
+    align-items: center;
+}
+
+.comment-box, .comment-submit {
+    display: flex;
+}
+
+.comment-box {
+    display: flex;
+    box-sizing: border-box;
+    flex-grow: 1;
+    height: 25px;
+    border: none;
+    /* border: 3px purple solid; */
+    font-size: 13.33px;
+
+}
+
+.comment-submit {
+    display: flex;
+    height: 18px;
+    font-size: 13.33px;
+    border: none;
+    /* border: 1px red solid; */
+    background: white;
+    padding: 2px;
+    align-items: center;
+    text-align: center;
+
 }
