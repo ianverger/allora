@@ -10,8 +10,8 @@ import ActivityMenu from './ActivityMenu';
 // import './ActivityItem.css'
 
 
-function ActivityListItem ({activity, currentUser}) {
-    const comments = useSelector(state => Object.values(state.comments));
+function ActivityListItem ({number, activity, activityId, currentUser}) {
+    const comments = useSelector(state => Object.values(state.comments).filter(comment => comment.activity === activityId));
     const history = useHistory();
     const dispatch = useDispatch();
     const [loadComments, setLoadComments] = useState(false);
@@ -38,14 +38,13 @@ useEffect(() => {
     setMenuOpen(false);
 }
 
-console.log(comments, 'here')
 
     if (loadComments) return (
         <>
         <div className="activity-list-item-container">
             <header id="activity-item-header">
-                <div id="small-icon-logo">
-                    <img src={'https://hippark-photos.s3.amazonaws.com/allora-logos/allora-icon.png'} alt=""></img>
+                <div id="activity-number">
+                    <span>{number}</span>
                 </div>
                 <div id='act-header'>
                     <span id='act-title'>{activity && activity.title}</span>

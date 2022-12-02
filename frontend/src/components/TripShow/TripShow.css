@@ -124,7 +124,7 @@
     border: 1px lightgray dashed;
     padding-top: 8px;
     padding-bottom: 15px;
-    padding-left: 20px;
+    padding-left: 15px;
     padding-right: 20px;
 
 }
@@ -148,16 +148,18 @@
     width: 100%;
 }
 
-#small-icon-logo{   
+#activity-number {
     display: block;
-    width: 18px;
-    height: 18px;
-    margin-left: 5px;
-    margin-right: 5px;
-    text-align: center;
-    align-items: baseline;
-    border: 1px black solid;
-    border-radius: 25px;
+    /* text-align: center; */
+    margin-right: 10px;
+    /* align-items: flex-start; */
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #b8ccaa;
+
 }
 
 #act-title {
@@ -307,29 +309,39 @@
 
 #comments-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     /* border: 3px purple solid; */
+    align-content: center;
     margin-left: 35px;
     margin-right: 35px;
     border-radius: 18px;
+    width: 90%;
 }
 
-#comments-container{
-    display: flex;
-    width: 25%;
-    /* flex-direction: row; */
-    /* border: 2px red solid; */
-}
 .comment-item-container {
     display: flex;
     /* flex-direction: row; */
     width: 100%;
-    /* border: 5px purple solid; */
+    /* border: 5px red solid; */
+    /* align-content: center; */
+    text-align: baseline;
+    margin-bottom: 5px;
+}
+
+#commenter {
+    display: flex;
+    font-size: 24px;
+    text-align: center;
+    margin-left: 3px;
 }
 
 #comment-text {
     display: inline-block;
-    font-size: 16px;
+    font-size: 13.33px;
+    /* text-align: center; */
+    align-content: center;
+    /* border: 3px green solid; */
+    margin-left: 6px;
 }
 
 .comment-box-container {
@@ -338,6 +350,7 @@
     height: 35px;
     border-radius: 20px;
     border: 1px lightgray solid;
+    /* background-color: aqua ; */
     justify-content: space-between;
     padding: 3px;
     padding-left: 8px;
@@ -366,8 +379,12 @@
     border: none;
     /* border: 1px red solid; */
     background: white;
+    color: #b8ccaa;
+    font-weight: 500;
     padding: 2px;
     align-items: center;
     text-align: center;
+    z-index: 5;
+    cursor: pointer;
 
 }

@@ -22,8 +22,10 @@ const dailyActivities = Object.values(activities).filter(activity => activity.ac
                 {dailyActivities && dailyActivities.map((activity, idx) => (
                     <ActivityListItem
                         key={idx}
+                        number={idx + 1}
                         currentUser={currentUser}
                         activity={activity}
+                        activityId={activity._id}
  
                     />
                 ))}
