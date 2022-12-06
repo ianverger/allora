@@ -17,12 +17,13 @@ function LikesSection ({likes, currentUserId, activityId}) {
         includes = true;
     }
 
-    const handleIncludesClick = () => {
-        dispatch(unlikeActivity(activityId))
-    }
-
-    const handleNotIncludesClick = () => {
-        dispatch(likeActivity(activityId))
+        
+    const handleClick = () => {
+        if (includes) {
+            dispatch(unlikeActivity(activityId))
+        } else {
+            dispatch(likeActivity(activityId))
+        }
     }
 
     return (
@@ -33,7 +34,7 @@ function LikesSection ({likes, currentUserId, activityId}) {
             </div>
             <button 
                 className={liked ? "green-button" : "gray-button"}
-                onClick={includes ? `${handleIncludesClick}` : `${handleNotIncludesClick}`}
+                onClick={handleClick}
                 >
                 <i className="fa-solid fa-thumbs-up"></i>
             </button>
