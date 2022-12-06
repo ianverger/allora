@@ -16,3 +16,9 @@ export const dateTranslate = (date) => {
     let parseDay = arr.at(2).slice(0,2);
     return arr.at(1) + "/" + parseDay;
   }
+
+  export const dateTranslate2 = (date) => {
+    let arr = date.split("-");
+    let parseDay = arr.at(2).slice(0,2);
+    return arr.at(1) + "/" + parseDay + "/" + arr.at(0);
+  }

@@ -5,6 +5,7 @@ const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
+const RECEIVE_USER = "session/RECEIVE_USER";
 
 const RECEIVE_USER_TRIPS = 'trips/RECEIVE_USER_TRIPS';
 
@@ -14,6 +15,11 @@ const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
 });
+
+const receiveUser = user => ({
+  type: RECEIVE_USER,
+  user
+})
   
 // Dispatch receiveErrors to show authentication errors on the frontend.
 const receiveErrors = errors => ({
@@ -69,6 +75,12 @@ export const logout = () => dispatch => {
   dispatch(logoutUser());
 };
 
+// export const getUser = userId => async dispatch => {
+//   const res = await jwtFetch(`/api/users/selected/${userId}`);
+//   const user = await res.json();
+//   dispatch(receiveUser(user));
+// }
+
 
 export const fetchUserTrips = userId => async dispatch => {
   try {
@@ -90,6 +102,7 @@ export const sessionErrorsReducer = (state = nullErrors, action) => {
     case RECEIVE_SESSION_ERRORS:
       return action.errors;
     case RECEIVE_CURRENT_USER:
+    case RECEIVE_USER:
     case CLEAR_SESSION_ERRORS:
       return nullErrors;
     default:
@@ -105,6 +118,8 @@ const initialState = {
     switch (action.type) {
       case RECEIVE_CURRENT_USER:
         return { user: action.currentUser };
+      case RECEIVE_USER:
+        return {selectedUser: action.user};
       case RECEIVE_USER_LOGOUT:
         return initialState;
       
