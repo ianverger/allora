@@ -47,10 +47,10 @@ export const createComment = data => async dispatch => {
 export const deleteComment = (commentId) => async (dispatch) => {
     const res = await jwtFetch(`/api/comments/${commentId}`, {
         method: 'DELETE'
-    });
-
+    })
+    
     const data = await res.json();
-    // dispatch(fetchActivityComments(data.activity));
+    dispatch(fetchTripComments(data.trip));
     return;
 }
 

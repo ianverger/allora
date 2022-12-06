@@ -9,16 +9,17 @@
 @media screen and (min-width: 0px) {
     .trip-right-container {
         position: sticky;
+        position: -webkit-sticky;
         width: 50%;
         top: 0px;
-        display: flex;
-        height: 100vh;
-        border: 3px red solid;
+        display: inline-block;
+        height: calc(100vh - 75px);
+        /* border: 3px red solid; */
     }
     .map {
-        height: 3000px;
-        width: 3000px;
-        border: 3px blue solid;
+        height: 1300px;
+        width: 1300px;
+        /* border: 3px blue solid; */
         /* position: sticky; */
     }
 }
@@ -336,6 +337,8 @@
     /* flex-direction: row; */
     width: 100%;
     /* border: 5px red solid; */
+    padding-bottom: 2px;
+    border-bottom: #b8ccaa 1px solid;
     /* align-content: center; */
     text-align: baseline;
     margin-bottom: 8px;
@@ -392,6 +395,24 @@
 }
 
 .comment-submit {
+    display: flex;
+    height: auto;
+    width: auto;
+    font-size: 13.33px;
+    border: none;
+    /* border: 1px red solid; */
+    /* margin-left: 3px; */
+    background: white;
+    color: #b8ccaa;
+    font-weight: 500;
+    padding: 2px;
+    align-items: center;
+    text-align: center;
+    /* z-index: 5; */
+    cursor: pointer;
+}
+
+.delete-comment-button {
     display: flex;
     height: auto;
     width: auto;

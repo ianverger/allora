@@ -13,7 +13,6 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
     const activityComments = Object.values(comments).filter(comment => comment.activity === activityId)
     
     
-    
     const handleOpenMenu = () => {
         setMenuOpen(!menuOpen);
     }
@@ -65,8 +64,10 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
                 {activityComments && activityComments.map((comment,idx) => (
                     <div id='comment-item' key={idx}>
                         <CommentItem
+                            publisher={comment.publisher}
+                            currentUserId={currentUser._id}
                             text={comment.text}
-                            publisherName={comment.publisher.username}
+                            commentId={comment._id}
                             />
                     </div>
                 ))}
