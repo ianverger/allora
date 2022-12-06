@@ -328,7 +328,7 @@
 
 #comments-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     /* border: 3px purple solid; */
     align-content: center;
     margin-left: 35px;
@@ -382,7 +382,9 @@
 
 .comment-box {
     display: flex;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    outline: none !important;
+    box-shadow: none;
     flex-grow: 1;
     height: 25px;
     border: none;
@@ -403,7 +405,7 @@
     padding: 2px;
     align-items: center;
     text-align: center;
-    z-index: 5;
+    /* z-index: 5; */
     cursor: pointer;
 
 }

@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { deleteActivity} from '../../store/activities';
 import CommentItem from './CommentItem';
 import AddNewComment from './NewCommentForm';
-import { fetchActivityComments } from '../../store/comments';
-import AddActivityModal from '../NewActivity/AddActivityModal';
 import ActivityMenu from './ActivityMenu';
 import LikesSection from './LikesSpotlight';
 
 
 function ActivityListItem ({comments, number, activity, activityId, tripId, currentUser}) {
-    const history = useHistory();
     const dispatch = useDispatch();
     const [menuOpen, setMenuOpen] = useState(false);
+    const activityComments = Object.values(comments).filter(comment => comment.activity === activityId)
     
     
     
@@ -26,8 +23,6 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
         setMenuOpen(false);
     }
     
- 
-    const activityComments = Object.values(comments).filter(comment => comment.activity === activityId)
 
     return (
         <>
@@ -39,7 +34,7 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
                 <div id='act-header'>
                     <span id='act-title'>{activity && activity.title}</span>
                     <div id='activity-menu-container'>
-                        {activityComments && <ActivityMenu 
+                        <ActivityMenu 
                             open={menuOpen}
                             menuButton={
                                 <div id='activity-menu-button' onClick={handleOpenMenu}>
@@ -48,7 +43,7 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
                                     <div id='bar3'></div>
                                 </div>}
                             activityActions={[<button onClick={handleDeleteClick}>Delete Activity</button>]}
-                            />}
+                            />
                     </div>
                 </div>
             </header>

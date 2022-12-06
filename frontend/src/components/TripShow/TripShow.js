@@ -22,8 +22,8 @@ function TripShow () {
   const [loadContent, setLoadContent] = useState(false);
 
   //general activities,trip,user info from state
-  const activities = useSelector(state => state.trips.activity);
   const comments = useSelector(state => state.trips.comment);
+  const activities = useSelector(state => state.trips.activity);
   const trip = useSelector(state => state.trips);
   const { _id, city, tripDates, tripTitle, latitude, longitude, tripAttendees } = trip;
   const currentUser = useSelector(state => state.session.user);
@@ -70,7 +70,7 @@ function TripShow () {
             attendees={tripAttendees}
           />}
           <div id='itinerary-container'>
-            {(activities && dates) &&
+            {(activities && dates && comments) &&
               <ItineraryBook 
                 dates={dates}
                 activities={activities}

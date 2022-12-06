@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import DateCard from './DatesFilterBar';
 import ItineraryDay from './ItineraryDay';
 
-function ItineraryBook ({ comments, dates, activities, tripId, currentUser}) {
+function ItineraryBook ({ comments, dates, activities, tripId, currentUser }) {
     const [selectedDate, setSelectedDate] = useState(null);
 
     
