@@ -1,8 +1,6 @@
 {
   "name": "allora",
   "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
   "engines": {
     "node": "16.16"
   },
@@ -26,5 +24,6 @@
     "url": "https://github.com/lavparker/allora/issues"
   },
   "homepage": "https://github.com/lavparker/allora#readme",
+  "devDependencies": {},
   "description": ""
 }

@@ -26,6 +26,20 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// router.get('/selected/:userId', async (req, res, next) => {
+//   let user;
+//   try {
+//     user = await User.findById(req.params.userId); 
+//     return res.json(user)
+//   } 
+//   catch(err){
+//       const error = new Error('User not found'); 
+//       error.statusCode = 404; 
+//       error.errors = { message: 'Unable to find user with that id'}
+//       return next(error); 
+//   }
+// })
+
 router.get('/current', restoreUser, (req, res) => {
   if (!isProduction) {
     // In development, allow React server to gain access to the CSRF token
