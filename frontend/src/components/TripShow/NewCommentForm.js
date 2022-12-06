@@ -8,14 +8,14 @@ function AddNewComment ({tripId, activityId, userId}) {
     const [text, setText] = useState("");
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         const comment = {text, activity: activityId, trip: tripId, publisher: userId }
         dispatch(createComment(comment));
     }
 
     return (
         <div className='comment-box-container'>
-            <form onSubmit={handleSubmit}>
-                <div id='comment-input-wrapper'>
+            <form onSubmit={handleSubmit} className='comment-form'>
                     <input 
                     className='comment-box'
                     type="text"
@@ -25,9 +25,8 @@ function AddNewComment ({tripId, activityId, userId}) {
                     size='500'
                     placeholder="Comment here..."
                     />
-                </div>
-            </form>
                 <button type='submit' className='comment-submit'>Post</button>
+            </form>
         </div>
     )
 

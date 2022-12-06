@@ -7,22 +7,19 @@
 
 
 @media screen and (min-width: 0px) {
-    #map-container {
-        width: 100%;
-        /* position: sticky; */
-        position: -webkit-sticky;
-        align-self: flex-start;
-        /* display: flex; */
-        top: 0;
-        /* display: flex; */
-        /* height: calc(100vh - 70px); */
-        /* height: 100vh; */
-        /* border: 5px black solid; */
+    .trip-right-container {
+        position: sticky;
+        width: 50%;
+        top: 0px;
+        display: flex;
+        height: 100vh;
+        border: 3px red solid;
     }
     .map {
-        height: 1000px;
-        width: 1000px;
-        position: sticky;
+        height: 3000px;
+        width: 3000px;
+        border: 3px blue solid;
+        /* position: sticky; */
     }
 }
 
@@ -42,10 +39,7 @@
     /* border: 3px solid red; */
     align-content: center;
 }
-.trip-right-container {
-    height: 100vh;
-    width: 50%;
-}
+
 
 
 #trip-image-wrapper {
@@ -365,27 +359,31 @@
 
 .comment-box-container {
     display: flex;
+    flex-direction: row;
     margin-left: 35px;
     height: 35px;
     border-radius: 20px;
     border: 1px lightgray solid;
-    /* background-color: aqua ; */
-    justify-content: space-between;
-    padding: 3px;
+    /* border: 5px red solid; */
+    box-sizing: border-box;
     padding-left: 8px;
     align-items: center;
 }
 
-.comment-box, .comment-submit {
+.comment-form {
     display: flex;
+    justify-content: space-between;
+    margin-right: 6px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    /* border: 2px red solid; */
 }
 
 .comment-box {
     display: flex;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     outline: none !important;
     box-shadow: none;
-    flex-grow: 1;
     height: 25px;
     border: none;
     /* border: 3px purple solid; */
@@ -395,10 +393,12 @@
 
 .comment-submit {
     display: flex;
-    height: 18px;
+    height: auto;
+    width: auto;
     font-size: 13.33px;
     border: none;
     /* border: 1px red solid; */
+    /* margin-left: 3px; */
     background: white;
     color: #b8ccaa;
     font-weight: 500;
@@ -407,5 +407,4 @@
     text-align: center;
     /* z-index: 5; */
     cursor: pointer;
-
 }

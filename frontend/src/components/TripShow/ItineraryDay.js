@@ -8,7 +8,6 @@ import { useEffect } from "react";
     function ItineraryDay ({numDay, date, currentUser, activities, comments, tripId}) {
     const dailyActivities = Object.values(activities).filter(activity => activity.activityDate === date)
 
-        console.log(dailyActivities, 'here')
 
         return (
             <>

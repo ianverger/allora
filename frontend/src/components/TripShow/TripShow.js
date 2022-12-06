@@ -82,7 +82,6 @@ function TripShow () {
       </div>
 
       <div className='trip-right-container'>
-          <div id='map-container'>
             {(latitude && activities) && 
               <ActivitiesMap  
                 centerLat={latitude}
@@ -96,7 +95,6 @@ function TripShow () {
                 }}
                 // highlightedActivity={highlightedActivity}
             />}
-          </div>
       </div>
 
     </div> 

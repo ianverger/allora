@@ -1,4 +1,5 @@
 import jwtFetch from "./jwt";
+import { fetchTripComments } from "./trips";
 
 const RECEIVE_NEW_COMMENT = 'comments/RECEIVE_NEW_COMMENT';
 const RECEIVE_ACTIVITY_COMMENTS = 'comments/RECEIVE_ACTIVITY_COMMENTS';
@@ -11,10 +12,6 @@ const receiveNewComment = comment => ({
     comment
 })
 
-// const receiveActivityComments = comments => ({
-//     type: RECEIVE_ACTIVITY_COMMENTS,
-//     comments
-// })
 
 const receiveCommentErrors = errors => ({
     type: RECEIVE_COMMENT_ERRORS,
@@ -29,18 +26,6 @@ const clearCommentErrors = errors => ({
 
 
 
-// export const fetchActivityComments = activityId => async dispatch => {
-//     try {
-//         const res = await jwtFetch(`/api/comments/activity/${activityId}`);
-//         const comments = await res.json();
-//         dispatch(receiveActivityComments(comments));
-//     } catch(err) {
-//         const resBody = await err.json();
-//         if (resBody.statusCode === 400) {
-//             return dispatch (receiveCommentErrors(resBody.errors));
-//         }
-//     }
-// }
 
 export const createComment = data => async dispatch => {
     try {
@@ -50,7 +35,7 @@ export const createComment = data => async dispatch => {
         });
         
         const comment = await res.json();
-        dispatch(receiveNewComment(comment));
+        dispatch(fetchTripComments(comment.trip));
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
