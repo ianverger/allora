@@ -10,8 +10,7 @@ function DateCard ({date, numDay}) {
             >
 
                 <header id='num-day-wrapper'>
-                    <span>DAY </span>
-                    <span>{numDay}</span>
+                    <span>DAY {numDay}</span>
                 </header>
                 <div id='actual-date-wrapper'>{date}</div>
              

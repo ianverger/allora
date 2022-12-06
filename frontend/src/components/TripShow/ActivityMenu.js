@@ -10,7 +10,7 @@ function ActivityMenu ({open, menuButton, activityActions}) {
             { open ? (
                 <ul id="activity-actions">
                     {activityActions.map((action, idx) => (
-                        <li key={idx}>{action}</li>
+                        <li key={idx} id='dropdown-items'>{action}</li>
                     ))}
                 </ul>
             ): null}

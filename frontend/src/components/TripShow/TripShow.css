@@ -237,8 +237,13 @@
 #date-cards-container {
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
+    width: 75%;
+    align-content: center;
     justify-content: space-around;
+}
+
+#card-button {
+    border: none;
 }
 
 .date-card-container {
@@ -246,7 +251,11 @@
     flex-direction: column;
     width: 80px;
     height: 100px;
-    border: 2px solid red;
+    align-items: center;
+    background: white;
+    border: 1px solid lightgray;
+    box-shadow: 10px 5px 5px lightgray;
+    /* border: 2px solid red; */
 }
 
 #num-day-wrapper {
@@ -256,10 +265,8 @@
 }
 
 #activity-dropdown-container {
-    /* display: block; */
-    /* position: absolute; */
-    display: flex;
-    /* border: 4px purple solid; */
+    position: relative;
+    display: inline-block;
 }
 
 #activity-menu-container {
@@ -268,11 +275,38 @@
 }
 
 #activity-menu-button {
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     cursor: pointer;
     /* color: black; */
     /* border: 1px red solid; */
+}
+
+#activity-actions {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: 3px red solid;
+    list-style: none;
+}
+
+#dropdown-items {
+    height: auto;
+    width: 100%;
+    font-size: 13.33px;
+    border: none;
+    /* border: 1px red solid; */
+    /* margin-left: 3px; */
+    background: white;
+    color: #b8ccaa;
+    font-weight: 500;
+    padding: 2px;
+    /* align-items: center; */
+    /* text-align: center; */
+    /* z-index: 5; */
+    cursor: pointer;
+
 }
 
 #bar1, #bar2, #bar3 {
