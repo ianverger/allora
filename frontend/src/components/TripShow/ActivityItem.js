@@ -8,14 +8,13 @@ import { fetchActivityComments } from '../../store/comments';
 import AddActivityModal from '../NewActivity/AddActivityModal';
 import ActivityMenu from './ActivityMenu';
 import LikesSection from './LikesSpotlight';
-// import './ActivityItem.css'
 
 
 function ActivityListItem ({comments, number, activity, activityId, currentUser}) {
-    // const actComments = useSelector()
+    const activityComments = Object.values(comments).filter(comment => comment.activity === activityId )
     const history = useHistory();
     const dispatch = useDispatch();
-    const [loadComments, setLoadComments] = useState(false);
+    // const [loadComments, setLoadComments] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
 
@@ -30,7 +29,7 @@ function ActivityListItem ({comments, number, activity, activityId, currentUser}
 }
 
 
-    if (loadComments) return (
+    return (
         <>
         <div className="activity-list-item-container">
             <header id="activity-item-header">
@@ -68,7 +67,7 @@ function ActivityListItem ({comments, number, activity, activityId, currentUser}
                 />}
             </div>
             <div id='comments-container'>
-                {comments && comments.map((comment,idx) => (
+                {activityComments && activityComments.map((comment,idx) => (
                     <div id='comment-item' key={idx}>
                         <CommentItem
                             text={comment.text}
