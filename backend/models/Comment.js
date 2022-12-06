@@ -12,6 +12,11 @@ const commentSchema = Schema({
         ref: 'Activity',
         required: true
     },
+    trip: {
+        type: Schema.Types.ObjectId,
+        ref: 'Trip',
+        required: true
+    },
     text: {
         type: String,
         required: true

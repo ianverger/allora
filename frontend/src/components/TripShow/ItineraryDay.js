@@ -6,7 +6,7 @@ import AddActivityModal from "../NewActivity/AddActivityModal";
 import { useEffect } from "react";
 import { fetchActivityComments } from "../../store/activities";
 
-function ItineraryDay ({numDay, date, currentUser, activities, tripId}) {
+function ItineraryDay ({numDay, date, currentUser, activities, comments, tripId}) {
 const dailyActivities = Object.values(activities).filter(activity => activity.activityDate === date)
 
 
@@ -25,6 +25,7 @@ const dailyActivities = Object.values(activities).filter(activity => activity.ac
                         number={idx + 1}
                         currentUser={currentUser}
                         activity={activity}
+                        comments={comments}
                         activityId={activity._id}
  
                     />

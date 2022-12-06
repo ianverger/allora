@@ -23,6 +23,7 @@ function TripShow () {
 
   //general activities,trip,user info from state
   const activities = useSelector(state => state.trips.activity);
+  const comments = useSelector(state => state.trips.comment);
   const trip = useSelector(state => state.trips);
   const { _id, city, tripDates, tripTitle, latitude, longitude, tripAttendees } = trip;
   const currentUser = useSelector(state => state.session.user);
@@ -73,6 +74,7 @@ function TripShow () {
               <ItineraryBook 
                 dates={dates}
                 activities={activities}
+                comments={comments}
                 currentUser={currentUser}
                 tripId={_id}
               />}

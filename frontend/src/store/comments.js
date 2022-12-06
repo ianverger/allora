@@ -11,10 +11,10 @@ const receiveNewComment = comment => ({
     comment
 })
 
-const receiveActivityComments = comments => ({
-    type: RECEIVE_ACTIVITY_COMMENTS,
-    comments
-})
+// const receiveActivityComments = comments => ({
+//     type: RECEIVE_ACTIVITY_COMMENTS,
+//     comments
+// })
 
 const receiveCommentErrors = errors => ({
     type: RECEIVE_COMMENT_ERRORS,
@@ -29,18 +29,18 @@ const clearCommentErrors = errors => ({
 
 
 
-export const fetchActivityComments = activityId => async dispatch => {
-    try {
-        const res = await jwtFetch(`/api/comments/activity/${activityId}`);
-        const comments = await res.json();
-        dispatch(receiveActivityComments(comments));
-    } catch(err) {
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-            return dispatch (receiveCommentErrors(resBody.errors));
-        }
-    }
-}
+// export const fetchActivityComments = activityId => async dispatch => {
+//     try {
+//         const res = await jwtFetch(`/api/comments/activity/${activityId}`);
+//         const comments = await res.json();
+//         dispatch(receiveActivityComments(comments));
+//     } catch(err) {
+//         const resBody = await err.json();
+//         if (resBody.statusCode === 400) {
+//             return dispatch (receiveCommentErrors(resBody.errors));
+//         }
+//     }
+// }
 
 export const createComment = data => async dispatch => {
     try {
@@ -65,7 +65,7 @@ export const deleteComment = (commentId) => async (dispatch) => {
     });
 
     const data = await res.json();
-    dispatch(fetchActivityComments(data.activity));
+    // dispatch(fetchActivityComments(data.activity));
     return;
 }
 
@@ -88,8 +88,8 @@ const commentsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_NEW_COMMENT:
            return { ...state, ...action.comment };
-        case RECEIVE_ACTIVITY_COMMENTS:
-            return {...state, ...action.comments};
+        // case RECEIVE_ACTIVITY_COMMENTS:
+        //     return {...state, ...action.comments};
         default:
             return state;
 

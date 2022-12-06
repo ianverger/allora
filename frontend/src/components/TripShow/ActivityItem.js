@@ -11,23 +11,13 @@ import LikesSection from './LikesSpotlight';
 // import './ActivityItem.css'
 
 
-function ActivityListItem ({number, activity, activityId, currentUser}) {
-    const comments = useSelector(state => Object.values(state.comments).filter(comment => comment.activity === activityId));
+function ActivityListItem ({comments, number, activity, activityId, currentUser}) {
+    // const actComments = useSelector()
     const history = useHistory();
     const dispatch = useDispatch();
     const [loadComments, setLoadComments] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
-
-useEffect(() => {
-    const getComments = async () => {
-      const comments = await dispatch(fetchActivityComments(activity._id))
-      .then(setLoadComments(true))
-      const data = await comments;
-    }
-    
-    getComments();
-  }, [dispatch, activity])
 
 
   const handleOpenMenu = () => {

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Comment = mongoose.model('Comment');
 const Activity = mongoose.model('Activity');
+const Trip = mongoose.model('Trip');
 const { requireUser, restoreUser } = require('../../config/passport');
 const validateCommentInput = require('../../validation/comments');
 
@@ -19,20 +20,20 @@ router.get('/', async(req, res) =>{
     }
 })
 
-router.get('/activity/:activityId', async (req, res, next) => {
-    let activity;
+router.get('/trip/:tripId', async (req, res, next) => {
+    let trip;
     try {
-        activity = await Activity.findById(req.params.activityId);
+        trip = await Trip.findById(req.params.tripId);
     }
     catch (err) {
-        const error = new Error('Activity not found');
+        const error = new Error('Trip not found');
         error.statusCode = 404
-        error.errors = { message: "No activity found with that id"}
+        error.errors = { message: "No trip found with that id"}
         return next(error);
     }
 
     try {
-        const comments = await Comment.find({ activity: activity._id})
+        const comments = await Comment.find({ trip: trip._id})
                                       .sort( {createdAt: -1 })
                                       .populate("publisher", "_id, username");
         return res.json(comments);
@@ -47,6 +48,7 @@ router.post('/', requireUser, restoreUser, validateCommentInput, async(req, res,
     try{
         const newComment = new Comment({
             activity: req.body.activity,
+            trip: req.body.trip,
             text: req.body.text,
             publisher: req.user._id
         });

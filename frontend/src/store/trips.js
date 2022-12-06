@@ -12,6 +12,7 @@ const RECEIVE_CITIES = 'trips/RECEIVE_CITIES';
 const REMOVE_TRIP = 'trips/REMOVE_TRIP';
 
 const RECEIVE_TRIP_ACTIVITIES = 'activities/RECEIVE_TRIP_ACTIVITIES';
+const RECEIVE_TRIP_COMMENTS = 'comments/RECEIVE_TRIP_COMMENTS';
 
 
 
@@ -56,6 +57,11 @@ const receiveTripActivities = activities => ({
     activities
 })
 
+const receiveTripComments = comments => ({
+    type: RECEIVE_TRIP_COMMENTS,
+    comments
+})
+
 
 
 // export const fetchUserTrips = userId => async dispatch => {
@@ -93,6 +99,7 @@ export const fetchTrip = tripId => async dispatch => {
         const trip = await res.json();
         dispatch(receiveTrip(trip));
         dispatch(fetchTripActivities(tripId));
+        dispatch(fetchTripComments(tripId));
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
@@ -152,6 +159,18 @@ export const fetchTripActivities = tripId => async dispatch => {
         }
     }
 }
+export const fetchTripComments = tripId => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/comments/trip/${tripId}`);
+        const comments = await res.json();
+        dispatch(receiveTripComments(comments));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            return dispatch(receiveActivityErrors(resBody.errors));
+        }
+    }
+}
 
 const nullErrors = null;
 
@@ -178,7 +197,9 @@ const tripsReducer = (state = {}, action) => {
         case RECEIVE_TRIP_ACTIVITIES:
             state.activity = action.activities;
             return { ...state };
-            // return { ...state, ...action.activities };
+        case RECEIVE_TRIP_COMMENTS:
+            state.comment = action.comments;
+            return { ...state };
         default:
             return state;
     }
