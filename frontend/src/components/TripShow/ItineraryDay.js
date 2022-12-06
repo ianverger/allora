@@ -25,6 +25,7 @@ import { useEffect } from "react";
                             currentUser={currentUser}
                             activity={activity}
                             comments={comments}
+                            tripId={tripId}
                             activityId={activity._id}
     
                         />

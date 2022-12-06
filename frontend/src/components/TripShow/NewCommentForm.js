@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import { createComment } from "../../store/comments";
 
 
-function AddNewComment ({activityId, userId}) {
+function AddNewComment ({tripId, activityId, userId}) {
     const dispatch = useDispatch();
     const [text, setText] = useState("");
 
     const handleSubmit = (e) => {
-        const comment = {text, activity: activityId, publisher: userId }
+        const comment = {text, activity: activityId, trip: tripId, publisher: userId }
         dispatch(createComment(comment));
     }
 

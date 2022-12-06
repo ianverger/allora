@@ -10,24 +10,24 @@ import ActivityMenu from './ActivityMenu';
 import LikesSection from './LikesSpotlight';
 
 
-function ActivityListItem ({comments, number, activity, activityId, currentUser}) {
-    const activityComments = Object.values(comments).filter(comment => comment.activity === activityId )
+function ActivityListItem ({comments, number, activity, activityId, tripId, currentUser}) {
     const history = useHistory();
     const dispatch = useDispatch();
-    // const [loadComments, setLoadComments] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-
-
-
-  const handleOpenMenu = () => {
-    setMenuOpen(!menuOpen);
-  }
-
-  const handleDeleteClick = () => {
-    dispatch(deleteActivity(activity._id));
-    setMenuOpen(false);
-}
-
+    
+    
+    
+    const handleOpenMenu = () => {
+        setMenuOpen(!menuOpen);
+    }
+    
+    const handleDeleteClick = () => {
+        dispatch(deleteActivity(activity._id));
+        setMenuOpen(false);
+    }
+    
+ 
+    const activityComments = Object.values(comments).filter(comment => comment.activity === activityId)
 
     return (
         <>
@@ -39,7 +39,7 @@ function ActivityListItem ({comments, number, activity, activityId, currentUser}
                 <div id='act-header'>
                     <span id='act-title'>{activity && activity.title}</span>
                     <div id='activity-menu-container'>
-                        <ActivityMenu 
+                        {activityComments && <ActivityMenu 
                             open={menuOpen}
                             menuButton={
                                 <div id='activity-menu-button' onClick={handleOpenMenu}>
@@ -48,7 +48,7 @@ function ActivityListItem ({comments, number, activity, activityId, currentUser}
                                     <div id='bar3'></div>
                                 </div>}
                             activityActions={[<button onClick={handleDeleteClick}>Delete Activity</button>]}
-                            />
+                            />}
                     </div>
                 </div>
             </header>
@@ -80,6 +80,7 @@ function ActivityListItem ({comments, number, activity, activityId, currentUser}
             <div id="add-comment-box">
                 <AddNewComment
                     activityId={activity._id}
+                    tripId={tripId}
                     userId={currentUser._id}
                 />
             </div>
