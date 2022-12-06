@@ -1,3 +1,77 @@
-h1 {
+#personal_page {
+    /* height: 80vh;     */
+}
+
+#personal_page > h1 {
     margin-top: 100px;
+    text-align: center;
+}
+
+#pp-bottom {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    height: 60vh;
+}
+
+#pp-bl {
+    width: 65%;
+    margin-right: 15px;
+    /* height: 100%; */
+}
+
+#pp-br {
+    margin-left: 15px;
+    width: 20%;
+}
+
+#pp-past-trips {
+    background-color: #F3CFC6;
+    border: solid 1px #fffafa;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 1px 1px 1px 1px rgb(123, 122, 122);
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+}
+
+#pp-friends {
+    background-color: #F3CFC6;
+    border: solid 1px #fffafa;
+    border-radius: 5px;
+    padding: 10px;
+    /* margin: 5px; */
+    box-shadow: 1px 1px 1px 1px rgb(123, 122, 122);
+
+    /* justify-content: space-between; */
+    height: 100%;
+}
+
+.friends > p {
+    margin: 5px;
+}
+
+.pt-link {
+    text-decoration: none;
+    color: #000000;
+}
+
+.pt-link:hover {
+    color: #b8ccaa
+}
+
+.past-trips {
+    width: 160px;
+    background-color: #fffafa;
+    border: solid 1px #000000;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 1px 1px 1px 1px rgb(123, 122, 122);
+}
+
+.past-trips:hover {
+    box-shadow: 3px 3px 3px 3px rgb(64, 62, 62);
+    cursor: pointer
 }

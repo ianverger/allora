@@ -57,7 +57,7 @@ h2 {
 }
 
 #new-trip-button {
-    width: 250px;
+    width: 100%;
     height: 140px;
     background-color: #b8ccaa;
     color: white;
@@ -81,6 +81,13 @@ h2 {
     content: "Create New Trip!";
 }
 
-/* #bio {
-color: black;
-} */
+#bio {
+    width: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+#bio-right {
+    width: 50%;
+}

@@ -7,7 +7,8 @@ import './DropdownMenu.css';
 function DropdownMenu({ currentUser }) {
     const dispatch = useDispatch();
     // const sessionUser = useSelector(state => state.session.currentUser);
-    // const userId = currentUser.id
+    // const userId = sessionUser.id;
+    const userId = currentUser._id
     // const selectedUser = useSelector(getUser(userId));
     // const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
@@ -46,19 +47,23 @@ function DropdownMenu({ currentUser }) {
         {showMenu && (
           <ul id="dropdown-menu">
             <button>
-                <Link className="ddm-buttons" style={{textDecoration: "none", color: "inherit"}} to={'/profile'}>
+                <Link className="ddm-buttons" style={{textDecoration: "none", color: "inherit"}} to={`/users/${userId}`}>
                     <i id="user-solid" style={{fontSize: "25px", width: "30px"}} className="fa-solid fa-user"></i><p className="ddm-text">View Profile</p>
                 </Link>
             </button>
-            {/* <hr style={{height: "2px"}}/> */}
-              <button>
-                <Link className="ddm-buttons" style={{textDecoration: "none", color: "inherit"}} to={'/meetTheTeam'}>
-                    <i id="people-solid" style={{fontSize: "25px", width: "30px"}} class="fa-solid fa-people-group"></i><p className="ddm-text">Hire Us!</p>
-                </Link>
-              </button>
-              <button className="ddm-buttons" onClick={logoutUser}>
-                <i id="logout-solid"style={{fontSize: "25px", width: "30px"}} className="fa-solid fa-right-from-bracket"></i><p className="ddm-text">Logout</p>
-              </button>
+            <button>
+              <Link className="ddm-buttons" style={{textDecoration: "none", color: "inherit"}} to={'/profile'}>
+                  <i id="plane-solid" style={{fontSize: "25px", width: "30px"}} class="fa-solid fa-plane"></i><p className="ddm-text">My Trips</p>
+              </Link>
+            </button>
+            <button>
+              <Link className="ddm-buttons" style={{textDecoration: "none", color: "inherit"}} to={'/meetTheTeam'}>
+                  <i id="people-solid" style={{fontSize: "25px", width: "30px"}} class="fa-solid fa-people-group"></i><p className="ddm-text">Hire Us!</p>
+              </Link>
+            </button>
+            <button className="ddm-buttons" onClick={logoutUser}>
+              <i id="logout-solid"style={{fontSize: "25px", width: "30px"}} className="fa-solid fa-right-from-bracket"></i><p className="ddm-text">Logout</p>
+            </button>
               {/* <button onClick={(e) => history.push(`/ProfilePage/${currentUser.id}`)}>
                 {currentUser && <img src={profilePicSrc}  id="dropdown-profile-icon"/>}
                 <p className="button-text">&nbsp;&nbsp;{currentUser.firstName} {currentUser.lastName}</p>
