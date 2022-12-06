@@ -297,7 +297,7 @@
 
 #likes-container {
     display: flex;
-    border: 1px red solid;
+    /* border: 1px red solid; */
     justify-content: flex-end;
     border-top: lightgray 1px solid;
     padding: 8px;
