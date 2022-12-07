@@ -19,8 +19,8 @@
 #tc-right {
     /* gap: none; */
     /* margin-top: -3px; */
-    width: 27%;
-    padding: 5px;
+    width: 25%;
+    padding-bottom: 2px;
     padding-right: 8px;
     display: flex;
     flex-direction: column;

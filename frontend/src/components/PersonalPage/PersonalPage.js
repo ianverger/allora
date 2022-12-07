@@ -44,7 +44,7 @@ function PersonalPage () {
                             <NavLink to={`/trips/${trip._id}`} className="pt-link">
                                 <div className="past-trips">
                                     <h6>{trip.tripTitle}</h6>
-                                    <p>{trip.city}</p>
+                                    <p id="pt-title">{trip.city}</p>
                                     <p>{dateTranslate2(trip.tripDates[0])} -</p>
                                     <p>{dateTranslate2(trip.tripDates[trip.tripDates.length - 1])}</p>
                                 </div>

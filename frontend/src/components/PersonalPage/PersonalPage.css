@@ -59,11 +59,7 @@
 .pt-link {
     text-decoration: none;
     color: #000000;
-}
-
-.pt-link:hover {
-    color: #b8ccaa;
-    text-decoration: none;
+    height: 180px;
 }
 
 .past-trips {
@@ -80,6 +76,29 @@
 .past-trips > p {
     margin: 3px;
     font-size: small;
+    margin: 0;
+}
+
+.past-trips > h6 {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+#pt-title {
+    color: rgb(153, 150, 150);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.pt-link:hover {
+    color: #b8ccaa;
+    text-decoration: none;
+}
+
+.pt-link:hover #pt-title {
+    /* color: #b8ccaa; */
+    color: #F3CFC6;
+    text-decoration: none;
 }
 
 .past-trips:hover {

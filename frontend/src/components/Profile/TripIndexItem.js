@@ -16,9 +16,13 @@ const TripIndexItem = ({trip}) => {
         history.push(to);
     }, [history, trip])
 
-    const attendees = trip.tripAttendees.map((attendee, idx) => <p className="trip-card-attendees" key={idx}>{`@${attendee.username}`}</p>)
+    console.log(trip.tripAttendees, trip.tripTitle)
     const planner = trip.tripAttendees.find(attendee => attendee._id === trip.planner)
+    const lessPlanner = trip.tripAttendees.filter(attendee => attendee._id !== planner._id)
+    const attendees = lessPlanner.map((attendee, idx) => <p className="trip-card-attendees" key={idx}>{`@${attendee.username}`}</p>)
 
+    // console.log(planner, "p")
+    // console.log(lessPlanner, "ta2")
     return (
         <div id="trip-card" onClick={handleClick}>
             <div id="tc-left">
@@ -35,7 +39,7 @@ const TripIndexItem = ({trip}) => {
                 <div id="attnd">
                     <i class="fa-solid fa-user-group"></i>
                     <div>{attendees.length < 3 ? attendees : attendees.slice(0, 3)}</div>
-                    {attendees.length < 4 ? "" : <p className="more-attendees">{`+ ${attendees.length - 3}`}</p>}
+                    {attendees.length < 4 ? "" : <p className="more-attendees">{`+ ${attendees.length - 2}`}</p>}
                 </div>
                 {/* {attendees.length < 7 ? attendees : attendees.slice(0, 6)} */}
                 {/* {attendees.length < 7 ? "" : <p className="trip-card-attendees">{`+ ${attendees.length - 6} more`}</p>} */}
