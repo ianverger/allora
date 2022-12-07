@@ -300,16 +300,28 @@
 
 #activity-actions {
     position: absolute;
+    width: 120px;
+    display: flex;
+    justify-items: center;
+    left: -100px;
+    /* width: 100px; */
+    flex-direction: column;
     background-color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    border: 3px red solid;
-    list-style: none;
+    /* border: 3px red solid; */
+}
+
+#delete-act-button {
+    border: 1px red solid;
+    display: flex;
+    width: 100px;
+    /* left: -50px; */
 }
 
 #dropdown-items {
     height: auto;
-    width: 100%;
+    width: 50px;
     font-size: 13.33px;
     border: none;
     /* border: 1px red solid; */

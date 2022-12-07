@@ -30,7 +30,7 @@ export const createActivity = data => async dispatch => {
             body: JSON.stringify(data)
         });
         const activity = await res.json();
-        dispatch(receiveActivity(activity));
+        dispatch(fetchTripActivities(activity.trip));
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {

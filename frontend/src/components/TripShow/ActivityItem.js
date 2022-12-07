@@ -41,7 +41,7 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
                                     <div id='bar2'></div>
                                     <div id='bar3'></div>
                                 </div>}
-                            activityActions={[<button onClick={handleDeleteClick}>Delete Activity</button>]}
+                            activityActions={[<button id='delete-act-button' onClick={handleDeleteClick}>Delete Activity</button>]}
                             />
                     </div>
                 </div>

@@ -8,11 +8,11 @@ function ActivityMenu ({open, menuButton, activityActions}) {
         <div id="activity-dropdown-container">
             {menuButton}
             { open ? (
-                <ul id="activity-actions">
+                <div id="activity-actions">
                     {activityActions.map((action, idx) => (
-                        <li key={idx} id='dropdown-items'>{action}</li>
+                        <div key={idx} id='dropdown-items'>{action}</div>
                     ))}
-                </ul>
+                </div>
             ): null}
 
         </div>
