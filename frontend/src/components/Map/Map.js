@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { useHistory } from "react-router-dom";
-import Geocode from "react-geocode";
-Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
+
 
 
 function ActivitiesMap({
@@ -13,7 +12,7 @@ function ActivitiesMap({
     mapEventHandlers = {},
     markerEventHandlers = {}
     }) 
-
+    
     {
 
     const [map, setMap] = useState(null);
