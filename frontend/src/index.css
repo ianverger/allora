@@ -19,14 +19,17 @@ form > .errors {
 */
 * {
   margin: 0;
+  font-family: 'Archivo', sans-serif;
 }
 /*
   3. Allow percentage-based heights in the application
 */
 html, body {
   height: 100%;
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
+  /* font-family: 'Lato', sans-serif; */
+      font-family: 'Archivo', sans-serif;
+
+  /* font-weight: 400; */
   background-color: #fffafa;
 }
 /*

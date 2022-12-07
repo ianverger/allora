@@ -35,7 +35,7 @@ function PersonalPage () {
     // console.log(selectedUserId);
     return (
         <div id="personal_page">
-            <h1>{currentUser.username}</h1>
+            <h1>@{currentUser.username}</h1>
             <div id="pp-bottom">
                 <div id="pp-bl">
                     <h2>Past Trips:</h2>
@@ -43,6 +43,7 @@ function PersonalPage () {
                         {userTrips && pastTrips.map((trip, idx) => (
                             <NavLink to={`/trips/${trip._id}`} className="pt-link">
                                 <div className="past-trips">
+                                    <h6>{trip.tripTitle}</h6>
                                     <p>{trip.city}</p>
                                     <p>{dateTranslate2(trip.tripDates[0])} -</p>
                                     <p>{dateTranslate2(trip.tripDates[trip.tripDates.length - 1])}</p>

@@ -1,5 +1,7 @@
 #personal_page {
-    /* height: 80vh;     */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #personal_page > h1 {
@@ -15,7 +17,7 @@
 }
 
 #pp-bl {
-    width: 65%;
+    width: 70%;
     margin-right: 15px;
     /* height: 100%; */
 }
@@ -29,12 +31,13 @@
     background-color: #F3CFC6;
     border: solid 1px #fffafa;
     border-radius: 5px;
-    padding: 10px;
+    padding: 8px;
     margin: 5px;
     box-shadow: 1px 1px 1px 1px rgb(123, 122, 122);
     display: flex;
     justify-content: space-around;
     height: 100%;
+    flex-wrap: wrap;
 }
 
 #pp-friends {
@@ -59,16 +62,24 @@
 }
 
 .pt-link:hover {
-    color: #b8ccaa
+    color: #b8ccaa;
+    text-decoration: none;
 }
 
 .past-trips {
+    margin: 10px;
     width: 160px;
+    height: 180px;
     background-color: #fffafa;
     border: solid 1px #000000;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 1px 1px 1px 1px rgb(123, 122, 122);
+}
+
+.past-trips > p {
+    margin: 3px;
+    font-size: small;
 }
 
 .past-trips:hover {
