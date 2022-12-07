@@ -28,7 +28,6 @@ function AddActivityModal({tripId, userId, currentDate}) {
       dispatch(createActivity(activity));
       setShowModal(false);
       
-      
   }
 
   const [showModal, setShowModal] = useState(false);
