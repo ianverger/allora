@@ -2,32 +2,15 @@ import jwtFetch from "./jwt";
 import { fetchTripActivities } from "./trips";
 
 
-// const RECEIVE_NEW_ACTIVITY = 'activities/RECEIVE_NEW_ACTIVITY';
-// const RECEIVE_TRIP_ACTIVITIES = 'activities/RECEIVE_TRIP_ACTIVITIES';
 const RECEIVE_ACTIVITY_ERRORS = 'activities/RECEIVE_ACTIVITY_ERRORS';
 const CLEAR_ACTIVITY_ERRORS = 'activities/CLEAR_ACTIVITY_ERRORS';
 const RECEIVE_ACTIVITY = 'activities/RECEIVE_ACTIVITY';
 
-// const RECEIVE_ACTIVITY_COMMENTS = 'comments/RECEIVE_ACTIVITY_COMMENTS';
-
-// const receiveNewActivity = activity => ({
-//     type: RECEIVE_NEW_ACTIVITY,
-//     activity
-// })
 const receiveActivity = activity => ({
     type: RECEIVE_ACTIVITY,
     activity
 })
 
-// const receiveTripActivities = activities => ({
-//     type: RECEIVE_TRIP_ACTIVITIES,
-//     activities
-// })
-
-// const receiveActivityComments = comments => ({
-//     type: RECEIVE_ACTIVITY_COMMENTS,
-//     comments
-// })
 
 const receiveActivityErrors = errors => ({
     type: RECEIVE_ACTIVITY_ERRORS,
@@ -39,28 +22,6 @@ const clearActivityErrors = errors => ({
     errors
 })
 
-// export const getTripActivities = tripId => state => (
-//     Object.values(state.activities)
-//     .filter(activity => activity.tripId === tripId)
-//     .map(activity => ({
-//         ...activity,
-//         creator: state.users[activity.creatorId]?.username
-//     }))
-// );
-
-// export const fetchTripActivities = tripId => async dispatch => {
-//     try {
-//         const res = await jwtFetch(`/api/activities/trip/${tripId}`);
-//         const activities = await res.json();
-//         dispatch(receiveTripActivities(activities));
-//     } catch(err) {
-//         const resBody = await err.json();
-//         if (resBody.statusCode === 400) {
-//             return dispatch(receiveActivityErrors(resBody.errors));
-//         }
-//     }
-// }
-
 
 export const createActivity = data => async dispatch => {
     try {
@@ -69,7 +30,7 @@ export const createActivity = data => async dispatch => {
             body: JSON.stringify(data)
         });
         const activity = await res.json();
-        dispatch(receiveActivity(activity));
+        dispatch(fetchTripActivities(activity.trip));
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {

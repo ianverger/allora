@@ -9,7 +9,6 @@ import { useEffect } from "react";
     const dailyActivities = Object.values(activities).filter(activity => activity.activityDate === date)
 
 
-
         return (
             <>
             <div className="day-container">

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import './Map.css';
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { useHistory } from "react-router-dom";
 import Geocode from "react-geocode";

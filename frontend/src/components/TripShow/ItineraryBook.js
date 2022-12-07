@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import DateCard from './DatesFilterBar';
 import ItineraryDay from './ItineraryDay';
 
-function ItineraryBook ({ comments, dates, activities, tripId, currentUser}) {
+function ItineraryBook ({ comments, dates, activities, tripId, currentUser }) {
     const [selectedDate, setSelectedDate] = useState(null);
 
     
@@ -12,7 +12,7 @@ function ItineraryBook ({ comments, dates, activities, tripId, currentUser}) {
         <div id='itinerary-book-section-container'>
             <div id='date-cards-container'>
                 {dates && dates.map((date, idx) => (
-                    <button key={idx} onClick={(e) => setSelectedDate(date)}>
+                    <button key={idx} id='card-button' onClick={(e) => setSelectedDate(date)}>
                     <DateCard
                         date={date}
                         numDay={idx+1}

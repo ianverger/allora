@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { deleteActivity} from '../../store/activities';
 import CommentItem from './CommentItem';
 import AddNewComment from './NewCommentForm';
-import { fetchActivityComments } from '../../store/comments';
-import AddActivityModal from '../NewActivity/AddActivityModal';
 import ActivityMenu from './ActivityMenu';
 import LikesSection from './LikesSpotlight';
 
 
 function ActivityListItem ({comments, number, activity, activityId, tripId, currentUser}) {
-    const history = useHistory();
     const dispatch = useDispatch();
     const [menuOpen, setMenuOpen] = useState(false);
-    
+    const activityComments = Object.values(comments).filter(comment => comment.activity === activityId)
     
     
     const handleOpenMenu = () => {
@@ -26,8 +22,6 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
         setMenuOpen(false);
     }
     
- 
-    const activityComments = Object.values(comments).filter(comment => comment.activity === activityId)
 
     return (
         <>
@@ -39,7 +33,7 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
                 <div id='act-header'>
                     <span id='act-title'>{activity && activity.title}</span>
                     <div id='activity-menu-container'>
-                        {activityComments && <ActivityMenu 
+                        <ActivityMenu 
                             open={menuOpen}
                             menuButton={
                                 <div id='activity-menu-button' onClick={handleOpenMenu}>
@@ -47,8 +41,8 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
                                     <div id='bar2'></div>
                                     <div id='bar3'></div>
                                 </div>}
-                            activityActions={[<button onClick={handleDeleteClick}>Delete Activity</button>]}
-                            />}
+                            activityActions={[<button id='delete-act-button' onClick={handleDeleteClick}>Delete Activity</button>]}
+                            />
                     </div>
                 </div>
             </header>
@@ -70,8 +64,10 @@ function ActivityListItem ({comments, number, activity, activityId, tripId, curr
                 {activityComments && activityComments.map((comment,idx) => (
                     <div id='comment-item' key={idx}>
                         <CommentItem
+                            publisher={comment.publisher}
+                            currentUserId={currentUser._id}
                             text={comment.text}
-                            publisherName={comment.publisher.username}
+                            commentId={comment._id}
                             />
                     </div>
                 ))}
