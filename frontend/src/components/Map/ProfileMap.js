@@ -14,7 +14,7 @@ function ProfileMap({trips}) {
                     lat: 42.75277,
                     lng: 33.81443
                 },
-            zoom: 13,
+            zoom: 3,
             clickableIcons: false
             }));
         }
