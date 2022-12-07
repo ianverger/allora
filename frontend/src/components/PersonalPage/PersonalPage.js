@@ -34,28 +34,39 @@ function PersonalPage () {
 
     // console.log(selectedUserId);
     return (
-        <>
-            <h1>{currentUser.username}</h1>
-            <h2>Past Trips:</h2>
-            {userTrips && pastTrips.map((trip, idx) => (
-                <NavLink to={`/trips/${trip._id}`}>
-                    <div>
-                        <p>{trip.city}</p>
-                        <p>{dateTranslate2(trip.tripDates[0])} -</p>
-                        <p>{dateTranslate2(trip.tripDates[trip.tripDates.length - 1])}</p>
+        <div id="personal_page">
+            <h1>@{currentUser.username}</h1>
+            <div id="pp-bottom">
+                <div id="pp-bl">
+                    <h2>Past Trips:</h2>
+                    <div id="pp-past-trips">
+                        {userTrips && pastTrips.map((trip, idx) => (
+                            <NavLink to={`/trips/${trip._id}`} className="pt-link">
+                                <div className="past-trips">
+                                    <h6>{trip.tripTitle}</h6>
+                                    <p id="pt-title">{trip.city}</p>
+                                    <p>{dateTranslate2(trip.tripDates[0])} -</p>
+                                    <p>{dateTranslate2(trip.tripDates[trip.tripDates.length - 1])}</p>
+                                </div>
+                            </NavLink>
+                        ))} 
                     </div>
-                </NavLink>
-            ))} 
-            <h2>Friends:</h2>
-            {userTrips && uniqueFriends.map((friend, idx) => (
-                // <NavLink to={`/users/${friend._id}`}>
-                    <div>
-                        {/* <p>{friend._id}</p> */}
-                        <p>@{friend.username}</p>
+                </div>
+                <div id="pp-br">
+                    <h2>Friends:</h2>
+                    <div id="pp-friends">
+                        {userTrips && uniqueFriends.map((friend, idx) => (
+                            // <NavLink to={`/users/${friend._id}`}>
+                                <div className="friends">
+                                    {/* <p>{friend._id}</p> */}
+                                    <p>@{friend.username}</p>
+                                </div>
+                            // </NavLink>
+                        ))}
                     </div>
-                // </NavLink>
-            ))}
-        </>
+                </div>
+            </div>
+        </div>
     )
 }
 

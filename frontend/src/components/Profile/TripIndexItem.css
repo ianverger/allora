@@ -16,19 +16,59 @@
     cursor: pointer;
 }
 
-/* #top {
+#tc-right {
+    /* gap: none; */
+    /* margin-top: -3px; */
+    width: 25%;
+    padding-bottom: 2px;
+    padding-right: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#planner, #attnd {
     display: flex;
     align-items: center;
-    gap: 20px;
-} */
+}
 
-#tc-right {
-    gap: none;
-    margin-top: -3px;
+#planner > i, #attnd > i {
+    color: white;
+    margin-right: 8px;
+}
+
+#planner > p {
+    color: white;
+    font-size: 18px;
 }
 
 .trip-card-attendees{
-    font-size: 10px;
-    margin-bottom: 0;
+    font-size: 12px;
+    margin: 0;
+    color: white;
+}
+
+.more-attendees {
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    color: white;
+}
+
+#tc-left {
+    padding-left: 8px;
+}
+
+#tc-left > * {
+    margin: 0px;
+}
+
+#tc-left > h5 {
+    color: rgb(153, 150, 150);
+}
+
+#tc-left > p {
+    font-size: medium;
 }
 

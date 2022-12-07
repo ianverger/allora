@@ -21,12 +21,9 @@ function NavBar () {
           <Link to={'/profile'}>
             <img src="https://hippark-photos.s3.amazonaws.com/allora-logos/allora-logo-pink_adobe_express.png" alt="allora-logo" id="allora-nav-logo"/>
           </Link>
-          {/* <div id="middle-nav-links">
-            <i className="fa-solid fa-plane"/>Trips
-          </div> */}
           <div id="right-nav-links">
             <button>
-              <Link style={{textDecoration: "none", color: "inherit"}} to={'/profile'}>{currentUser.username}</Link>
+              <Link style={{textDecoration: "none", color: "inherit"}} to={`/users/${currentUser._id}`}>{currentUser.username}</Link>
             </button>
             |
             <DropdownMenu currentUser={currentUser} />

@@ -32,20 +32,20 @@
 #right-nav-links > button:hover {
     /* background-color: #d0a59aba;
     height: 75px; */
-    font-weight: 900;
+    /* font-weight: 900; */
     color: rgb(240, 233, 233);
     position: relative;
 }
 
 #right-nav-links > button::before {
-    content: '';
+    /* content: '';
     display: block;
     height: 5px;
     width: 0%;
     background-color: rgb(240, 233, 233);
     position: absolute;
     top: 5px;
-    transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms; */
 }
 
 #right-nav-links > button:hover::before {
