@@ -83,6 +83,15 @@
 
 }
 
+#itinerary-book-section-container {
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    /* justify-content: center; */
+    align-items: center;
+    /* border: 3px red solid; */
+}
+
 
 #itinerary-list-container {
     display: flex;
@@ -236,10 +245,10 @@
 
 #date-cards-container {
     display: flex;
-    flex-direction: row;
     width: 75%;
     align-content: center;
     justify-content: space-around;
+    /* border: 2px blue solid; */
 }
 
 #card-button {
@@ -252,6 +261,7 @@
     width: 80px;
     height: 100px;
     align-items: center;
+    padding-top: 15px;
     background: white;
     border: 1px solid lightgray;
     box-shadow: 10px 5px 5px lightgray;
@@ -261,7 +271,13 @@
 #num-day-wrapper {
     display: flex;
     font-size: 18px;
+    font-weight: 600;
 
+}
+
+#actual-date-wrapper {
+    font-size: 20px;
+    font-weight: 400;
 }
 
 #activity-dropdown-container {
