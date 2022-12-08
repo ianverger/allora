@@ -55,6 +55,11 @@ h2 {
     margin-bottom: 100px; */
 }
 
+.profile-map {
+    width: 1000px;
+    height: 1000px;
+}
+
 .profile-carousel-unit {
     /* width: 600px; */
     /* border-top: 140px;

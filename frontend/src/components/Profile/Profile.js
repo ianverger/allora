@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserTrips } from '../../store/session';
 import TripIndexItem from './TripIndexItem';
+import ProfileMap from '../Map/ProfileMap'
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jwtFetch from '../../store/jwt';
@@ -42,7 +43,11 @@ function Profile () {
           ))}
         </div>
           <div id="right">
-          <div className="profile-carousel-unit">
+            {userTrips && 
+              <ProfileMap 
+                trips={userTrips}
+              />}
+          {/* <div className="profile-carousel-unit">
           <Carousel indicators={false} controls={false} fade>
             <Carousel.Item>
               <img
@@ -101,7 +106,7 @@ function Profile () {
               />
             </Carousel.Item>
           </Carousel>
-        </div>
+        </div> */}
           </div>
       </div>
 

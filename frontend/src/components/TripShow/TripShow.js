@@ -29,18 +29,25 @@ function TripShow () {
   const currentUser = useSelector(state => state.session.user);
 
   const [dates, setDates] = useState([]);
+  const [mapReady, setMapReady] = useState(false);
 
 
   //API fetch
-  useEffect(() => {
-    const getTrip = async () => {
-      const trip = await dispatch(fetchTrip(tripId))
-      .then(setLoadContent(true))
-      const data = await trip;
-    }
+  // useEffect(() => {
+  //   const getTrip = async () => {
+  //     const trip = await dispatch(fetchTrip(tripId))
+  //     .then(setLoadContent(true))
+  //     const data = await trip;
+  //   }
     
-    getTrip();
-  }, [dispatch, tripId])
+  //   getTrip();
+  // }, [dispatch, tripId])
+
+  useEffect(() => {
+    dispatch(fetchTrip(tripId))
+    console.log(trip, 'here')
+    setLoadContent(true)
+  },[])
 
   const translatedDates = () => {
     let datesArr = [];
@@ -57,6 +64,16 @@ function TripShow () {
     if (loadContent) translatedDates();
    
   },[trip]);
+
+
+  useEffect(() => {
+    if (loadContent && latitude === trip.latitude) {
+      setMapReady(true);
+    }
+   
+  },[trip]);
+
+  console.log(latitude, longitude, city, '1')
 
 
   if (loadContent) return (
@@ -82,7 +99,7 @@ function TripShow () {
       </div>
 
       <div className='trip-right-container'>
-            {(latitude && activities) && 
+            {(mapReady && activities) && 
               <ActivitiesMap  
                 centerLat={latitude}
                 centerLng={longitude}
