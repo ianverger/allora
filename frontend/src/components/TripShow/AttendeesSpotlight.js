@@ -21,7 +21,7 @@ function AttendeeIcon ({ attendee }) {
             >
                 <i id='pro-pic-in-header' className="fas fa-user-circle"></i>
                 <div id="username-container">
-                    {hover ? `${attendee.username}` : ""}
+                    {hover ? `@${attendee.username}` : ""}
                 </div>
             </div>
         </>
