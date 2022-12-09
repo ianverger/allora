@@ -23,7 +23,6 @@ function ActivitiesMap({
     const lngFloat = parseFloat(centerLng)
 
 
-    console.log(latFloat, lngFloat, '2')
 
 
     useEffect(() => {
