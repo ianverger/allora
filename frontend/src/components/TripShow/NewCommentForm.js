@@ -11,6 +11,7 @@ function AddNewComment ({tripId, activityId, userId}) {
         e.preventDefault();
         const comment = {text, activity: activityId, trip: tripId, publisher: userId }
         dispatch(createComment(comment));
+        setText("");
     }
 
     return (

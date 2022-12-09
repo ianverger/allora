@@ -77,7 +77,7 @@ function TripShow () {
 
 
   if (loadContent) return (
-    <>
+
     <div className="trip-container">
       <div className='trip-left-container'>
           {(dates && tripAttendees) && <TripInfoHeader 
@@ -115,7 +115,7 @@ function TripShow () {
       </div>
 
     </div> 
-  </>
+  
   );
   
 }
