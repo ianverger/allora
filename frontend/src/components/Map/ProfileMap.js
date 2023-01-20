@@ -14,7 +14,7 @@ function ProfileMap({trips}) {
                     lat: 37.84337475042218,
                     lng: -41.67527049565253
                 },
-            zoom: 2,
+            zoom: 2.8,
             clickableIcons: false,
             streetViewControl: false,
             keyboardShortcuts: false,

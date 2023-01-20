@@ -58,7 +58,7 @@ h2 {
 }
 
 .profile-map {
-    height: 99.5%;
+    height: 100%;
     width: 100%;
 }
 
@@ -92,6 +92,7 @@ h2 {
     text-align: center;
     display: flex;
     align-items: center;
+    padding: 15px;
 }
 
 #bio-right {
