@@ -45,26 +45,21 @@ h2 {
 }
 
 #right {
+    margin-top: 70px;
     width: 50%;
     position: fixed;
-  height: 500px;
-    top: 8px;
+    /* height: calc(100vh - 75px); */
+    height: calc(100vh - 75px);
+    top: 0px;
     right: 0;
-    padding-right: 30px;
+    /* padding-right: 30px; */
     /* margin-top: 90px;
     margin-bottom: 100px; */
 }
 
 .profile-map {
-    width: 1000px;
-    height: 1000px;
-}
-
-.profile-carousel-unit {
-    /* width: 600px; */
-    /* border-top: 140px;
-    margin-bottom: 10px;
-    border: 2px solid red; */
+    height: 100%;
+    width: 100%;
 }
 
 #new-trip-button {

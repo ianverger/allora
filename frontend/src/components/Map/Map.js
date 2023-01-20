@@ -34,6 +34,9 @@ function ActivitiesMap({
                 }, 
             zoom: 13,
             clickableIcons: false,
+            streetViewControl: false,
+            keyboardShortcuts: false,
+            mapTypeControl: false,
             ...mapOptions,
           }));
         }

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createActivity } from '../../store/activities';
 import { getCoords } from '../../util/util';
 import { Modal } from '../../context/Modal';
-// import './NewTripModal.css';
+import './AddActivityModal.css';
 
 function AddActivityModal({tripId, userId, currentDate}) {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ function AddActivityModal({tripId, userId, currentDate}) {
         id='add-new-activity' onClick={() => setShowModal(true)}>Add an activity</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-            <form onSubmit={handleSubmit}>
+            <form id="new-activity-form" onSubmit={handleSubmit}>
               <input type="text"
                 value={activityDate}
                 onChange={(e) => setActivityDate(e.target.value)}
@@ -55,7 +55,7 @@ function AddActivityModal({tripId, userId, currentDate}) {
                 placeholder="How about a little description?"
               />
   
-            <button type='submit' className='add-activity-submit'>Add this activity!</button>
+            <button id="nasb" type='submit' className='add-activity-submit'>Add this activity!</button>
         </form>
         </Modal>
       )}

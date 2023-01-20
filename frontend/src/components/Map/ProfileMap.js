@@ -11,11 +11,14 @@ function ProfileMap({trips}) {
         if (!map) {
             setMap(new window.google.maps.Map(mapRef.current, {
                 center: {
-                    lat: 42.75277,
-                    lng: 33.81443
+                    lat: 37.84337475042218,
+                    lng: -41.67527049565253
                 },
-            zoom: 3,
-            clickableIcons: false
+            zoom: 2,
+            clickableIcons: false,
+            streetViewControl: false,
+            keyboardShortcuts: false,
+            mapTypeControl: false,
             }));
         }
     }, [mapRef, map]);

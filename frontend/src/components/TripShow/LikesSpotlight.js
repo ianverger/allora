@@ -30,13 +30,13 @@ function LikesSection ({likes, currentUserId, activityId}) {
         <>
         <div id="likes-wrapper">
             <div id="num-likes-wrapper">
-                <span>{numLikes}</span>
+                <span>{liked ? numLikes : ""}</span>
             </div>
             <button 
-                className={liked ? "green-button" : "gray-button"}
+                className={includes ? "pink-button" : "gray-button"}
                 onClick={handleClick}
                 >
-                <i className="fa-solid fa-thumbs-up"></i>
+                {includes ? <i class="fa-solid fa-heart"></i> : <i class="fa-regular fa-heart"></i>}          
             </button>
         </div>
         </>

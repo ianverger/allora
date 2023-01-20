@@ -80,7 +80,9 @@ function CreateNewTripForm () {
             planner: currentUser
         }
         dispatch(createTrip(trip))
+        
         const to = `/trips/${trip._id}`;
+       
         history.push(to);
     }
 

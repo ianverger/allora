@@ -15,11 +15,13 @@ function CommentItem ({commentId, text, publisher, currentUserId}) {
         showDelete = true;
     }
 
+    console.log(publisher.username)
     return (
         <>
         <div className="comment-item-container">
             <div id='commenter'>
                 <i id='pro-pic-in-comment' className="fas fa-user-circle"></i>
+                <p id="publisher-name">{publisher.username}</p>
             </div>
             <div id='comment-text'>{text}</div>
             {showDelete ? 

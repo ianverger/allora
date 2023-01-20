@@ -1,0 +1,16 @@
+#new-activity-form {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    align-items: center;
+}
+
+#new-activity-form > input {
+    margin-bottom: 10px;
+    /* padding: 10px; */
+}
+
+#nasb {
+    width: 50%;
+    border-radius: 5px;
+}
